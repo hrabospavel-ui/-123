@@ -1,113 +1,133 @@
-# 北屿营造设计工作室官网原型
+# 北屿营造设计工作室静态官网
 
-这是一个可直接打开预览的独立设计工作室官网原型，面向建筑设计、产品与器物设计、空间研究、3D 模型、360 全景、项目图纸与后期内容维护。
+这是一个可部署到 GitHub Pages 的完整静态网站项目。入口文件保留为 `index.html`，样式位于 `assets/css/styles.css`，交互与 mock 数据位于 `assets/js/app.js`。
 
-## 如何预览
+## 正式维护方式
 
-直接用浏览器打开项目根目录中的 index.html 即可预览。
+本项目采用“GitHub 静态站 + 手动维护素材路径”。
 
-如果浏览器限制本地文件能力，也可以在任意静态服务器中打开当前目录。本原型不需要真实后端、数据库或构建工具。
+GitHub Pages 不能在线写入仓库，也不连接数据库、服务器或对象存储。图片、GIF、视频、GLB、PDF 等正式素材需要先手动上传到 GitHub 仓库的 `assets` 目录，再进入后台填写相对路径。
 
-## 文件结构
+后台保存会写入当前浏览器的 `localStorage`，用于本机预览。要让所有访客看到更新，需要导出 JSON，并把更新后的数据和素材文件一起提交到 GitHub 仓库。
 
-- index.html：单页网站结构，包含前台展示、项目弹窗，以及通过右下角瓦当入口打开的 Admin overlay。
-- assets/css/styles.css：全站视觉系统、响应式布局、项目卡片、文字型卡片、弹窗、维护端样式。
-- assets/js/app.js：站点数据、mock API、Canvas 动态背景、筛选、弹窗、模型台、全景模拟、Admin 交互。
-- README.md：当前说明文件。
+## 推荐目录
 
-## 如何替换项目数据
+项目素材：
 
-项目数据集中在 assets/js/app.js 顶部的 projects 数组。每个项目包含：
+```text
+assets/projects/p001-northern-wind-court/cover.jpg
+assets/projects/p001-northern-wind-court/article-01.jpg
+assets/projects/p001-northern-wind-court/article-02.gif
+assets/projects/p001-northern-wind-court/walkthrough.mp4
+assets/projects/p001-northern-wind-court/model.glb
+assets/projects/p001-northern-wind-court/panorama.jpg
+assets/projects/p001-northern-wind-court/drawings.pdf
+```
 
-- id
-- titleCN
-- titleEN
-- category
-- year
-- location
-- status
-- material
-- scale
-- role
-- concept
-- description
-- coverImage
-- gallery
-- drawings
-- model3d
-- panorama
-- video
-- pdf
-- tags
-- featured
-- published
+板块背景：
 
-前台渲染会通过 fetchProjects 获取数据。新增、编辑、删除、发布切换由 createProject、updateProject、deleteProject、togglePublishStatus 统一处理。
+```text
+assets/backgrounds/home-bg.jpg
+assets/backgrounds/works-bg.jpg
+assets/backgrounds/research-bg.jpg
+```
 
-## 如何替换素材路径
+瓦当图标当前代码使用 `assets/images/watang.png`，项目中也兼容放置了 `assets/watang/watang.png`。
 
-当前 coverImage 使用 abstract:ridge、abstract:plinth、abstract:vessel、abstract:grid、abstract:paper 这类抽象视觉键，便于在没有真实图片时保持设计感。
+## 后台维护
 
-后期接入真实素材时，可以把字段替换成真实路径，例如：
+点击右下角瓦当入口打开后台 overlay。
 
-- coverImage：项目封面图片路径
-- gallery：项目图集路径数组
-- drawings：图纸 PDF 或图片路径数组
-- model3d：GLB 文件路径
-- panorama：360 全景图路径
-- video：视频路径
-- pdf：项目 PDF 路径
+项目素材在“素材路径 / Asset Path Manager”中维护，支持：
 
-如果项目没有 coverImage，前台会自动使用 text-only-card 案卷索引样式，不会出现空白图片框。
+- `coverImage`
+- `gallery`
+- `drawings`
+- `model3d`
+- `panorama`
+- `video`
+- `pdf`
 
-## mock API 在哪里
+多图字段一行一个路径。保存后会立即刷新当前浏览器中的前台展示，并保留在 `localStorage`。
 
-mock API 位于 assets/js/app.js，函数包括：
+“本地临时预览导入”只保存到当前浏览器 IndexedDB，用于临时看效果；更换设备、清理站点数据或换浏览器后会丢失。正式发布请使用 `assets/...` 相对路径。
 
-- fetchSiteSettings()
-- updateSiteSettings(data)
-- fetchNavigation()
-- fetchProjects()
-- fetchProjectById(id)
-- createProject(data)
-- updateProject(id, data)
-- deleteProject(id)
-- togglePublishStatus(id)
-- uploadAsset(file, type, projectId)
+## 文章块路径
 
-这些函数当前使用浏览器内的本地 mock 数据和 Promise 模拟异步请求。项目与站点设置会写入 localStorage，刷新页面后保留 Admin 编辑结果。代码中已标注：后期可将这些 mock API 替换为真实数据库 API 和对象存储上传接口。
+完整项目文章页继续使用 `articleBlocks`：
 
-## Admin 维护入口
+```json
+[
+  { "type": "heading", "text": "设计命题" },
+  { "type": "paragraph", "text": "本项目从北方高台建筑的体量感出发……" },
+  {
+    "type": "image",
+    "asset": "assets/projects/p001-northern-wind-court/article-01.jpg",
+    "caption": "入口空间效果图"
+  },
+  {
+    "type": "gallery",
+    "assets": [
+      "assets/projects/p001-northern-wind-court/article-02.jpg",
+      "assets/projects/p001-northern-wind-court/article-03.jpg"
+    ],
+    "caption": "空间序列"
+  },
+  {
+    "type": "video",
+    "asset": "assets/projects/p001-northern-wind-court/walkthrough.mp4",
+    "caption": "空间漫游视频"
+  },
+  {
+    "type": "pdf",
+    "asset": "assets/projects/p001-northern-wind-court/drawings.pdf",
+    "label": "查看完整图纸 PDF"
+  },
+  { "type": "model3d", "asset": "assets/projects/p001-northern-wind-court/model.glb" },
+  { "type": "panorama", "asset": "assets/projects/p001-northern-wind-court/panorama.jpg" }
+]
+```
 
-维护端不作为公开页面 section 出现，点击右下角克制的瓦当图标可打开案卷维护台 overlay。维护端已经补齐项目字段：status、material、scale、role、concept、coverImage、gallery、drawings、model3d、panorama、video、pdf。
+如果项目没有自定义 `articleBlocks`，前台会根据 `description`、`gallery`、`drawings`、`video`、`pdf`、`model3d`、`panorama` 自动生成默认文章。直接访问 `#project/p001` 可以打开完整项目文章。
 
-素材上传区支持选择归属项目和素材类型，mock 上传后会写入对应项目字段；也支持查看当前素材列表、设为封面和删除素材。
+## 板块背景
 
-数据管理支持：
+“板块背景 / Section Backgrounds”以路径方式维护，支持 `home` 在内的所有板块。填写路径后，背景图会垫在底层，原设计背景保留，并可调节：
 
-- 一键重置 mock 数据
-- 导出 projects JSON
-- 导入 projects JSON
-- 导出 siteSettings JSON
-- 导入 siteSettings JSON
+- `imageOpacity`
+- `designOpacity`
+- `position`
+- `blendMode`
 
-## 动效与性能
+没有填写背景路径时，原效果保持不变。
 
-页面保留自然滚动，没有 fullpage 劫持。导航锚点使用自定义阻尼 smooth scroll；section 进入视口时会添加 is-visible / is-entering / is-passed 类，触发轻微 stagger 过渡。
+## 导入导出
 
-全站新增一个固定 Canvas 的橙色火星系统，作为远处朝霞、余烬和熔光点缀。移动端会降低火星数量；prefers-reduced-motion 时关闭复杂运动，只保留基础视觉。
+后台支持：
 
-## 后期接入真实后台
+- 导出 `projects JSON`
+- 导出 `siteSettings JSON`
+- 导出 `full-site-data JSON`
+- 导入 `projects JSON`
+- 导入 `siteSettings JSON`
+- 导入 `full-site-data JSON`
 
-建议保持前台调用函数名不变，只替换 mock API 内部实现：
+导出的 JSON 只包含路径和数据，不包含素材文件。正式发布时，请确认素材文件已经提交到 GitHub 仓库。
 
-1. 将 fetchSiteSettings、fetchNavigation、fetchProjects 改为请求真实 CMS 或数据库接口。
-2. 将 createProject、updateProject、deleteProject、togglePublishStatus 改为真实管理端接口。
-3. 将 uploadAsset(file, type) 改为对象存储上传流程，返回真实 URL。
-4. Admin 区域可接入真实登录鉴权，但当前原型不包含真实鉴权逻辑。
-5. 3D 模型台可在 loadModelViewer(project.model3d) 中替换为 `<model-viewer>` 或 Three.js。
-6. 入此空间模块可在 loadPanoramaViewer(project.panorama) 中替换为 Pannellum 或 Photo Sphere Viewer。
+## GitHub Pages 部署
 
-## 设计说明
+上传整个项目到仓库根目录后，在 GitHub Pages 中选择对应分支和根目录部署。所有项目内引用都使用相对路径，适配：
 
-视觉方向为黑色沉浸数字高台、北方高古建筑气象、现代东方平面、年轻先锋设计工作室。传统元素只以抽象屋脊线、台基线、中轴线、瓦当圆标、朱砂发布印等现代化符号出现，避免古风拼贴和文旅展板感。
+```text
+https://用户名.github.io/仓库名/
+```
+
+## 图片不显示排查
+
+- 路径大小写是否与仓库文件完全一致；
+- 文件是否真的提交到了 GitHub；
+- 文件名是否包含空格或中文；
+- GitHub Pages 是否已经完成部署；
+- 是否误用了本机路径，如 `C:\...` 或 `file://...`；
+- 是否把素材放在仓库外部；
+- 如果页面部署在仓库子路径下，请继续使用 `assets/...` 这种相对路径，不要写 `/assets/...`。

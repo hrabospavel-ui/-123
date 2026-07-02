@@ -161,7 +161,7 @@
         <div>
           <p class="eyebrow">ARCHIVE CONSOLE / 案卷维护台</p>
           <h2 id="adminOverlayTitle">案卷维护台 / Archive Console</h2>
-          <p>当前不连接真实数据库、不做真实鉴权，所有操作通过 mock API 和 localStorage 在浏览器内模拟。</p>
+          <p>当前为 GitHub 静态站路径维护模式，不连接数据库，不在线写入仓库。后台保存写入当前浏览器 localStorage；正式发布请导出 JSON 并提交到 GitHub。</p>
         </div>
         <button class="modal-close admin-close" type="button" data-admin-close aria-label="关闭案卷维护台">×</button>
       </div>
@@ -176,8 +176,9 @@
           <div class="admin-tabs" role="tablist" aria-label="维护模块">
             <button class="is-active" type="button" data-admin-tab="projects">项目案卷</button>
             <button type="button" data-admin-tab="settings">首页与联系</button>
-            <button type="button" data-admin-tab="assets">素材上传</button>
+            <button type="button" data-admin-tab="assets">素材路径</button>
             <button type="button" data-admin-tab="backgrounds">板块背景</button>
+            <button type="button" data-admin-tab="article">项目文章</button>
           </div>
           <div class="admin-panels">
             <div class="admin-panel is-active" data-admin-panel="projects">
@@ -193,13 +194,13 @@
                 <label>材料<input name="material" placeholder="brick, timber, glass"></label>
                 <label>尺度<input name="scale" placeholder="1,850 sqm / object series"></label>
                 <label>角色<input name="role" placeholder="concept, spatial design"></label>
-                <label>封面键或路径<input name="coverImage" placeholder="abstract:ridge 或 assets/cover.jpg"></label>
-                <label>图集<input name="gallery" placeholder="多个路径用逗号分隔"></label>
-                <label>图纸<input name="drawings" placeholder="多个路径用逗号分隔"></label>
-                <label>3D 模型<input name="model3d" placeholder="assets/models/name.glb"></label>
-                <label>360 全景<input name="panorama" placeholder="assets/panorama/name.jpg"></label>
-                <label>视频<input name="video" placeholder="assets/video/name.mp4"></label>
-                <label>PDF<input name="pdf" placeholder="assets/pdf/name.pdf"></label>
+                <label>封面键或路径<input name="coverImage" placeholder="abstract:ridge 或 assets/projects/p001-northern-wind-court/cover.jpg"></label>
+                <label>图集<textarea name="gallery" rows="3" placeholder="一行一个路径，支持 jpg / png / webp / gif"></textarea></label>
+                <label>图纸<textarea name="drawings" rows="3" placeholder="一行一个路径，支持 pdf / jpg / png"></textarea></label>
+                <label>3D 模型<input name="model3d" placeholder="assets/projects/p001-northern-wind-court/model.glb"></label>
+                <label>360 全景<input name="panorama" placeholder="assets/projects/p001-northern-wind-court/panorama.jpg"></label>
+                <label>视频<input name="video" placeholder="assets/projects/p001-northern-wind-court/walkthrough.mp4"></label>
+                <label>PDF<input name="pdf" placeholder="assets/projects/p001-northern-wind-court/drawings.pdf"></label>
                 <label>标签<input name="tags" placeholder="中轴线, 台基, 3D"></label>
                 <label class="full">设计命题<textarea name="concept" rows="2" placeholder="一句话说明项目的设计命题"></textarea></label>
                 <label class="full">摘要<textarea name="description" rows="4" placeholder="项目简述"></textarea></label>
@@ -221,34 +222,41 @@
               <label class="full">首页介绍<textarea name="intro" rows="3"></textarea></label>
               <label>联系邮箱<input name="email"></label>
               <label>作品集 PDF<input name="portfolioPdf"></label>
+              <p class="admin-note full">当前是 GitHub 静态站路径维护模式。此处保存会写入当前浏览器 localStorage，用于预览。若要让所有访客看到更新，请导出 JSON 并提交到 GitHub 仓库。</p>
               <div class="form-actions full">
                 <button class="button button-primary" type="submit"><span>更新首页文案</span><em>Update Settings</em></button>
                 <button class="button button-outline" type="button" id="exportSettingsButton"><span>导出设置</span><em>JSON</em></button>
+                <button class="button button-outline" type="button" id="exportFullDataButton"><span>导出全站数据</span><em>Full JSON</em></button>
                 <label class="import-button"><input type="file" id="importSettingsInput" accept="application/json">导入设置</label>
+                <label class="import-button"><input type="file" id="importFullDataInput" accept="application/json">导入全站数据</label>
               </div>
             </form>
             <div class="admin-panel" data-admin-panel="assets">
               <div class="asset-uploader" id="assetUploader">
-                <span class="seal-stamp">ASSET</span>
-                <h3>项目素材库</h3>
-                <p>素材上传会绑定到指定项目，并写入对应字段。当前为 mock 流程，后期可替换为对象存储。</p>
+                <span class="seal-stamp">ASSET PATH</span>
+                <h3>素材路径维护 / Asset Path Manager</h3>
+                <p>GitHub Pages 静态站不能在线写入仓库。正式素材请先上传到 GitHub 仓库 assets 目录，再在这里填写路径。此处保存只写入当前浏览器 localStorage；正式发布请导出 JSON 并提交到 GitHub。</p>
                 <label>归属项目<select id="assetProject"></select></label>
-                <label>素材类型
+                <label>维护字段
                   <select id="assetType">
-                    <option value="cover">cover / 封面</option>
-                    <option value="gallery">gallery / 图集</option>
-                    <option value="drawing">drawing / 图纸</option>
-                    <option value="model3d">model3d / GLB 3D</option>
+                    <option value="coverImage">coverImage / 封面</option>
+                    <option value="gallery">gallery / 图集，一行一个路径</option>
+                    <option value="drawings">drawings / 图纸，一行一个路径</option>
+                    <option value="model3d">model3d / GLB 或 GLTF</option>
                     <option value="panorama">panorama / 360 全景</option>
                     <option value="video">video / 视频</option>
                     <option value="pdf">pdf / PDF</option>
                   </select>
                 </label>
-                <input id="assetInput" type="file" multiple>
-                <label class="form-check"><input type="checkbox" id="assetSetCover"> 上传后设为封面</label>
+                <label class="full">素材路径<textarea id="assetPathInput" rows="5" placeholder="assets/projects/p001-northern-wind-court/cover.jpg"></textarea></label>
+                <p class="asset-note">推荐目录：assets/projects/项目ID-英文短名/cover.jpg、article-01.jpg、process.gif、walkthrough.mp4、model.glb、panorama.jpg、drawings.pdf。多图字段请一行一个路径；大小写必须与 GitHub 仓库文件完全一致。</p>
+                <label class="full">本地临时预览导入<input id="assetInput" type="file" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.mp4,.webm,.pdf,.glb,.gltf,image/*,video/*,application/pdf,model/gltf-binary,model/gltf+json"></label>
+                <p class="asset-note">IndexedDB 仅保存在当前浏览器。更换设备、清理站点数据或换浏览器后会丢失。GitHub Pages 正式发布请使用 assets 路径。</p>
                 <div class="upload-progress" id="uploadProgress" aria-hidden="true"><span></span></div>
                 <div class="form-actions">
-                  <button class="button button-dark" type="button" id="uploadButton"><span>模拟上传</span><em>Mock Upload</em></button>
+                  <button class="button button-dark" type="button" id="saveAssetPathsButton"><span>保存路径</span><em>Save Paths</em></button>
+                  <button class="button button-outline" type="button" id="previewAssetPathsButton"><span>预览路径</span><em>Preview</em></button>
+                  <button class="button button-outline" type="button" id="uploadButton"><span>导入本地预览</span><em>Local Preview</em></button>
                   <button class="button button-outline" type="button" id="exportProjectsButton"><span>导出项目</span><em>JSON</em></button>
                   <label class="import-button"><input type="file" id="importProjectsInput" accept="application/json">导入项目</label>
                   <button class="button button-outline" type="button" id="resetMockButton"><span>重置 Mock</span><em>Reset</em></button>
@@ -261,11 +269,11 @@
               <div class="asset-uploader section-bg-uploader">
                 <span class="seal-stamp">SECTION BG</span>
                 <h3>板块背景 / Section Backgrounds</h3>
-                <p>上传背景图会作为底层氛围图叠加，原设计背景不会删除。你可以调节上传图透明度和原设计背景透明度。未上传背景图时，板块保持默认效果。</p>
+                <p>板块背景以路径方式维护。请先把背景图提交到 GitHub 仓库 assets/backgrounds 目录，再填写相对路径；未填写时保持当前默认效果。首页 #home.hero 也会使用这里的背景路径。</p>
                 <label>选择板块<select id="sectionBgTarget"></select></label>
-                <label>背景图 URL 或路径<input id="sectionBgImage" placeholder="assets/images/section-home.jpg"></label>
-                <label>上传背景图<input id="sectionBgFile" type="file" accept="image/*"></label>
-                <label>上传图透明度 <span id="sectionBgImageOpacityValue">0</span><input id="sectionBgImageOpacity" type="range" min="0" max="1" step="0.05" value="0"></label>
+                <label>背景图路径<input id="sectionBgImage" placeholder="assets/backgrounds/home-bg.jpg"></label>
+                <label>本地临时预览导入<input id="sectionBgFile" type="file" accept="image/*"></label>
+                <label>路径图透明度 <span id="sectionBgImageOpacityValue">0</span><input id="sectionBgImageOpacity" type="range" min="0" max="1" step="0.05" value="0"></label>
                 <label>原设计背景透明度 <span id="sectionBgDesignOpacityValue">1</span><input id="sectionBgDesignOpacity" type="range" min="0" max="1" step="0.05" value="1"></label>
                 <label>背景位置
                   <select id="sectionBgPosition">
@@ -287,12 +295,47 @@
                 </label>
                 <div class="form-actions">
                   <button class="button button-dark" type="button" id="saveSectionBgButton"><span>保存背景</span><em>Save BG</em></button>
-                  <button class="button button-outline" type="button" id="uploadSectionBgButton"><span>模拟上传</span><em>Mock Upload</em></button>
+                  <button class="button button-outline" type="button" id="previewSectionBgButton"><span>预览背景</span><em>Preview</em></button>
+                  <button class="button button-outline" type="button" id="uploadSectionBgButton"><span>本地预览导入</span><em>Local</em></button>
                   <button class="button button-outline" type="button" id="clearSectionBgButton"><span>清除当前</span><em>Clear</em></button>
                   <button class="button button-outline" type="button" id="resetSectionBgButton"><span>恢复默认</span><em>Reset All</em></button>
                 </div>
               </div>
               <div class="section-bg-preview" id="sectionBgPreview"></div>
+            </div>
+            <div class="admin-panel article-editor-panel" data-admin-panel="article">
+              <div class="asset-uploader article-editor-tools">
+                <span class="seal-stamp">ARTICLE</span>
+                <h3>项目文章 / Article</h3>
+                <p>为完整项目页维护图文长文。图片、GIF、视频、PDF、模型和全景都使用 assets 相对路径；gallery 请一行一个路径。</p>
+                <label>编辑项目<select id="articleProjectSelect"></select></label>
+                <label>块类型
+                  <select id="articleBlockType">
+                    <option value="heading">标题 heading</option>
+                    <option value="paragraph">段落 paragraph</option>
+                    <option value="image">图片 / GIF image</option>
+                    <option value="gallery">图集 gallery</option>
+                    <option value="video">视频 video</option>
+                    <option value="quote">引用 quote</option>
+                    <option value="divider">分割线 divider</option>
+                    <option value="model3d">模型台 model3d</option>
+                    <option value="panorama">入此空间 panorama</option>
+                    <option value="pdf">PDF pdf</option>
+                  </select>
+                </label>
+                <label>正文 / 标题 / 引用<textarea id="articleBlockText" rows="4" placeholder="输入文章文字"></textarea></label>
+                <label>素材路径<textarea id="articleBlockAsset" rows="4" placeholder="assets/projects/p001-northern-wind-court/article-01.jpg"></textarea></label>
+                <label>Caption / Label<input id="articleBlockCaption" placeholder="图片说明或按钮文字"></label>
+                <label>本地临时预览导入<input id="articleInlineFile" type="file" accept=".jpg,.jpeg,.png,.webp,.gif,.mp4,.webm,.pdf,.glb,.gltf,image/*,video/*,application/pdf"></label>
+                <div class="form-actions">
+                  <button class="button button-dark" type="button" id="addArticleBlockButton"><span>新增块</span><em>Add Block</em></button>
+                  <button class="button button-outline" type="button" id="previewArticleAssetButton"><span>预览路径</span><em>Preview</em></button>
+                  <button class="button button-outline" type="button" id="uploadArticleAssetButton"><span>本地预览插入</span><em>Local</em></button>
+                  <button class="button button-primary" type="button" id="saveArticleBlocksButton"><span>保存文章</span><em>Save Article</em></button>
+                </div>
+              </div>
+              <div class="path-preview-grid" id="articlePathPreview"></div>
+              <div class="article-block-list" id="articleBlockList"></div>
             </div>
           </div>
         </div>
@@ -304,6 +347,16 @@
     <article class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button class="modal-close" type="button" id="modalClose" aria-label="关闭项目预览">×</button>
       <div id="modalContent"></div>
+    </article>
+  </div>
+
+  <div class="project-article-overlay" id="projectArticleOverlay" aria-hidden="true">
+    <article class="project-article-view" role="dialog" aria-modal="true" aria-labelledby="projectArticleTitle">
+      <div class="project-article-toolbar">
+        <button class="article-back-button" type="button" id="articleBackButton">返回</button>
+        <button class="modal-close article-close" type="button" id="articleCloseButton" aria-label="关闭完整项目">×</button>
+      </div>
+      <div id="projectArticleContent"></div>
     </article>
   </div>
 
