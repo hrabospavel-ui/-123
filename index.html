@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="独立设计工作室官网原型，面向建筑、产品、空间研究、器物设计、3D 模型与全景场景展示。">
+  <title>北屿营造设计工作室 | Independent Design Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#works">跳至作品</a>
+
+  <header class="site-header" aria-label="主导航">
+    <a class="brand-pill" href="#home" aria-label="回到首页">
+      <span class="brand-mark" id="brandSeal">北</span>
+      <span class="brand-copy">
+        <span class="brand-name" id="navStudioName">北屿营造</span>
+        <span class="brand-sub">DESIGN ATELIER</span>
+      </span>
+    </a>
+    <nav class="nav-pill" id="mainNav" aria-label="页面栏目"></nav>
+    <button class="mobile-menu-button" type="button" aria-label="打开导航" aria-expanded="false" id="mobileMenuButton">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="mobile-nav-panel" id="mobileNavPanel" aria-hidden="true"></div>
+  <div class="threshold-transition" id="thresholdTransition" aria-hidden="true">
+    <span class="threshold-line"></span>
+    <span class="threshold-glow"></span>
+    <span class="threshold-ember threshold-ember-1"></span>
+    <span class="threshold-ember threshold-ember-2"></span>
+    <span class="threshold-ember threshold-ember-3"></span>
+    <span class="threshold-ember threshold-ember-4"></span>
+    <span class="threshold-ember threshold-ember-5"></span>
+  </div>
+  <div class="watang-cursor" id="watangCursor" aria-hidden="true"><span></span></div>
+  <div class="watang-cursor-dot" id="watangCursorDot" aria-hidden="true"></div>
+
+  <main>
+    <section class="hero section-observe" id="home" data-section="Home">
+      <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow seal-line"><span id="heroSeal">北屿</span><span>NORTHERN TECTONIC INDEX</span></p>
+        <h1 id="heroTitle">在黑色天幕中，重构北方高古的空间秩序。</h1>
+        <p class="hero-title-en" id="heroTitleEN">Northern Tectonics Reframed for Contemporary Space and Objects.</p>
+        <p class="hero-intro" id="heroIntro">以建筑、器物、空间研究和数字模型为方法，把传统营造的秩序转译为当代生活与展示系统。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#works"><span>开启案卷</span><em>Browse Works</em></a>
+          <a class="button button-ghost" href="#studio"><span>营造方法</span><em>Studio Method</em></a>
+        </div>
+        <div class="hero-index" aria-label="工作室能力索引">
+          <a href="#architecture"><span>01</span> 建筑</a>
+          <a href="#objects"><span>02</span> 器物</a>
+          <a href="#research"><span>03</span> 研究</a>
+        </div>
+      </div>
+      <div class="hero-bottom-strip" aria-hidden="true">
+        <span>AXIS</span>
+        <span>PLINTH</span>
+        <span>EAVE LINE</span>
+        <span>MODEL PLATFORM</span>
+      </div>
+    </section>
+
+    <section class="section dark-section section-observe" id="featured" data-section="Featured Works">
+      <div class="section-heading wide-heading">
+        <p class="eyebrow">FEATURED WORKS / 精选作品</p>
+        <h2>高台上的三份案卷</h2>
+        <p>以大尺度空间、器物原型与数字场景串联工作室的核心方法。</p>
+      </div>
+      <div class="featured-grid" id="featuredGrid"></div>
+    </section>
+
+    <section class="section light-section section-observe" id="works" data-section="Works">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">WORKS / 作品总览</p>
+          <h2>项目索引不是目录，而是一套可维护的设计案卷。</h2>
+        </div>
+        <p>项目通过统一数据层渲染，支持分类筛选、发布状态、媒体能力和后期后台维护。</p>
+      </div>
+      <div class="filter-bar" id="filterBar" aria-label="作品分类筛选"></div>
+      <div class="works-grid" id="worksGrid"></div>
+    </section>
+
+    <section class="section deep-section section-observe" id="architecture" data-section="Architecture">
+      <div class="section-heading split-heading inverse">
+        <div>
+          <p class="eyebrow">ARCHITECTURE / 建筑</p>
+          <h2>从中轴线、台基和屋脊线开始，重排空间秩序。</h2>
+        </div>
+        <p>建筑与空间设计入口，覆盖展陈、公共空间、更新改造和沉浸式场景。</p>
+      </div>
+      <div class="category-rail" id="architectureRail"></div>
+    </section>
+
+    <section class="section paper-section section-observe" id="objects" data-section="Objects">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">OBJECTS / 器物</p>
+          <h2>器物不是小建筑，而是材料、尺度与手感的独立系统。</h2>
+        </div>
+        <p>产品设计、家具、装置与器物实验，保持克制的东方平面和年轻的结构敏感度。</p>
+      </div>
+      <div class="category-rail object-rail" id="objectsRail"></div>
+    </section>
+
+    <section class="section research-section section-observe" id="research" data-section="Research">
+      <div class="section-heading wide-heading inverse">
+        <p class="eyebrow">RESEARCH / 研究</p>
+        <h2>把构造、材料、形态生成、3D 模型和全景场景放在同一张工作台上。</h2>
+      </div>
+      <div class="research-grid" id="researchGrid"></div>
+    </section>
+
+    <section class="section studio-section section-observe" id="studio" data-section="Studio">
+      <div class="studio-layout">
+        <div class="section-heading inverse studio-copy">
+          <p class="eyebrow">STUDIO METHOD / 营造</p>
+          <h2>年轻团队，使用现代系统重新组织传统营造精神。</h2>
+          <p id="studioPhilosophy">我们关注北方建筑的尺度、风、影、材料和秩序，也关注产品在手中被使用的瞬间。每个项目从线稿、模型、图纸和现场材料同时推进。</p>
+        </div>
+        <div class="method-stack" id="methodStack"></div>
+      </div>
+    </section>
+
+    <section class="section contact-section section-observe" id="contact" data-section="Contact">
+      <div class="contact-panel">
+        <div>
+          <p class="eyebrow">CONTACT / 联系</p>
+          <h2>让新的空间、器物或研究案卷从一封邮件开始。</h2>
+        </div>
+        <div class="contact-actions">
+          <a class="button button-dark" id="emailLink" href="mailto:hello@example.com"><span>邮件联系</span><em id="contactEmail">hello@example.com</em></a>
+          <a class="button button-outline" id="pdfLink" href="#" download><span>作品集 PDF</span><em>Portfolio</em></a>
+          <div class="social-links" aria-label="社交链接">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Behance">BE</a>
+            <a href="#" aria-label="Xiaohongshu">RED</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="watang-admin-trigger" type="button" id="adminTrigger" aria-label="打开案卷维护台">
+    <span class="watang-core" aria-hidden="true"></span>
+    <span class="watang-tooltip" aria-hidden="true">Archive Console / 案卷维护台</span>
+  </button>
+
+  <div class="admin-overlay" id="adminOverlay" aria-hidden="true">
+    <div class="admin-overlay-backdrop" data-admin-close></div>
+    <section class="admin-drawer admin-section" role="dialog" aria-modal="true" aria-labelledby="adminOverlayTitle">
+      <div class="admin-overlay-header">
+        <div>
+          <p class="eyebrow">ARCHIVE CONSOLE / 案卷维护台</p>
+          <h2 id="adminOverlayTitle">案卷维护台 / Archive Console</h2>
+          <p>当前不连接真实数据库、不做真实鉴权，所有操作通过 mock API 和 localStorage 在浏览器内模拟。</p>
+        </div>
+        <button class="modal-close admin-close" type="button" data-admin-close aria-label="关闭案卷维护台">×</button>
+      </div>
+      <div class="admin-shell" id="adminShell">
+        <div class="admin-login is-hidden" id="adminLogin">
+          <span class="seal-stamp">MAINTAIN</span>
+          <h3>进入维护台</h3>
+          <p>模拟登录入口，用于展示后期内容管理流程。</p>
+          <button class="button button-primary" type="button" id="adminLoginButton"><span>进入控制台</span><em>Open Console</em></button>
+        </div>
+        <div class="admin-console" id="adminConsole">
+          <div class="admin-tabs" role="tablist" aria-label="维护模块">
+            <button class="is-active" type="button" data-admin-tab="projects">项目案卷</button>
+            <button type="button" data-admin-tab="settings">首页与联系</button>
+            <button type="button" data-admin-tab="assets">素材上传</button>
+            <button type="button" data-admin-tab="backgrounds">板块背景</button>
+          </div>
+          <div class="admin-panels">
+            <div class="admin-panel is-active" data-admin-panel="projects">
+              <div class="admin-list" id="adminProjectList"></div>
+              <form class="admin-form" id="projectForm">
+                <input type="hidden" name="id" value="">
+                <label>中文标题<input name="titleCN" required placeholder="例如：北台风庭"></label>
+                <label>英文标题<input name="titleEN" required placeholder="Northern Wind Court"></label>
+                <label>分类<select name="category"><option>Architecture</option><option>Objects</option><option>Research</option><option>Space</option></select></label>
+                <label>年份<input name="year" placeholder="2026"></label>
+                <label>地点<input name="location" placeholder="Hohhot / Beijing"></label>
+                <label>状态<input name="status" placeholder="Published / Draft / Prototype"></label>
+                <label>材料<input name="material" placeholder="brick, timber, glass"></label>
+                <label>尺度<input name="scale" placeholder="1,850 sqm / object series"></label>
+                <label>角色<input name="role" placeholder="concept, spatial design"></label>
+                <label>封面键或路径<input name="coverImage" placeholder="abstract:ridge 或 assets/cover.jpg"></label>
+                <label>图集<input name="gallery" placeholder="多个路径用逗号分隔"></label>
+                <label>图纸<input name="drawings" placeholder="多个路径用逗号分隔"></label>
+                <label>3D 模型<input name="model3d" placeholder="assets/models/name.glb"></label>
+                <label>360 全景<input name="panorama" placeholder="assets/panorama/name.jpg"></label>
+                <label>视频<input name="video" placeholder="assets/video/name.mp4"></label>
+                <label>PDF<input name="pdf" placeholder="assets/pdf/name.pdf"></label>
+                <label>标签<input name="tags" placeholder="中轴线, 台基, 3D"></label>
+                <label class="full">设计命题<textarea name="concept" rows="2" placeholder="一句话说明项目的设计命题"></textarea></label>
+                <label class="full">摘要<textarea name="description" rows="4" placeholder="项目简述"></textarea></label>
+                <div class="form-row full">
+                  <label><input type="checkbox" name="featured"> 精选</label>
+                  <label><input type="checkbox" name="published" checked> 发布</label>
+                </div>
+                <div class="form-actions full">
+                  <button class="button button-dark" type="submit"><span>保存案卷</span><em>Save</em></button>
+                  <button class="button button-outline" type="button" id="newProjectButton"><span>新建项目</span><em>New</em></button>
+                </div>
+              </form>
+            </div>
+            <form class="admin-panel admin-form settings-form" data-admin-panel="settings" id="settingsForm">
+              <label>工作室名称<input name="studioName"></label>
+              <label>朱砂短印<input name="studioSeal"></label>
+              <label class="full">首页中文主张<textarea name="taglineCN" rows="3"></textarea></label>
+              <label class="full">英文副标题<textarea name="taglineEN" rows="2"></textarea></label>
+              <label class="full">首页介绍<textarea name="intro" rows="3"></textarea></label>
+              <label>联系邮箱<input name="email"></label>
+              <label>作品集 PDF<input name="portfolioPdf"></label>
+              <div class="form-actions full">
+                <button class="button button-primary" type="submit"><span>更新首页文案</span><em>Update Settings</em></button>
+                <button class="button button-outline" type="button" id="exportSettingsButton"><span>导出设置</span><em>JSON</em></button>
+                <label class="import-button"><input type="file" id="importSettingsInput" accept="application/json">导入设置</label>
+              </div>
+            </form>
+            <div class="admin-panel" data-admin-panel="assets">
+              <div class="asset-uploader" id="assetUploader">
+                <span class="seal-stamp">ASSET</span>
+                <h3>项目素材库</h3>
+                <p>素材上传会绑定到指定项目，并写入对应字段。当前为 mock 流程，后期可替换为对象存储。</p>
+                <label>归属项目<select id="assetProject"></select></label>
+                <label>素材类型
+                  <select id="assetType">
+                    <option value="cover">cover / 封面</option>
+                    <option value="gallery">gallery / 图集</option>
+                    <option value="drawing">drawing / 图纸</option>
+                    <option value="model3d">model3d / GLB 3D</option>
+                    <option value="panorama">panorama / 360 全景</option>
+                    <option value="video">video / 视频</option>
+                    <option value="pdf">pdf / PDF</option>
+                  </select>
+                </label>
+                <input id="assetInput" type="file" multiple>
+                <label class="form-check"><input type="checkbox" id="assetSetCover"> 上传后设为封面</label>
+                <div class="upload-progress" id="uploadProgress" aria-hidden="true"><span></span></div>
+                <div class="form-actions">
+                  <button class="button button-dark" type="button" id="uploadButton"><span>模拟上传</span><em>Mock Upload</em></button>
+                  <button class="button button-outline" type="button" id="exportProjectsButton"><span>导出项目</span><em>JSON</em></button>
+                  <label class="import-button"><input type="file" id="importProjectsInput" accept="application/json">导入项目</label>
+                  <button class="button button-outline" type="button" id="resetMockButton"><span>重置 Mock</span><em>Reset</em></button>
+                </div>
+              </div>
+              <div class="asset-library" id="assetLibrary"></div>
+              <div class="upload-log" id="uploadLog"></div>
+            </div>
+            <div class="admin-panel section-background-panel" data-admin-panel="backgrounds">
+              <div class="asset-uploader section-bg-uploader">
+                <span class="seal-stamp">SECTION BG</span>
+                <h3>板块背景 / Section Backgrounds</h3>
+                <p>上传背景图会作为底层氛围图叠加，原设计背景不会删除。你可以调节上传图透明度和原设计背景透明度。未上传背景图时，板块保持默认效果。</p>
+                <label>选择板块<select id="sectionBgTarget"></select></label>
+                <label>背景图 URL 或路径<input id="sectionBgImage" placeholder="assets/images/section-home.jpg"></label>
+                <label>上传背景图<input id="sectionBgFile" type="file" accept="image/*"></label>
+                <label>上传图透明度 <span id="sectionBgImageOpacityValue">0</span><input id="sectionBgImageOpacity" type="range" min="0" max="1" step="0.05" value="0"></label>
+                <label>原设计背景透明度 <span id="sectionBgDesignOpacityValue">1</span><input id="sectionBgDesignOpacity" type="range" min="0" max="1" step="0.05" value="1"></label>
+                <label>背景位置
+                  <select id="sectionBgPosition">
+                    <option value="center">center</option>
+                    <option value="center top">center top</option>
+                    <option value="center bottom">center bottom</option>
+                    <option value="left center">left center</option>
+                    <option value="right center">right center</option>
+                  </select>
+                </label>
+                <label>混合模式
+                  <select id="sectionBgBlendMode">
+                    <option value="screen">screen</option>
+                    <option value="multiply">multiply</option>
+                    <option value="overlay">overlay</option>
+                    <option value="soft-light">soft-light</option>
+                    <option value="normal">normal</option>
+                  </select>
+                </label>
+                <div class="form-actions">
+                  <button class="button button-dark" type="button" id="saveSectionBgButton"><span>保存背景</span><em>Save BG</em></button>
+                  <button class="button button-outline" type="button" id="uploadSectionBgButton"><span>模拟上传</span><em>Mock Upload</em></button>
+                  <button class="button button-outline" type="button" id="clearSectionBgButton"><span>清除当前</span><em>Clear</em></button>
+                  <button class="button button-outline" type="button" id="resetSectionBgButton"><span>恢复默认</span><em>Reset All</em></button>
+                </div>
+              </div>
+              <div class="section-bg-preview" id="sectionBgPreview"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="projectModal" aria-hidden="true">
+    <article class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" id="modalClose" aria-label="关闭项目预览">×</button>
+      <div id="modalContent"></div>
+    </article>
+  </div>
+
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
