@@ -56,12 +56,12 @@
       concept: "把台基、风廊和中轴线压缩成一座可行走的数字高台。",
       description: "项目从北方高台建筑的体量感出发，用暗色砖石、冷青光线和折线屋脊组织展陈路径，让空间像从黑色地平线中升起。",
       coverImage: "abstract:ridge",
-      gallery: ["assets/mock/northern-wind-01.jpg"],
-      drawings: ["assets/mock/northern-wind-plan.pdf"],
-      model3d: "assets/models/northern-wind-court.glb",
-      panorama: "assets/panorama/northern-wind-court.jpg",
+      gallery: ["assets/projects/p001-northern-wind-court/article-01.png"],
+      drawings: ["assets/projects/p001-northern-wind-court/drawings.pdf"],
+      model3d: "assets/projects/p001-northern-wind-court/model.glb",
+      panorama: "assets/projects/p001-northern-wind-court/panorama.png",
       video: "",
-      pdf: "assets/pdf/northern-wind-court.pdf",
+      pdf: "assets/projects/p001-northern-wind-court/case.pdf",
       tags: ["中轴线", "台基", "展陈", "冷青光"],
       featured: true,
       published: true
@@ -80,12 +80,12 @@
       concept: "把山墙与瓦当转译成可握持、可陈列的器物比例。",
       description: "一组从山墙折线、瓦灰与青釉中生成的桌面器物，不追求仿古，而用当代加工方式保留北方器物的稳定和锋利。",
       coverImage: "abstract:vessel",
-      gallery: ["assets/mock/vessel-mountain-01.jpg"],
+      gallery: ["assets/projects/p002-vessel-mountain-index/article-01.png"],
       drawings: [],
-      model3d: "assets/models/vessel-mountain.glb",
+      model3d: "assets/projects/p002-vessel-mountain-index/model.glb",
       panorama: "",
       video: "",
-      pdf: "assets/pdf/vessel-mountain.pdf",
+      pdf: "assets/projects/p002-vessel-mountain-index/case.pdf",
       tags: ["器物", "青釉", "瓦当", "产品"],
       featured: true,
       published: true
@@ -106,9 +106,9 @@
       coverImage: "abstract:grid",
       gallery: [],
       drawings: [],
-      model3d: "assets/models/obsidian-platform.glb",
+      model3d: "assets/projects/p003-obsidian-model-platform/model.glb",
       panorama: "",
-      video: "assets/video/model-platform.mp4",
+      video: "",
       pdf: "",
       tags: ["3D", "GLB", "交互", "模型台"],
       featured: true,
@@ -128,12 +128,12 @@
       concept: "旧院落保留风口和阴影，新界面只做必要介入。",
       description: "以灰砖、夯土和木构为材料基础，保留院落的风道和尺度，通过现代平面和模块化构造减少历史符号堆叠。",
       coverImage: "abstract:plinth",
-      gallery: ["assets/mock/frontier-courtyard-01.jpg"],
-      drawings: ["assets/mock/frontier-courtyard-sections.pdf"],
+      gallery: ["assets/projects/p004-frontier-courtyard-renewal/article-01.png"],
+      drawings: ["assets/projects/p004-frontier-courtyard-renewal/drawings.pdf"],
       model3d: "",
-      panorama: "assets/panorama/frontier-courtyard.jpg",
+      panorama: "assets/projects/p004-frontier-courtyard-renewal/panorama.png",
       video: "",
-      pdf: "assets/pdf/frontier-courtyard.pdf",
+      pdf: "assets/projects/p004-frontier-courtyard-renewal/case.pdf",
       tags: ["更新", "灰砖", "院落", "360"],
       featured: false,
       published: true
@@ -153,11 +153,11 @@
       description: "一套面向展厅和住宅的扶手与展架系统，结构关系来自传统支撑系统，但外观保持低调、锋利和可量产。",
       coverImage: "",
       gallery: [],
-      drawings: ["assets/mock/cangqing-rail-detail.pdf"],
-      model3d: "assets/models/cangqing-rail.glb",
+      drawings: ["assets/projects/p005-cangqing-rail-system/drawings.pdf"],
+      model3d: "assets/projects/p005-cangqing-rail-system/model.glb",
       panorama: "",
       video: "",
-      pdf: "assets/pdf/cangqing-rail.pdf",
+      pdf: "assets/projects/p005-cangqing-rail-system/case.pdf",
       tags: ["产品", "模块", "支撑", "金属"],
       featured: false,
       published: true
@@ -176,11 +176,11 @@
       concept: "把展厅入口变成一条从暗场进入光幕的路径。",
       description: "以 360 全景为核心的空间展示原型，用户先在暗场看到轴线和光幕，再进入可滑动的全景场景。",
       coverImage: "abstract:ridge",
-      gallery: ["assets/mock/northern-gallery-01.jpg"],
+      gallery: ["assets/projects/p006-northern-gallery/article-01.png"],
       drawings: [],
       model3d: "",
-      panorama: "assets/panorama/northern-gallery.jpg",
-      video: "assets/video/northern-gallery.mp4",
+      panorama: "assets/projects/p006-northern-gallery/panorama.png",
+      video: "",
       pdf: "",
       tags: ["360", "展厅", "光幕", "叙事"],
       featured: false,
@@ -201,11 +201,11 @@
       description: "研究瓦灰、木褐、冷青与朱砂在不同材质上的显色关系，输出适用于建筑界面、产品外壳和图册系统的材料索引。",
       coverImage: "abstract:paper",
       gallery: [],
-      drawings: ["assets/mock/tile-gray-atlas.pdf"],
+      drawings: ["assets/projects/p007-tile-gray-material-atlas/drawings.pdf"],
       model3d: "",
       panorama: "",
       video: "",
-      pdf: "assets/pdf/tile-gray-atlas.pdf",
+      pdf: "assets/projects/p007-tile-gray-material-atlas/case.pdf",
       tags: ["材料", "色谱", "图册", "瓦灰"],
       featured: false,
       published: true
@@ -225,11 +225,11 @@
       description: "项目以传统建筑中轴线为出发点，生成一套可用于页面布局、展陈路线和项目编号的几何系统。",
       coverImage: "",
       gallery: [],
-      drawings: ["assets/mock/axis-study-drawing.pdf"],
+      drawings: ["assets/projects/p008-axis-generation-study/drawings.pdf"],
       model3d: "",
       panorama: "",
       video: "",
-      pdf: "assets/pdf/axis-study.pdf",
+      pdf: "assets/projects/p008-axis-generation-study/case.pdf",
       tags: ["参数化", "中轴线", "图纸", "系统"],
       featured: false,
       published: true
@@ -280,7 +280,54 @@
     assetURLs: {},
     assetDb: null,
     assetDbReady: false,
-    assetDbError: ""
+    assetDbError: "",
+    assetPreviewRefs: []
+  };
+
+  var ASSET_FIELD_CONFIG = {
+    coverImage: {
+      label: "coverImage / 封面",
+      multiple: false,
+      extensions: ["jpg", "jpeg", "png", "webp", "gif"],
+      allowAbstract: true,
+      kind: "image"
+    },
+    gallery: {
+      label: "gallery / 图集",
+      multiple: true,
+      extensions: ["jpg", "jpeg", "png", "webp", "gif"],
+      kind: "image"
+    },
+    drawings: {
+      label: "drawings / 图纸",
+      multiple: true,
+      extensions: ["pdf", "jpg", "jpeg", "png"],
+      kind: "mixed"
+    },
+    model3d: {
+      label: "model3d / 模型",
+      multiple: false,
+      extensions: ["glb", "gltf"],
+      kind: "model"
+    },
+    panorama: {
+      label: "panorama / 全景",
+      multiple: false,
+      extensions: ["jpg", "jpeg", "png", "webp"],
+      kind: "image"
+    },
+    video: {
+      label: "video / 视频",
+      multiple: false,
+      extensions: ["mp4", "webm"],
+      kind: "video"
+    },
+    pdf: {
+      label: "pdf / PDF",
+      multiple: false,
+      extensions: ["pdf"],
+      kind: "pdf"
+    }
   };
 
   var methods = [
@@ -291,8 +338,8 @@
   ];
 
   var STORAGE_KEYS = {
-    settings: "northernAtelier.siteSettings.v2",
-    projects: "northernAtelier.projects.v2"
+    settings: "northernAtelier.siteSettings.v3",
+    projects: "northernAtelier.projects.v3"
   };
   var defaultSiteSettings = clone(siteSettings);
   var defaultProjects = clone(projects);
@@ -395,6 +442,72 @@
     return String(value || "").split(/[,，\n]/).map(function (item) {
       return item.trim();
     }).filter(Boolean);
+  }
+
+  function formatPathList(value) {
+    return parseList(value).join("\n");
+  }
+
+  function pathExtension(value) {
+    var clean = String(value || "").split(/[?#]/)[0].trim().toLowerCase();
+    var match = clean.match(/\.([a-z0-9]+)$/);
+    return match ? match[1] : "";
+  }
+
+  function isExternalPath(value) {
+    return /^(https?:)?\/\//i.test(String(value || ""));
+  }
+
+  function isRelativeAssetPath(value) {
+    var path = String(value || "").trim();
+    return !path || isAssetReference(path) || isMockReference(path) || isExternalPath(path) || path.indexOf("assets/") === 0 || path.indexOf("./assets/") === 0 || path.indexOf("abstract:") === 0;
+  }
+
+  function validatePathForField(path, field) {
+    var value = String(path || "").trim();
+    var config = ASSET_FIELD_CONFIG[field] || {};
+    if (!value) {
+      return { ok: true, message: "" };
+    }
+    if (config.allowAbstract && value.indexOf("abstract:") === 0) {
+      return { ok: true, message: "抽象视觉键会继续使用内置视觉。" };
+    }
+    if (/^[A-Za-z]:\\|^file:\/\//.test(value)) {
+      return { ok: false, message: "不能使用本地电脑路径。" };
+    }
+    if (!isRelativeAssetPath(value)) {
+      return { ok: false, message: "建议使用 assets/ 开头的相对路径，不要使用本机路径。" };
+    }
+    if (!isAssetReference(value) && !isMockReference(value) && !isExternalPath(value)) {
+      var ext = pathExtension(value);
+      if (config.extensions && config.extensions.length && ext && config.extensions.indexOf(ext) === -1) {
+        return { ok: false, message: "扩展名不匹配，建议使用：" + config.extensions.join(", ") };
+      }
+      if (config.extensions && config.extensions.length && !ext && value.indexOf("abstract:") !== 0) {
+        return { ok: false, message: "路径缺少文件扩展名。" };
+      }
+    }
+    return { ok: true, message: "" };
+  }
+
+  function pathStatusMessage(path, field) {
+    var validation = validatePathForField(path, field);
+    if (!validation.ok) {
+      return validation.message;
+    }
+    if (!path) {
+      return "未填写路径。";
+    }
+    if (isExternalPath(path)) {
+      return "外部 URL 可预览，但 GitHub Pages 正式维护建议使用 assets/ 相对路径。";
+    }
+    if (isAssetReference(path)) {
+      return "本地 IndexedDB 临时预览资源。正式发布请改为 assets/ 路径。";
+    }
+    if (isMockReference(path)) {
+      return "本地 mock 标记。正式发布请改为 assets/ 路径。";
+    }
+    return "若预览不显示，请确认文件已上传到 GitHub 仓库且路径大小写一致。";
   }
 
   function normalizeArticleBlocks(blocks) {
@@ -509,7 +622,14 @@
     return delay({ ok: true });
   }
 
-  function exportJSON(filename, data) {
+  function exportJSON(filename, data, options) {
+    var exportOptions = options || {};
+    if (!exportOptions.skipNotice && typeof window !== "undefined" && window.confirm) {
+      var ok = window.confirm("导出只包含路径和数据，不包含图片、视频、GLB 或 PDF 文件。正式发布前请确认素材文件已手动上传到 GitHub 仓库 assets 目录。继续导出？");
+      if (!ok) {
+        return;
+      }
+    }
     var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     var url = URL.createObjectURL(blob);
     var link = document.createElement("a");
@@ -519,6 +639,13 @@
     link.click();
     link.remove();
     URL.revokeObjectURL(url);
+  }
+
+  function exportFullSiteData() {
+    exportJSON("northern-atelier-full-site-data.json", {
+      siteSettings: siteSettings,
+      projects: projects
+    });
   }
 
   function readJSONFile(file) {
@@ -536,7 +663,179 @@
     });
   }
 
-  // 后期可将这些 mock API 替换为真实数据库 API 和对象存储上传接口。
+  function initAssetDB() {
+    return new Promise(function (resolve) {
+      if (!("indexedDB" in window)) {
+        state.assetDbReady = false;
+        state.assetDbError = "当前浏览器不支持 IndexedDB，无法持久保存本地上传文件。";
+        resolve(null);
+        return;
+      }
+      var request = indexedDB.open(ASSET_DB_NAME, ASSET_DB_VERSION);
+      request.onupgradeneeded = function (event) {
+        var db = event.target.result;
+        if (!db.objectStoreNames.contains(ASSET_STORE)) {
+          var store = db.createObjectStore(ASSET_STORE, { keyPath: "id" });
+          store.createIndex("projectId", "projectId", { unique: false });
+          store.createIndex("sectionId", "sectionId", { unique: false });
+          store.createIndex("type", "type", { unique: false });
+          store.createIndex("createdAt", "createdAt", { unique: false });
+        }
+      };
+      request.onsuccess = function (event) {
+        state.assetDb = event.target.result;
+        state.assetDbReady = true;
+        state.assetDbError = "";
+        resolve(state.assetDb);
+      };
+      request.onerror = function () {
+        state.assetDbReady = false;
+        state.assetDbError = "IndexedDB 初始化失败：" + (request.error && request.error.message ? request.error.message : "未知错误");
+        resolve(null);
+      };
+    });
+  }
+
+  function assetStore(mode) {
+    if (!state.assetDb) {
+      return null;
+    }
+    return state.assetDb.transaction(ASSET_STORE, mode || "readonly").objectStore(ASSET_STORE);
+  }
+
+  function saveAssetToDB(file, meta) {
+    return new Promise(function (resolve, reject) {
+      var store = assetStore("readwrite");
+      if (!store) {
+        reject(new Error(state.assetDbError || "IndexedDB 不可用"));
+        return;
+      }
+      var id = ASSET_ID_PREFIX + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+      var record = Object.assign({
+        id: id,
+        name: file && file.name ? file.name : "untitled.asset",
+        type: meta && meta.type ? meta.type : "asset",
+        mime: file && file.type ? file.type : "",
+        size: file && Number.isFinite(file.size) ? file.size : 0,
+        projectId: meta && meta.projectId ? meta.projectId : "",
+        sectionId: meta && meta.sectionId ? meta.sectionId : "",
+        createdAt: new Date().toISOString(),
+        source: "indexedDB",
+        blob: file
+      }, meta || {});
+      record.id = id;
+      record.objectUrl = "";
+      var request = store.put(record);
+      request.onsuccess = function () {
+        resolve(assetRecordToMeta(record));
+      };
+      request.onerror = function () {
+        reject(request.error || new Error("保存文件到 IndexedDB 失败"));
+      };
+    });
+  }
+
+  function getAssetFromDB(assetId) {
+    return new Promise(function (resolve, reject) {
+      var store = assetStore("readonly");
+      if (!store || !assetId) {
+        resolve(null);
+        return;
+      }
+      var request = store.get(assetId);
+      request.onsuccess = function () { resolve(request.result || null); };
+      request.onerror = function () { reject(request.error || new Error("读取 IndexedDB 文件失败")); };
+    });
+  }
+
+  function deleteAssetFromDB(assetId) {
+    return new Promise(function (resolve, reject) {
+      var store = assetStore("readwrite");
+      if (!store || !assetId) {
+        resolve(false);
+        return;
+      }
+      var request = store.delete(assetId);
+      request.onsuccess = function () {
+        if (state.assetURLs[assetId]) {
+          revokeAssetObjectURL(state.assetURLs[assetId]);
+          delete state.assetURLs[assetId];
+        }
+        resolve(true);
+      };
+      request.onerror = function () { reject(request.error || new Error("删除 IndexedDB 文件失败")); };
+    });
+  }
+
+  function listAssetsFromDB() {
+    return new Promise(function (resolve) {
+      var store = assetStore("readonly");
+      if (!store) {
+        resolve([]);
+        return;
+      }
+      var request = store.getAll();
+      request.onsuccess = function () {
+        resolve((request.result || []).map(assetRecordToMeta).sort(function (a, b) {
+          return String(b.createdAt).localeCompare(String(a.createdAt));
+        }));
+      };
+      request.onerror = function () { resolve([]); };
+    });
+  }
+
+  async function createAssetObjectURL(assetId) {
+    if (!assetId) {
+      return "";
+    }
+    if (state.assetURLs[assetId]) {
+      return state.assetURLs[assetId];
+    }
+    var record = await getAssetFromDB(assetId);
+    if (!record || !record.blob) {
+      return "";
+    }
+    var url = URL.createObjectURL(record.blob);
+    state.assetURLs[assetId] = url;
+    return url;
+  }
+
+  function revokeAssetObjectURL(url) {
+    if (url && String(url).startsWith("blob:")) {
+      URL.revokeObjectURL(url);
+    }
+  }
+
+  async function rebuildAssetObjectURLs() {
+    Object.keys(state.assetURLs || {}).forEach(function (id) {
+      revokeAssetObjectURL(state.assetURLs[id]);
+    });
+    state.assetURLs = {};
+    for (var i = 0; i < state.assets.length; i += 1) {
+      await createAssetObjectURL(state.assets[i].id);
+    }
+  }
+
+  function assetRecordToMeta(record) {
+    if (!record) {
+      return null;
+    }
+    return {
+      id: record.id,
+      name: record.name,
+      type: record.type,
+      mime: record.mime,
+      size: record.size,
+      projectId: record.projectId || "",
+      sectionId: record.sectionId || "",
+      createdAt: record.createdAt,
+      objectUrl: state.assetURLs[record.id] || "",
+      source: record.source || "indexedDB"
+    };
+  }
+
+  // GitHub Pages 正式版本使用本地 mock API、localStorage 和手动维护的 assets 相对路径。
+  // 不在线写入仓库；需要公开发布时导出 JSON 并提交到 GitHub。
   function fetchSiteSettings() {
     return delay(siteSettings);
   }
@@ -595,28 +894,65 @@
     return delay(project || null);
   }
 
-  function uploadAsset(file, type, projectId, options) {
-    var safeName = file && file.name ? file.name.replace(/\s+/g, "-").toLowerCase() : "mock-asset";
+  async function uploadAsset(file, type, projectId, options) {
     var uploadOptions = options || {};
+    var externalUrl = uploadOptions.url ? String(uploadOptions.url).trim() : "";
+    var realFile = isRealUploadFile(file);
+    var safeName = realFile && file.name ? file.name.replace(/\s+/g, "-").toLowerCase() : externalUrl ? externalUrl.split("/").pop() || "external-asset" : "mock-asset";
+    var assetReference = externalUrl || "mock:" + type + "-" + Date.now() + "-" + safeName;
+    var assetMeta = null;
+    if (realFile) {
+      assetMeta = await saveAssetToDB(file, {
+        type: type,
+        projectId: type === "sectionBackground" ? "" : projectId,
+        sectionId: type === "sectionBackground" ? projectId : "",
+        mime: file.type || inferMimeFromName(file.name),
+        size: file.size || 0
+      });
+      await createAssetObjectURL(assetMeta.id);
+      state.assets = await listAssetsFromDB();
+      assetReference = assetMeta.id;
+    }
     var result = {
       ok: true,
       type: type,
       projectId: projectId,
       targetId: projectId,
       name: safeName,
-      url: "assets/uploads/mock-" + type + "-" + Date.now() + "-" + safeName
+      url: assetReference,
+      assetId: assetMeta ? assetMeta.id : "",
+      asset: assetMeta,
+      source: assetMeta ? "indexedDB" : externalUrl ? "url" : "mock"
     };
     if (type === "sectionBackground") {
       applyAssetToSectionBackground(projectId, result, uploadOptions);
       writeStorage();
-      return Promise.resolve(result);
+      return result;
     }
     var project = projects.find(function (item) { return item.id === projectId; });
     if (project) {
       applyAssetToProject(project, result, uploadOptions);
       writeStorage();
     }
-    return Promise.resolve(result);
+    return result;
+  }
+
+  function isRealUploadFile(file) {
+    return Boolean(file && typeof file === "object" && typeof file.arrayBuffer === "function" && Number.isFinite(file.size));
+  }
+
+  function inferMimeFromName(name) {
+    var value = String(name || "").toLowerCase();
+    if (/\.gif$/.test(value)) { return "image/gif"; }
+    if (/\.jpe?g$/.test(value)) { return "image/jpeg"; }
+    if (/\.png$/.test(value)) { return "image/png"; }
+    if (/\.webp$/.test(value)) { return "image/webp"; }
+    if (/\.mp4$/.test(value)) { return "video/mp4"; }
+    if (/\.webm$/.test(value)) { return "video/webm"; }
+    if (/\.pdf$/.test(value)) { return "application/pdf"; }
+    if (/\.glb$/.test(value)) { return "model/gltf-binary"; }
+    if (/\.gltf$/.test(value)) { return "model/gltf+json"; }
+    return "";
   }
 
   function applyAssetToSectionBackground(sectionId, asset, options) {
@@ -663,10 +999,29 @@
       if (options.setCover && (type === "panorama" || type === "video")) {
         project.coverImage = url;
       }
+      return;
+    }
+    if (type === "articleImage" || type === "articleGif") {
+      project.articleBlocks = normalizeArticleBlocks(project.articleBlocks).concat({
+        type: "image",
+        asset: url,
+        caption: asset.name || "项目图片"
+      });
+      if (options.setCover) {
+        project.coverImage = url;
+      }
+      return;
+    }
+    if (type === "articleVideo") {
+      project.articleBlocks = normalizeArticleBlocks(project.articleBlocks).concat({
+        type: "video",
+        asset: url,
+        caption: asset.name || "项目视频"
+      });
     }
   }
 
-  function removeAsset(projectId, type, url) {
+  async function removeAsset(projectId, type, url) {
     var project = projects.find(function (item) { return item.id === projectId; });
     if (!project) {
       return delay(null);
@@ -679,6 +1034,22 @@
       project.coverImage = "";
     } else if (type === "model3d" || type === "panorama" || type === "video" || type === "pdf") {
       project[type] = "";
+    } else if (type === "article") {
+      project.articleBlocks = normalizeArticleBlocks(project.articleBlocks).filter(function (block) {
+        return block.asset !== url && parseList(block.assets).indexOf(url) === -1;
+      });
+    }
+    project.articleBlocks = normalizeArticleBlocks(project.articleBlocks).map(function (block) {
+      if (block.asset === url) {
+        block.asset = "";
+      }
+      block.assets = parseList(block.assets).filter(function (item) { return item !== url; });
+      return block;
+    }).filter(function (block) {
+      return block.type !== "image" && block.type !== "video" && block.type !== "pdf" || block.asset || block.assets.length;
+    });
+    if (isAssetReference(url)) {
+      await deleteAssetFromDB(url);
     }
     writeStorage();
     return delay(project);
@@ -696,12 +1067,21 @@
     togglePublishStatus: togglePublishStatus,
     uploadAsset: uploadAsset,
     removeAsset: removeAsset,
-    resetMockData: resetMockData
+    resetMockData: resetMockData,
+    initAssetDB: initAssetDB,
+    saveAssetToDB: saveAssetToDB,
+    getAssetFromDB: getAssetFromDB,
+    deleteAssetFromDB: deleteAssetFromDB,
+    listAssetsFromDB: listAssetsFromDB,
+    createAssetObjectURL: createAssetObjectURL,
+    revokeAssetObjectURL: revokeAssetObjectURL,
+    rebuildAssetObjectURLs: rebuildAssetObjectURLs
   };
 
   document.addEventListener("DOMContentLoaded", init);
 
   async function init() {
+    await initAssetDB();
     loadStoredData();
     await refreshData();
     renderAll();
@@ -716,6 +1096,8 @@
     state.settings = await fetchSiteSettings();
     state.navigation = await fetchNavigation();
     state.projects = await fetchProjects();
+    state.assets = await listAssetsFromDB();
+    await rebuildAssetObjectURLs();
   }
 
   function renderAll() {
@@ -731,8 +1113,9 @@
     applySectionBackgrounds();
     renderAdminList();
     renderAssetProjectOptions();
-    renderAssetLibrary();
+    fillAssetPathForm();
     renderSectionBgControls();
+    renderArticleEditorControls();
     fillSettingsForm();
   }
 
@@ -771,8 +1154,9 @@
       ensureSectionBackgroundLayers(section);
       var config = backgrounds[sectionInfo.id] || defaultSectionBackground(sectionInfo.id);
       var hasImage = Boolean(config.image);
+      var bgUrl = resolveAssetURL(config.image) || config.image;
       section.classList.toggle("has-section-bg-upload", hasImage);
-      section.style.setProperty("--section-upload-bg-image", hasImage ? cssUrl(config.image) : "none");
+      section.style.setProperty("--section-upload-bg-image", hasImage && bgUrl ? cssUrl(bgUrl) : "none");
       section.style.setProperty("--section-upload-bg-opacity", hasImage ? String(config.imageOpacity) : "0");
       section.style.setProperty("--section-upload-bg-position", config.position || "center");
       section.style.setProperty("--section-upload-bg-blend-mode", config.blendMode || "screen");
@@ -798,6 +1182,125 @@
 
   function cssUrl(value) {
     return 'url("' + String(value || "").replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/[\n\r]/g, "") + '")';
+  }
+
+  function isAssetReference(value) {
+    if (!value) {
+      return false;
+    }
+    if (typeof value === "object" && value.id) {
+      return true;
+    }
+    return typeof value === "string" && value.indexOf(ASSET_ID_PREFIX) === 0;
+  }
+
+  function resolveAssetId(value) {
+    if (!value) {
+      return "";
+    }
+    return typeof value === "object" && value.id ? String(value.id) : String(value);
+  }
+
+  function resolveAssetMeta(value) {
+    var id = resolveAssetId(value);
+    if (!id || !isAssetReference(id)) {
+      return null;
+    }
+    return state.assets.find(function (asset) { return asset.id === id; }) || null;
+  }
+
+  function resolveAssetURL(value) {
+    if (!value) {
+      return "";
+    }
+    if (isMockReference(value)) {
+      return "";
+    }
+    if (isAssetReference(value)) {
+      var id = resolveAssetId(value);
+      return state.assetURLs[id] || "";
+    }
+    return typeof value === "string" ? value : "";
+  }
+
+  function isMockReference(value) {
+    return /^mock:/i.test(String(value || ""));
+  }
+
+  function assetKind(value) {
+    var meta = resolveAssetMeta(value);
+    var mime = meta && meta.mime ? meta.mime : "";
+    var name = meta && meta.name ? meta.name : String(value || "");
+    if (/image\/gif/i.test(mime) || /\.gif($|\?)/i.test(name)) { return "gif"; }
+    if (/image\//i.test(mime) || /\.(jpe?g|png|webp|gif|avif)($|\?)/i.test(name)) { return "image"; }
+    if (/video\//i.test(mime) || /\.(mp4|webm|mov)($|\?)/i.test(name)) { return "video"; }
+    if (/pdf/i.test(mime) || /\.pdf($|\?)/i.test(name)) { return "pdf"; }
+    if (/model|gltf/i.test(mime) || /\.(glb|gltf)($|\?)/i.test(name)) { return "model"; }
+    return "file";
+  }
+
+  function renderAssetPreview(value, caption) {
+    var url = resolveAssetURL(value);
+    var meta = resolveAssetMeta(value);
+    var label = caption || (meta && meta.name) || String(value || "");
+    var kind = assetKind(value);
+    if (isMockReference(value)) {
+      return '<div class="asset-preview asset-preview-empty"><strong>MOCK ASSET</strong><span>' + escapeHTML(label) + '</span></div>';
+    }
+    if (!url && value) {
+      url = String(value);
+    }
+    if (!url) {
+      return '<div class="asset-preview asset-preview-empty">暂无素材</div>';
+    }
+    if (kind === "video") {
+      return '<figure class="article-media path-preview-card"><video src="' + escapeHTML(url) + '" controls muted playsinline onerror="this.closest(\'.path-preview-card\').classList.add(\'is-invalid\')"></video>' + captionHTML(label) + invalidPathHTML() + '</figure>';
+    }
+    if (kind === "pdf") {
+      return '<div class="article-file-card"><strong>PDF / 图纸</strong><a href="' + escapeHTML(url) + '" target="_blank" rel="noreferrer" download>' + escapeHTML(label || "打开 PDF") + '</a></div>';
+    }
+    if (kind === "model") {
+      return '<div class="article-file-card"><strong>MODEL / 模型台</strong><code>' + escapeHTML(label || url) + '</code></div>';
+    }
+    return '<figure class="article-media path-preview-card"><img loading="lazy" src="' + escapeHTML(url) + '" alt="' + escapeHTML(label) + '" onerror="this.closest(\'.path-preview-card\').classList.add(\'is-invalid\')">' + captionHTML(label) + invalidPathHTML() + '</figure>';
+  }
+
+  function captionHTML(text) {
+    return text ? '<figcaption>' + escapeHTML(text) + '</figcaption>' : "";
+  }
+
+  function invalidPathHTML() {
+    return '<p class="path-invalid-message">路径可能无效，请确认文件已上传到 GitHub 仓库。</p>';
+  }
+
+  function pathPreviewHTML(path, field, caption) {
+    var value = String(path || "").trim();
+    var label = caption || value;
+    var validation = validatePathForField(value, field);
+    var kind = assetKind(value);
+    var url = resolveAssetURL(value) || value;
+    if (!value) {
+      return '<div class="path-preview-card asset-preview-empty"><strong>EMPTY</strong><span>未填写路径。</span></div>';
+    }
+    if (field === "coverImage" && value.indexOf("abstract:") === 0) {
+      return '<div class="path-preview-card asset-preview-empty"><strong>ABSTRACT</strong><span>' + escapeHTML(value) + ' 将使用内置抽象视觉。</span></div>';
+    }
+    if (!validation.ok) {
+      return '<div class="path-preview-card is-invalid"><strong>PATH CHECK</strong><span>' + escapeHTML(value) + '</span><p class="path-invalid-message">' + escapeHTML(validation.message) + '</p></div>';
+    }
+    if (kind === "image" || kind === "gif") {
+      return '<figure class="path-preview-card article-media"><img loading="lazy" src="' + escapeHTML(url) + '" alt="' + escapeHTML(label) + '" onerror="this.closest(\'.path-preview-card\').classList.add(\'is-invalid\')">' + captionHTML(label) + invalidPathHTML() + '</figure>';
+    }
+    if (kind === "video") {
+      return '<figure class="path-preview-card article-media"><video src="' + escapeHTML(url) + '" controls muted playsinline onerror="this.closest(\'.path-preview-card\').classList.add(\'is-invalid\')"></video>' + captionHTML(label) + invalidPathHTML() + '</figure>';
+    }
+    if (kind === "pdf") {
+      return '<div class="path-preview-card article-file-card"><strong>PDF / 图纸</strong><a href="' + escapeHTML(url) + '" target="_blank" rel="noreferrer" download>' + escapeHTML(label || "打开 PDF") + '</a><p>' + escapeHTML(pathStatusMessage(value, field)) + '</p></div>';
+    }
+    if (kind === "model") {
+      return '<div class="path-preview-card article-file-card"><strong>MODEL / 模型文件</strong><code>' + escapeHTML(value) + '</code><p>GLB / GLTF 路径会在模型台中使用。请确认文件已提交到 GitHub 仓库。</p></div>';
+    }
+    return '<div class="path-preview-card asset-preview-empty"><strong>PATH</strong><span>' + escapeHTML(value) + '</span><p>' + escapeHTML(pathStatusMessage(value, field)) + '</p></div>';
   }
 
   function setText(id, text) {
@@ -923,8 +1426,9 @@
   }
 
   function visualHTML(project, context) {
-    if (project.coverImage && !String(project.coverImage).startsWith("abstract:")) {
-      return '<div class="project-visual visual-image" aria-hidden="true"><img loading="lazy" src="' + escapeHTML(project.coverImage) + '" alt=""></div>';
+    if (project.coverImage && !String(project.coverImage).startsWith("abstract:") && !isMockReference(project.coverImage)) {
+      var url = resolveAssetURL(project.coverImage);
+      return '<div class="project-visual visual-image" aria-hidden="true"><img loading="lazy" src="' + escapeHTML(url || project.coverImage) + '" alt="" onerror="this.closest(\'.visual-image\').classList.add(\'is-invalid\')"><span class="path-invalid-message">路径可能无效，请确认文件已上传到 GitHub 仓库。</span></div>';
     }
     var visualClass = getVisualClass(project.coverImage);
     return '<div class="project-visual ' + visualClass + '" aria-hidden="true"><span class="line-art"></span></div>';
@@ -998,6 +1502,7 @@
         openProjectModal(event.target.getAttribute("data-project-id"));
       }
       if (event.key === "Escape") {
+        closeProjectArticle();
         closeProjectModal();
         closeAdminConsole();
         closeMobileNav();
@@ -1017,6 +1522,23 @@
       });
     }
 
+    var articleClose = qs("#articleCloseButton");
+    var articleBack = qs("#articleBackButton");
+    var articleOverlay = qs("#projectArticleOverlay");
+    if (articleClose) {
+      articleClose.addEventListener("click", closeProjectArticle);
+    }
+    if (articleBack) {
+      articleBack.addEventListener("click", closeProjectArticle);
+    }
+    if (articleOverlay) {
+      articleOverlay.addEventListener("click", function (event) {
+        if (event.target === articleOverlay) {
+          closeProjectArticle();
+        }
+      });
+    }
+
     var mobileButton = qs("#mobileMenuButton");
     if (mobileButton) {
       mobileButton.addEventListener("click", toggleMobileNav);
@@ -1025,6 +1547,8 @@
     bindAdminEvents();
     bindAdminTrigger();
     handleAdminHashRoute();
+    window.addEventListener("hashchange", handleProjectArticleHashRoute);
+    handleProjectArticleHashRoute();
   }
 
   function getHeaderOffset() {
@@ -1181,6 +1705,147 @@
         '<div class="hero-actions"><a class="button button-primary" href="#project/' + escapeHTML(project.id) + '"><span>查看完整项目</span><em>Full Case</em></a>' + modelEntry + panoramaEntry + '</div>' +
         modalMediaPanels(project) +
       '</div></div>';
+  }
+
+  async function handleProjectArticleHashRoute() {
+    var match = String(window.location.hash || "").match(/^#project\/([^/]+)$/);
+    if (!match) {
+      return;
+    }
+    await openProjectArticle(match[1], true);
+  }
+
+  async function openProjectArticle(id, fromHash) {
+    var project = await fetchProjectById(id);
+    if (!project) {
+      return;
+    }
+    var overlay = qs("#projectArticleOverlay");
+    var content = qs("#projectArticleContent");
+    if (!overlay || !content) {
+      return;
+    }
+    state.articleReturnHash = fromHash ? "" : window.location.hash;
+    state.activeArticleId = id;
+    content.innerHTML = projectArticleHTML(project);
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.classList.add("article-open");
+    closeProjectModal();
+    bindArticleView(project);
+    if (!fromHash) {
+      history.replaceState(null, "", "#project/" + id);
+    }
+    var close = qs("#articleCloseButton");
+    if (close) {
+      close.focus();
+    }
+  }
+
+  function closeProjectArticle() {
+    var overlay = qs("#projectArticleOverlay");
+    if (!overlay || !overlay.classList.contains("is-open")) {
+      return;
+    }
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("article-open");
+    state.activeArticleId = "";
+    if (/^#project\//.test(window.location.hash || "")) {
+      history.replaceState(null, "", window.location.pathname + window.location.search + (state.articleReturnHash && state.articleReturnHash !== window.location.hash ? state.articleReturnHash : ""));
+    }
+  }
+
+  function projectArticleHTML(project) {
+    var number = projectNumber(project);
+    var blocks = getArticleBlocks(project);
+    var index = state.projects.findIndex(function (item) { return item.id === project.id; });
+    var prev = state.projects[(index - 1 + state.projects.length) % state.projects.length];
+    var next = state.projects[(index + 1) % state.projects.length];
+    return '<header class="article-hero">' +
+      '<div class="article-hero-visual">' + visualHTML(project, "article") + '</div>' +
+      '<div class="article-hero-copy"><span class="modal-archive-code">BY-' + number + ' / ' + escapeHTML(project.category) + '</span>' +
+      '<h1 id="projectArticleTitle">' + escapeHTML(project.titleCN) + '</h1><p>' + escapeHTML(project.titleEN) + '</p>' +
+      '<div class="article-meta-grid">' + metaItem("Year", project.year) + metaItem("Status", project.status) + metaItem("Location", project.location) + metaItem("Material", project.material) + metaItem("Scale", project.scale) + metaItem("Role", project.role) + '</div></div></header>' +
+      '<main class="article-body">' +
+      '<section class="article-summary"><strong>DESIGN PROPOSITION</strong><p>' + escapeHTML(project.concept || project.description) + '</p></section>' +
+      blocks.map(articleBlockHTML).join("") +
+      '<nav class="article-nav"><button class="button button-outline" type="button" data-open-article="' + escapeHTML(prev.id) + '"><span>上一个项目</span><em>' + escapeHTML(prev.titleCN) + '</em></button><button class="button button-dark" type="button" data-open-article="' + escapeHTML(next.id) + '"><span>下一个项目</span><em>' + escapeHTML(next.titleCN) + '</em></button></nav>' +
+      '</main>';
+  }
+
+  function getArticleBlocks(project) {
+    var blocks = normalizeArticleBlocks(project.articleBlocks);
+    if (blocks.length) {
+      return blocks;
+    }
+    var generated = [
+      { type: "heading", text: "项目概述" },
+      { type: "paragraph", text: project.description || project.concept || "" },
+      { type: "quote", text: project.concept || "让设计方法在空间、材料与观看路径中逐层展开。" }
+    ];
+    parseList(project.gallery).forEach(function (asset) {
+      generated.push({ type: "image", asset: asset, caption: "项目图像" });
+    });
+    parseList(project.drawings).forEach(function (asset) {
+      generated.push({ type: "pdf", asset: asset, label: "查看图纸 / Drawing" });
+    });
+    if (project.video) { generated.push({ type: "video", asset: project.video, caption: "项目视频" }); }
+    if (project.model3d) { generated.push({ type: "model3d", asset: project.model3d }); }
+    if (project.panorama) { generated.push({ type: "panorama", asset: project.panorama }); }
+    if (project.pdf) { generated.push({ type: "pdf", asset: project.pdf, label: "下载完整项目 PDF" }); }
+    return normalizeArticleBlocks(generated);
+  }
+
+  function articleBlockHTML(block) {
+    var type = block.type;
+    if (type === "heading") {
+      return '<h2 class="article-block-heading">' + escapeHTML(block.text) + '</h2>';
+    }
+    if (type === "paragraph") {
+      return '<p class="article-paragraph">' + escapeHTML(block.text) + '</p>';
+    }
+    if (type === "quote") {
+      return '<blockquote class="article-quote">' + escapeHTML(block.text) + '</blockquote>';
+    }
+    if (type === "divider") {
+      return '<hr class="article-divider">';
+    }
+    if (type === "gallery") {
+      return '<div class="article-gallery">' + parseList(block.assets).map(function (asset) {
+        return renderAssetPreview(asset, "");
+      }).join("") + captionHTML(block.caption) + '</div>';
+    }
+    if (type === "video" || type === "image" || type === "pdf") {
+      return renderAssetPreview(block.asset, block.caption || block.label);
+    }
+    if (type === "model3d") {
+      return '<section class="article-module"><p class="eyebrow">MODEL PLATFORM / 模型台</p><h3>模型台预留</h3><p>路径：<code>' + escapeHTML(resolveAssetURL(block.asset) || block.asset || "") + '</code></p><button class="button button-dark" type="button" data-article-model="' + escapeHTML(block.asset || "") + '"><span>模型台</span><em>Model Platform</em></button></section>';
+    }
+    if (type === "panorama") {
+      return '<section class="article-module"><p class="eyebrow">ENTER SCENE / 入此空间</p><h3>全景场景预留</h3><p>路径：<code>' + escapeHTML(resolveAssetURL(block.asset) || block.asset || "") + '</code></p><button class="button button-outline" type="button" data-article-panorama="' + escapeHTML(block.asset || "") + '"><span>入此空间</span><em>Enter Scene</em></button></section>';
+    }
+    return "";
+  }
+
+  function bindArticleView(project) {
+    qsa("[data-open-article]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        openProjectArticle(button.getAttribute("data-open-article"));
+      });
+    });
+    qsa("[data-article-model]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        loadModelViewer(resolveAssetURL(button.getAttribute("data-article-model")) || button.getAttribute("data-article-model"));
+        showAdminStamp("模型台已预留");
+      });
+    });
+    qsa("[data-article-panorama]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        loadPanoramaViewer(resolveAssetURL(button.getAttribute("data-article-panorama")) || button.getAttribute("data-article-panorama"));
+        showAdminStamp("全景已预留");
+      });
+    });
   }
 
   function projectNumber(project) {
@@ -1383,7 +2048,25 @@
 
     var assetProject = qs("#assetProject");
     if (assetProject) {
-      assetProject.addEventListener("change", renderAssetLibrary);
+      assetProject.addEventListener("change", function () {
+        fillAssetPathForm();
+        renderAssetLibrary();
+      });
+    }
+
+    var assetType = qs("#assetType");
+    if (assetType) {
+      assetType.addEventListener("change", fillAssetPathForm);
+    }
+
+    var saveAssetPathsButton = qs("#saveAssetPathsButton");
+    if (saveAssetPathsButton) {
+      saveAssetPathsButton.addEventListener("click", saveAssetPathsFromManager);
+    }
+
+    var previewAssetPathsButton = qs("#previewAssetPathsButton");
+    if (previewAssetPathsButton) {
+      previewAssetPathsButton.addEventListener("click", renderAssetPathPreview);
     }
 
     var exportProjectsButton = qs("#exportProjectsButton");
@@ -1400,6 +2083,11 @@
       });
     }
 
+    var exportFullDataButton = qs("#exportFullDataButton");
+    if (exportFullDataButton) {
+      exportFullDataButton.addEventListener("click", exportFullSiteData);
+    }
+
     var importProjectsInput = qs("#importProjectsInput");
     if (importProjectsInput) {
       importProjectsInput.addEventListener("change", handleProjectsImport);
@@ -1408,6 +2096,11 @@
     var importSettingsInput = qs("#importSettingsInput");
     if (importSettingsInput) {
       importSettingsInput.addEventListener("change", handleSettingsImport);
+    }
+
+    var importFullDataInput = qs("#importFullDataInput");
+    if (importFullDataInput) {
+      importFullDataInput.addEventListener("change", handleFullDataImport);
     }
 
     var resetButton = qs("#resetMockButton");
@@ -1420,11 +2113,13 @@
     }
 
     bindSectionBackgroundEvents();
+    bindArticleEditorEvents();
   }
 
   function bindSectionBackgroundEvents() {
     var targetSelect = qs("#sectionBgTarget");
     var saveButton = qs("#saveSectionBgButton");
+    var previewButton = qs("#previewSectionBgButton");
     var uploadButton = qs("#uploadSectionBgButton");
     var clearButton = qs("#clearSectionBgButton");
     var resetButton = qs("#resetSectionBgButton");
@@ -1451,6 +2146,10 @@
 
     if (saveButton) {
       saveButton.addEventListener("click", saveSectionBackgroundFromForm);
+    }
+
+    if (previewButton) {
+      previewButton.addEventListener("click", previewSectionBackgroundFromForm);
     }
 
     if (uploadButton) {
@@ -1552,24 +2251,38 @@
     showAdminStamp("背景已保存");
   }
 
+  function previewSectionBackgroundFromForm() {
+    var sectionId = state.activeSectionBgId || "home";
+    var config = sectionBgFromForm(sectionId);
+    renderSectionBgPreview(config);
+    showAdminStamp("背景预览已更新");
+  }
+
   async function uploadSectionBackgroundFromForm() {
     var input = qs("#sectionBgFile");
-    var file = input && input.files && input.files[0] ? input.files[0] : { name: "section-background.jpg" };
-    var sectionId = state.activeSectionBgId || "home";
-    var current = sectionBgFromForm(sectionId);
-    await uploadAsset(file, "sectionBackground", sectionId, {
-      imageOpacity: current.imageOpacity,
-      designOpacity: current.designOpacity === 1 && !current.image ? 0.35 : current.designOpacity,
-      position: current.position,
-      blendMode: current.blendMode
+    var file = input && input.files && input.files[0];
+    if (!file) {
+      showAdminStamp("请选择本地预览文件");
+      return;
+    }
+    if (!state.assetDbReady) {
+      showAdminStamp("IndexedDB 不可用");
+      return;
+    }
+    var asset = await saveAssetToDB(file, {
+      type: "sectionBackground",
+      projectId: "",
+      sectionId: state.activeSectionBgId || "home",
+      mime: file.type || inferMimeFromName(file.name),
+      size: file.size || 0
     });
+    await createAssetObjectURL(asset.id);
     await refreshData();
-    applySectionBackgrounds();
-    renderSectionBgControls();
+    renderSectionBgPreview(Object.assign({}, sectionBgFromForm(state.activeSectionBgId || "home"), { image: asset.id }));
     if (input) {
       input.value = "";
     }
-    showAdminStamp("背景已上传");
+    showAdminStamp("本地背景预览已导入");
   }
 
   async function clearCurrentSectionBackground() {
@@ -1591,13 +2304,15 @@
     showAdminStamp("背景已复位");
   }
 
-  function renderSectionBgPreview() {
+  function renderSectionBgPreview(overrideConfig) {
     var container = qs("#sectionBgPreview");
     if (!container || !state.settings) {
       return;
     }
     var backgrounds = normalizeSectionBackgrounds(state.settings.sectionBackgrounds);
-    container.innerHTML = '<h4>当前板块背景</h4>' + PUBLIC_SECTIONS.map(function (section) {
+    var previewConfig = overrideConfig || backgrounds[state.activeSectionBgId || "home"];
+    var previewHTML = previewConfig && previewConfig.image ? '<div class="path-preview-grid">' + pathPreviewHTML(previewConfig.image, "gallery", "当前背景预览") + '</div>' : '<p class="asset-note">未填写背景路径时，板块保持默认效果。</p>';
+    container.innerHTML = '<h4>当前板块背景</h4>' + previewHTML + PUBLIC_SECTIONS.map(function (section) {
       var bg = backgrounds[section.id];
       var active = section.id === state.activeSectionBgId ? " is-active" : "";
       return '<button class="section-bg-item' + active + '" type="button" data-section-bg-pick="' + escapeHTML(section.id) + '">' +
@@ -1616,6 +2331,260 @@
         fillSectionBgForm(state.activeSectionBgId);
         renderSectionBgPreview();
       });
+    });
+  }
+
+  function bindArticleEditorEvents() {
+    var projectSelect = qs("#articleProjectSelect");
+    var addButton = qs("#addArticleBlockButton");
+    var saveButton = qs("#saveArticleBlocksButton");
+    var uploadButton = qs("#uploadArticleAssetButton");
+    var previewButton = qs("#previewArticleAssetButton");
+    if (projectSelect) {
+      projectSelect.addEventListener("change", function () {
+        state.activeArticleProjectId = projectSelect.value;
+        renderArticleEditorControls();
+      });
+    }
+    if (addButton) {
+      addButton.addEventListener("click", addArticleBlockFromControls);
+    }
+    if (saveButton) {
+      saveButton.addEventListener("click", saveArticleBlocksFromEditor);
+    }
+    if (uploadButton) {
+      uploadButton.addEventListener("click", uploadInlineArticleAsset);
+    }
+    if (previewButton) {
+      previewButton.addEventListener("click", previewArticleAssetFromControls);
+    }
+  }
+
+  function renderArticleEditorControls() {
+    var select = qs("#articleProjectSelect");
+    var list = qs("#articleBlockList");
+    var assetInput = qs("#articleBlockAsset");
+    if (!select || !list) {
+      return;
+    }
+    var current = state.activeArticleProjectId || select.value || (state.projects[0] && state.projects[0].id) || "";
+    select.innerHTML = state.projects.map(function (project) {
+      return '<option value="' + escapeHTML(project.id) + '">' + escapeHTML(project.titleCN) + ' / ' + escapeHTML(project.year) + '</option>';
+    }).join("");
+    state.activeArticleProjectId = state.projects.some(function (project) { return project.id === current; }) ? current : (state.projects[0] && state.projects[0].id) || "";
+    select.value = state.activeArticleProjectId;
+    if (assetInput) {
+      assetInput.value = "";
+    }
+    renderArticleBlockList();
+  }
+
+  function articleAssetOptions(projectId, current) {
+    var project = state.projects.find(function (item) { return item.id === projectId; });
+    var projectAssets = project ? collectProjectAssets(project) : [];
+    var known = {};
+    var options = ['<option value="">不使用素材</option>'];
+    projectAssets.forEach(function (asset) {
+      if (!asset.url || known[asset.url]) {
+        return;
+      }
+      known[asset.url] = true;
+      var meta = resolveAssetMeta(asset.url);
+      var label = (meta && meta.name) || asset.url;
+      options.push('<option value="' + escapeHTML(asset.url) + '"' + (asset.url === current ? " selected" : "") + '>' + escapeHTML(asset.type + " / " + label) + '</option>');
+    });
+    state.assets.filter(function (asset) {
+      return !asset.projectId || asset.projectId === projectId;
+    }).forEach(function (asset) {
+      if (known[asset.id]) {
+        return;
+      }
+      known[asset.id] = true;
+      options.push('<option value="' + escapeHTML(asset.id) + '"' + (asset.id === current ? " selected" : "") + '>' + escapeHTML(asset.type + " / " + asset.name) + '</option>');
+    });
+    return options.join("");
+  }
+
+  function renderArticleBlockList() {
+    var list = qs("#articleBlockList");
+    var project = state.projects.find(function (item) { return item.id === state.activeArticleProjectId; });
+    if (!list) {
+      return;
+    }
+    if (!project) {
+      list.innerHTML = "<p>请选择项目。</p>";
+      return;
+    }
+    var blocks = normalizeArticleBlocks(project.articleBlocks);
+    list.innerHTML = '<h4>' + escapeHTML(project.titleCN) + ' / Article Blocks</h4>' + (blocks.length ? blocks.map(function (block, index) {
+      return articleBlockEditorHTML(block, index, project.id);
+    }).join("") : '<p>还没有自定义文章块。前台会自动根据项目素材生成默认文章。</p>');
+
+    qsa("[data-article-delete]", list).forEach(function (button) {
+      button.addEventListener("click", function () {
+        if (!window.confirm("删除这个文章块？")) {
+          return;
+        }
+        removeArticleBlock(Number(button.getAttribute("data-article-delete")));
+      });
+    });
+    qsa("[data-article-up]", list).forEach(function (button) {
+      button.addEventListener("click", function () { moveArticleBlock(Number(button.getAttribute("data-article-up")), -1); });
+    });
+    qsa("[data-article-down]", list).forEach(function (button) {
+      button.addEventListener("click", function () { moveArticleBlock(Number(button.getAttribute("data-article-down")), 1); });
+    });
+  }
+
+  function articleBlockEditorHTML(block, index, projectId) {
+    var typeOptions = ["heading", "paragraph", "image", "gallery", "video", "quote", "divider", "model3d", "panorama", "pdf"].map(function (type) {
+      return '<option value="' + type + '"' + (block.type === type ? " selected" : "") + '>' + type + '</option>';
+    }).join("");
+    var assetValue = block.asset || formatPathList(block.assets);
+    return '<div class="article-block-editor" data-article-block="' + index + '">' +
+      '<div class="article-block-editor-head"><strong>' + String(index + 1).padStart(2, "0") + '</strong><div><button class="icon-button" type="button" data-article-up="' + index + '">↑</button><button class="icon-button" type="button" data-article-down="' + index + '">↓</button><button class="icon-button" type="button" data-article-delete="' + index + '">×</button></div></div>' +
+      '<label>类型<select data-article-field="type">' + typeOptions + '</select></label>' +
+      '<label>文字<textarea data-article-field="text" rows="3">' + escapeHTML(block.text) + '</textarea></label>' +
+      '<label>素材路径<textarea data-article-field="asset" rows="3" placeholder="gallery 支持一行一个路径">' + escapeHTML(assetValue) + '</textarea></label>' +
+      '<label>说明<input data-article-field="caption" value="' + escapeHTML(block.caption || block.label || "") + '"></label>' +
+    '</div>';
+  }
+
+  async function addArticleBlockFromControls() {
+    var type = qs("#articleBlockType") ? qs("#articleBlockType").value : "paragraph";
+    var text = qs("#articleBlockText") ? qs("#articleBlockText").value.trim() : "";
+    var asset = qs("#articleBlockAsset") ? qs("#articleBlockAsset").value.trim() : "";
+    var caption = qs("#articleBlockCaption") ? qs("#articleBlockCaption").value.trim() : "";
+    var block = { type: type, text: text, asset: asset, caption: caption, label: caption };
+    if (type === "gallery") {
+      block.assets = parseList(asset);
+      block.asset = "";
+    }
+    if (type === "divider") {
+      block.text = "";
+      block.asset = "";
+    }
+    await appendArticleBlock(state.activeArticleProjectId, block);
+    await refreshData();
+    renderAll();
+    showAdminStamp("文章块已添加");
+  }
+
+  async function saveArticleBlocksFromEditor() {
+    var project = projects.find(function (item) { return item.id === state.activeArticleProjectId; });
+    var list = qs("#articleBlockList");
+    if (!project || !list) {
+      return;
+    }
+    var blocks = qsa("[data-article-block]", list).map(function (node) {
+      var type = qs('[data-article-field="type"]', node).value;
+      var text = qs('[data-article-field="text"]', node).value;
+      var asset = qs('[data-article-field="asset"]', node).value.trim();
+      var caption = qs('[data-article-field="caption"]', node).value;
+      return {
+        type: type,
+        text: text,
+        asset: type === "gallery" ? "" : asset,
+        assets: type === "gallery" ? parseList(asset) : [],
+        caption: caption,
+        label: caption
+      };
+    });
+    project.articleBlocks = normalizeArticleBlocks(blocks);
+    writeStorage();
+    await refreshData();
+    renderAll();
+    if (state.activeArticleId === project.id) {
+      await openProjectArticle(project.id, true);
+    }
+    showAdminStamp("文章已保存");
+  }
+
+  function previewArticleAssetFromControls() {
+    var type = qs("#articleBlockType") ? qs("#articleBlockType").value : "image";
+    var asset = qs("#articleBlockAsset") ? qs("#articleBlockAsset").value.trim() : "";
+    var caption = qs("#articleBlockCaption") ? qs("#articleBlockCaption").value.trim() : "";
+    var container = qs("#articlePathPreview");
+    if (!container) {
+      return;
+    }
+    var refs = type === "gallery" ? parseList(asset) : parseList(asset).slice(0, 1);
+    var field = type === "pdf" ? "pdf" : type === "video" ? "video" : type === "model3d" ? "model3d" : type === "panorama" ? "panorama" : "gallery";
+    container.innerHTML = refs.length
+      ? refs.map(function (ref) { return pathPreviewHTML(ref, field, caption || ref); }).join("")
+      : '<div class="path-preview-card asset-preview-empty"><strong>EMPTY</strong><span>请先填写素材路径。</span></div>';
+    showAdminStamp("文章路径预览已更新");
+  }
+
+  async function uploadInlineArticleAsset() {
+    var input = qs("#articleInlineFile");
+    var file = input && input.files && input.files[0];
+    if (!file) {
+      showAdminStamp("请选择文件");
+      return;
+    }
+    var type = file.type && file.type.indexOf("video/") === 0 ? "articleVideo" : file.type === "application/pdf" ? "pdf" : "articleImage";
+    try {
+      if (!state.assetDbReady) {
+        showAdminStamp("IndexedDB 不可用");
+        return;
+      }
+      var asset = await saveAssetToDB(file, {
+        type: type,
+        projectId: state.activeArticleProjectId,
+        sectionId: "",
+        mime: file.type || inferMimeFromName(file.name),
+        size: file.size || 0
+      });
+      await createAssetObjectURL(asset.id);
+      await refreshData();
+      var container = qs("#articlePathPreview");
+      if (container) {
+        container.innerHTML = pathPreviewHTML(asset.id, type === "pdf" ? "pdf" : type === "articleVideo" ? "video" : "gallery", asset.name) +
+          '<p class="asset-note">这是当前浏览器 IndexedDB 临时预览，不会写入 GitHub。正式文章请填写 assets 路径后保存。</p>';
+      }
+      if (input) {
+        input.value = "";
+      }
+      showAdminStamp("本地预览已导入");
+    } catch (error) {
+      showAdminStamp("本地预览失败");
+    }
+  }
+
+  function removeArticleBlock(index) {
+    var project = projects.find(function (item) { return item.id === state.activeArticleProjectId; });
+    if (!project) {
+      return;
+    }
+    var blocks = normalizeArticleBlocks(project.articleBlocks);
+    blocks.splice(index, 1);
+    project.articleBlocks = blocks;
+    writeStorage();
+    refreshData().then(function () {
+      renderAll();
+      showAdminStamp("文章块已删除");
+    });
+  }
+
+  function moveArticleBlock(index, direction) {
+    var project = projects.find(function (item) { return item.id === state.activeArticleProjectId; });
+    if (!project) {
+      return;
+    }
+    var blocks = normalizeArticleBlocks(project.articleBlocks);
+    var nextIndex = index + direction;
+    if (nextIndex < 0 || nextIndex >= blocks.length) {
+      return;
+    }
+    var item = blocks[index];
+    blocks.splice(index, 1);
+    blocks.splice(nextIndex, 0, item);
+    project.articleBlocks = blocks;
+    writeStorage();
+    refreshData().then(function () {
+      renderAll();
+      showAdminStamp("顺序已调整");
     });
   }
 
@@ -1730,7 +2699,8 @@
       return;
     }
     list.innerHTML = state.projects.map(function (project) {
-      return '<div class="admin-list-item" data-admin-project="' + escapeHTML(project.id) + '"><div><strong>' + escapeHTML(project.titleCN) + '</strong><span>' + escapeHTML(project.category) + ' / ' + escapeHTML(project.year) + ' / ' + (project.published ? "已发布" : "草稿") + '</span></div><div class="admin-item-actions"><button class="icon-button" type="button" title="编辑" data-edit-project="' + escapeHTML(project.id) + '">✎</button><button class="icon-button" type="button" title="切换发布" data-toggle-project="' + escapeHTML(project.id) + '">●</button><button class="icon-button" type="button" title="删除" data-delete-project="' + escapeHTML(project.id) + '">×</button></div></div>';
+      var assetCount = collectProjectAssets(project).length;
+      return '<div class="admin-list-item" data-admin-project="' + escapeHTML(project.id) + '"><div><strong>' + escapeHTML(project.titleCN) + '</strong><span>' + escapeHTML(project.category) + ' / ' + escapeHTML(project.year) + ' / ' + (project.published ? "已发布" : "草稿") + ' / 素材 ' + assetCount + '</span></div><div class="admin-item-actions"><button class="icon-button" type="button" title="编辑" data-edit-project="' + escapeHTML(project.id) + '">✎</button><button class="icon-button" type="button" title="切换发布" data-toggle-project="' + escapeHTML(project.id) + '">●</button><button class="icon-button" type="button" title="删除" data-delete-project="' + escapeHTML(project.id) + '">×</button></div></div>';
     }).join("");
 
     qsa("[data-edit-project]", list).forEach(function (button) {
@@ -1750,6 +2720,9 @@
 
     qsa("[data-delete-project]", list).forEach(function (button) {
       button.addEventListener("click", async function () {
+        if (!window.confirm("确定删除这个项目？这个操作会更新本地项目数据。")) {
+          return;
+        }
         await deleteProject(button.getAttribute("data-delete-project"));
         await refreshData();
         renderAll();
@@ -1774,8 +2747,8 @@
     form.elements.scale.value = project ? project.scale : "";
     form.elements.role.value = project ? project.role : "";
     form.elements.coverImage.value = project ? project.coverImage : "";
-    form.elements.gallery.value = project ? parseList(project.gallery).join(", ") : "";
-    form.elements.drawings.value = project ? parseList(project.drawings).join(", ") : "";
+    form.elements.gallery.value = project ? formatPathList(project.gallery) : "";
+    form.elements.drawings.value = project ? formatPathList(project.drawings) : "";
     form.elements.model3d.value = project ? project.model3d : "";
     form.elements.panorama.value = project ? project.panorama : "";
     form.elements.video.value = project ? project.video : "";
@@ -1856,29 +2829,173 @@
     showAdminStamp("首页已更新");
   }
 
+  function selectedAssetProject() {
+    var select = qs("#assetProject");
+    return state.projects.find(function (item) { return item.id === (select && select.value); }) || state.projects[0] || null;
+  }
+
+  function selectedAssetField() {
+    var select = qs("#assetType");
+    var field = select && select.value ? select.value : "coverImage";
+    return ASSET_FIELD_CONFIG[field] ? field : "coverImage";
+  }
+
+  function getProjectFieldValue(project, field) {
+    if (!project) {
+      return "";
+    }
+    if (field === "gallery" || field === "drawings") {
+      return formatPathList(project[field]);
+    }
+    return project[field] || "";
+  }
+
+  function fillAssetPathForm() {
+    var project = selectedAssetProject();
+    var field = selectedAssetField();
+    var input = qs("#assetPathInput");
+    if (input) {
+      input.value = getProjectFieldValue(project, field);
+      input.placeholder = assetPlaceholderForField(project, field);
+    }
+    renderAssetPathPreview();
+  }
+
+  function assetPlaceholderForField(project, field) {
+    var slug = project ? project.id + "-" + slugify(project.titleEN || project.titleCN || "project") : "p001-project";
+    var base = "assets/projects/" + slug + "/";
+    if (field === "coverImage") { return "abstract:ridge\n" + base + "cover.jpg"; }
+    if (field === "gallery") { return base + "article-01.jpg\n" + base + "article-02.gif"; }
+    if (field === "drawings") { return base + "drawings.pdf\n" + base + "section.jpg"; }
+    if (field === "model3d") { return base + "model.glb"; }
+    if (field === "panorama") { return base + "panorama.jpg"; }
+    if (field === "video") { return base + "walkthrough.mp4"; }
+    if (field === "pdf") { return base + "case.pdf"; }
+    return base;
+  }
+
+  function slugify(value) {
+    return String(value || "project").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "project";
+  }
+
+  async function saveAssetPathsFromManager() {
+    var project = selectedAssetProject();
+    var field = selectedAssetField();
+    var input = qs("#assetPathInput");
+    if (!project || !input) {
+      showAdminStamp("请选择项目");
+      return;
+    }
+    var config = ASSET_FIELD_CONFIG[field];
+    var values = parseList(input.value);
+    var invalid = values.map(function (path) {
+      return validatePathForField(path, field);
+    }).find(function (result) { return !result.ok; });
+    if (invalid) {
+      showAdminStamp("路径需确认");
+      renderAssetPathPreview();
+      return;
+    }
+    var data = {};
+    data[field] = config.multiple ? values : (values[0] || "");
+    await updateProject(project.id, data);
+    await refreshData();
+    renderAll();
+    var refreshed = state.projects.find(function (item) { return item.id === project.id; });
+    if (refreshed) {
+      var select = qs("#assetProject");
+      if (select) {
+        select.value = refreshed.id;
+      }
+    }
+    showAdminStamp("路径已保存");
+  }
+
+  function renderAssetPathPreview() {
+    var container = qs("#assetLibrary");
+    var project = selectedAssetProject();
+    var field = selectedAssetField();
+    var input = qs("#assetPathInput");
+    if (!container || !project || !input) {
+      return;
+    }
+    var values = parseList(input.value);
+    var config = ASSET_FIELD_CONFIG[field];
+    var preview = values.length ? values.map(function (path) {
+      return pathPreviewHTML(path, field, path);
+    }).join("") : '<div class="path-preview-card asset-preview-empty"><strong>EMPTY</strong><span>当前字段没有路径。</span></div>';
+    container.innerHTML =
+      '<h4>路径预览 / ' + escapeHTML(project.titleCN) + '</h4>' +
+      '<p class="asset-note">' + escapeHTML(config.label) + '。保存后会写入 localStorage 并立即更新前台；正式发布请导出 JSON 并提交到 GitHub。</p>' +
+      '<div class="path-preview-grid">' + preview + '</div>' +
+      projectPathSummaryHTML(project);
+  }
+
+  function projectPathSummaryHTML(project) {
+    var fields = Object.keys(ASSET_FIELD_CONFIG);
+    return '<div class="asset-path-summary"><h4>当前项目路径清单</h4>' + fields.map(function (field) {
+      var value = field === "gallery" || field === "drawings" ? parseList(project[field]).join(" / ") : (project[field] || "");
+      return '<p><strong>' + escapeHTML(field) + '</strong><code>' + escapeHTML(value || "未设置") + '</code></p>';
+    }).join("") + '</div>';
+  }
+
   async function handleUpload() {
     var input = qs("#assetInput");
-    var type = qs("#assetType").value;
+    var type = selectedAssetField();
     var projectId = qs("#assetProject").value;
-    var setCover = qs("#assetSetCover").checked;
     var log = qs("#uploadLog");
     var progress = qs("#uploadProgress");
-    var files = input && input.files.length ? Array.prototype.slice.call(input.files) : [{ name: "placeholder.asset" }];
+    var files = input && input.files.length ? Array.prototype.slice.call(input.files) : [];
+    if (!projectId) {
+      showAdminStamp("请选择项目");
+      return;
+    }
+    if (!state.assetDbReady && files.length) {
+      showAdminStamp("IndexedDB 不可用");
+      if (log) {
+        log.innerHTML = '<p class="upload-error">' + escapeHTML(state.assetDbError || "当前浏览器不支持 IndexedDB，无法保存本地文件。") + '</p>';
+      }
+      return;
+    }
+    if (!files.length) {
+      showAdminStamp("请选择文件");
+      if (log) {
+        log.innerHTML = '<p class="upload-error">本地预览只保存到当前浏览器 IndexedDB。正式素材请上传到 GitHub 仓库 assets 目录后填写路径。</p>';
+      }
+      return;
+    }
     var results = [];
-    for (var i = 0; i < files.length; i += 1) {
-      setUploadProgress(progress, Math.round((i / files.length) * 74));
-      results.push(await uploadAsset(files[i], type, projectId, { setCover: setCover }));
+    try {
+      for (var i = 0; i < files.length; i += 1) {
+        setUploadProgress(progress, Math.round((i / Math.max(files.length, 1)) * 74));
+        results.push(await saveAssetToDB(files[i], {
+          type: type,
+          projectId: projectId,
+          sectionId: "",
+          mime: files[i].type || inferMimeFromName(files[i].name),
+          size: files[i].size || 0
+        }));
+        await createAssetObjectURL(results[results.length - 1].id);
+      }
+    } catch (error) {
+      setUploadProgress(progress, 0);
+      if (log) {
+        log.innerHTML = '<p class="upload-error">上传失败：' + escapeHTML(error.message || error) + '</p>';
+      }
+      showAdminStamp("上传失败");
+      return;
     }
     setUploadProgress(progress, 100);
     window.setTimeout(function () { setUploadProgress(progress, 0); }, 900);
     await refreshData();
-    renderAll();
+    renderAssetPathPreview();
     if (log) {
       log.innerHTML = results.map(function (item) {
-        return "<p>已模拟上传 <strong>" + escapeHTML(item.type) + "</strong> 到 <strong>" + escapeHTML(item.projectId) + "</strong>：<code>" + escapeHTML(item.url) + "</code></p>";
+        return "<p>本地预览已导入：<strong>" + escapeHTML(item.type) + "</strong> / <code>" + escapeHTML(item.name) + "</code>。它只存在于当前浏览器 IndexedDB，不会写入 GitHub，也不会作为正式发布路径。</p>";
       }).join("");
     }
-    showAdminStamp("素材已入库");
+    if (input) { input.value = ""; }
+    showAdminStamp("本地预览已导入");
   }
 
   function setUploadProgress(progress, value) {
@@ -1904,39 +3021,25 @@
   }
 
   function renderAssetLibrary() {
-    var container = qs("#assetLibrary");
-    var select = qs("#assetProject");
-    if (!container || !select) {
-      return;
-    }
-    var project = state.projects.find(function (item) { return item.id === select.value; }) || state.projects[0];
-    if (!project) {
-      container.innerHTML = "<h4>当前没有项目</h4>";
-      return;
-    }
-    var items = collectProjectAssets(project);
-    container.innerHTML = '<h4>当前素材 / ' + escapeHTML(project.titleCN) + '</h4>' + (items.length ? items.map(function (asset) {
-      return '<div class="asset-item"><small>' + escapeHTML(asset.type) + '</small><code>' + escapeHTML(asset.url) + '</code><div class="asset-actions">' +
-        '<button class="icon-button" type="button" title="设为封面" data-cover-asset="' + escapeHTML(asset.url) + '">□</button>' +
-        '<button class="icon-button" type="button" title="删除素材" data-remove-asset="' + escapeHTML(asset.type) + '" data-asset-url="' + escapeHTML(asset.url) + '">×</button>' +
-      '</div></div>';
-    }).join("") : '<p>还没有绑定素材。</p>');
+    renderAssetPathPreview();
+  }
 
-    qsa("[data-remove-asset]", container).forEach(function (button) {
-      button.addEventListener("click", async function () {
-        await removeAsset(project.id, button.getAttribute("data-remove-asset"), button.getAttribute("data-asset-url"));
-        await refreshData();
-        renderAll();
-      });
-    });
-
-    qsa("[data-cover-asset]", container).forEach(function (button) {
-      button.addEventListener("click", async function () {
-        await updateProject(project.id, { coverImage: button.getAttribute("data-cover-asset") });
-        await refreshData();
-        renderAll();
-      });
-    });
+  function assetLibraryItemHTML(asset) {
+    var meta = resolveAssetMeta(asset.url);
+    var url = resolveAssetURL(asset.url) || asset.url;
+    var label = (meta && meta.name) || asset.url;
+    var kind = assetKind(asset.url);
+    var thumb = kind === "image" || kind === "gif"
+      ? '<img src="' + escapeHTML(url) + '" alt="">'
+      : kind === "video"
+        ? '<video src="' + escapeHTML(url) + '" muted playsinline></video>'
+        : '<span class="asset-type-icon">' + escapeHTML(kind.toUpperCase()) + '</span>';
+    return '<div class="asset-item asset-item-rich"><div class="asset-thumb">' + thumb + '</div><div><small>' + escapeHTML(asset.type) + '</small><code>' + escapeHTML(label) + '</code></div><div class="asset-actions">' +
+      '<button class="icon-button" type="button" title="设为封面" data-cover-asset="' + escapeHTML(asset.url) + '">□</button>' +
+      '<button class="icon-button" type="button" title="插入文章" data-article-asset="' + escapeHTML(asset.url) + '">文</button>' +
+      '<label class="icon-button replace-button" title="替换素材">↻<input type="file" data-replace-type="' + escapeHTML(asset.type) + '" data-replace-asset="' + escapeHTML(asset.url) + '" accept=".jpg,.jpeg,.png,.webp,.gif,.mp4,.webm,.pdf,.glb,.gltf,image/*,video/*,application/pdf"></label>' +
+      '<button class="icon-button" type="button" title="删除素材" data-remove-asset="' + escapeHTML(asset.type) + '" data-asset-url="' + escapeHTML(asset.url) + '">×</button>' +
+    '</div></div>';
   }
 
   function collectProjectAssets(project) {
@@ -1949,7 +3052,47 @@
         items.push({ type: type, url: project[type] });
       }
     });
+    normalizeArticleBlocks(project.articleBlocks).forEach(function (block) {
+      if (block.asset) {
+        items.push({ type: "article", url: block.asset });
+      }
+      parseList(block.assets).forEach(function (url) {
+        items.push({ type: "article", url: url });
+      });
+    });
     return items;
+  }
+
+  async function appendArticleBlock(projectId, block) {
+    var project = projects.find(function (item) { return item.id === projectId; });
+    if (!project) {
+      return null;
+    }
+    project.articleBlocks = normalizeArticleBlocks(project.articleBlocks).concat(block);
+    writeStorage();
+    return project;
+  }
+
+  function replaceProjectAssetReference(project, oldValue, nextValue) {
+    ["coverImage", "model3d", "panorama", "video", "pdf"].forEach(function (field) {
+      if (project[field] === oldValue) {
+        project[field] = nextValue;
+      }
+    });
+    ["gallery", "drawings"].forEach(function (field) {
+      project[field] = parseList(project[field]).map(function (item) {
+        return item === oldValue ? nextValue : item;
+      });
+    });
+    project.articleBlocks = normalizeArticleBlocks(project.articleBlocks).map(function (block) {
+      if (block.asset === oldValue) {
+        block.asset = nextValue;
+      }
+      block.assets = parseList(block.assets).map(function (item) {
+        return item === oldValue ? nextValue : item;
+      });
+      return block;
+    });
   }
 
   async function handleProjectsImport(event) {
@@ -1974,6 +3117,25 @@
     await refreshData();
     renderAll();
     event.target.value = "";
+  }
+
+  async function handleFullDataImport(event) {
+    var file = event.target.files && event.target.files[0];
+    if (!file) {
+      return;
+    }
+    var data = await readJSONFile(file);
+    if (data.siteSettings || data.settings) {
+      siteSettings = normalizeSiteSettings(data.siteSettings || data.settings);
+    }
+    if (Array.isArray(data.projects)) {
+      projects = data.projects.map(normalizeProject);
+    }
+    writeStorage();
+    await refreshData();
+    renderAll();
+    event.target.value = "";
+    showAdminStamp("全站数据已导入");
   }
 
   function initSectionObserver() {
