@@ -54,6 +54,10 @@ body.modal-open {
   overflow: hidden;
 }
 
+body.admin-auth-open {
+  overflow: hidden;
+}
+
 body.is-anchor-scrolling {
   cursor: progress;
 }
@@ -621,6 +625,10 @@ body.is-threshold-jumping .threshold-ember {
   transform: translate(0, -50%);
 }
 
+.watang-admin-trigger {
+  display: none !important;
+}
+
 .hero {
   position: relative;
   min-height: 100svh;
@@ -985,6 +993,17 @@ body.is-threshold-jumping .threshold-ember {
 
 .button:hover::before {
   transform: translateX(120%) skewX(-18deg);
+}
+
+.button:disabled,
+button:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button:disabled::before {
+  display: none;
 }
 
 .button span {
@@ -1488,6 +1507,69 @@ body.is-threshold-jumping .threshold-ember {
   display: block;
 }
 
+.admin-auth-prompt {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(5, 7, 8, 0.76);
+  backdrop-filter: blur(16px);
+}
+
+.admin-auth-card {
+  width: min(100%, 420px);
+  border-radius: 8px;
+  border: 1px solid rgba(142, 167, 160, 0.2);
+  background:
+    linear-gradient(180deg, rgba(142, 167, 160, 0.1), transparent 42%),
+    rgba(8, 11, 10, 0.96);
+  color: var(--paperWarm);
+  box-shadow: 0 26px 84px rgba(0, 0, 0, 0.34);
+}
+
+.admin-auth-card form {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+}
+
+.admin-auth-card h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+}
+
+.admin-auth-card p {
+  margin: 0;
+  color: rgba(217, 208, 192, 0.66);
+}
+
+.admin-auth-card label {
+  display: grid;
+  gap: 8px;
+  color: rgba(217, 208, 192, 0.76);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.admin-auth-card input {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 8px;
+  border: 1px solid rgba(142, 167, 160, 0.22);
+  padding: 10px 12px;
+  background: rgba(5, 7, 8, 0.46);
+  color: var(--paperWarm);
+  outline: none;
+}
+
+.admin-auth-card input:focus {
+  border-color: rgba(242, 140, 56, 0.42);
+  box-shadow: 0 0 0 3px rgba(242, 140, 56, 0.1);
+}
+
 .admin-overlay-backdrop {
   position: absolute;
   inset: 0;
@@ -1551,6 +1633,27 @@ body.is-threshold-jumping .threshold-ember {
 .admin-overlay-header p:not(.eyebrow) {
   margin: 0;
   color: rgba(217, 208, 192, 0.66);
+}
+
+.admin-data-actions {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.admin-data-actions strong {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(142, 167, 160, 0.18);
+  color: var(--paperWarm);
+  background: rgba(5, 7, 8, 0.24);
+  font-family: var(--font-mono);
+  font-size: 12px;
 }
 
 .admin-close {
