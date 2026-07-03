@@ -44,6 +44,15 @@
   <main>
     <section class="hero section-observe" id="home" data-section="Home">
       <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-depth-stage" aria-hidden="true">
+        <div class="hero-depth-layer hero-layer-mountain"></div>
+        <div class="hero-depth-layer hero-layer-fog-high"></div>
+        <div class="hero-depth-layer hero-layer-window"></div>
+        <div class="hero-depth-layer hero-layer-lady"></div>
+        <div class="hero-depth-layer hero-layer-fog-low"></div>
+        <div class="hero-spotlight"></div>
+        <div class="hero-depth-vignette"></div>
+      </div>
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-content">
         <p class="eyebrow seal-line"><span id="heroSeal">北屿</span><span>NORTHERN TECTONIC INDEX</span></p>
@@ -296,6 +305,7 @@
                 <div class="form-actions">
                   <button class="button button-dark" type="button" id="saveSectionBgButton"><span>保存背景</span><em>Save BG</em></button>
                   <button class="button button-outline" type="button" id="previewSectionBgButton"><span>预览背景</span><em>Preview</em></button>
+                  <button class="button button-outline" type="button" id="forceShowSectionBgButton"><span>强制显示当前背景</span><em>Force Show BG</em></button>
                   <button class="button button-outline" type="button" id="uploadSectionBgButton"><span>本地预览导入</span><em>Local</em></button>
                   <button class="button button-outline" type="button" id="clearSectionBgButton"><span>清除当前</span><em>Clear</em></button>
                   <button class="button button-outline" type="button" id="resetSectionBgButton"><span>恢复默认</span><em>Reset All</em></button>
