@@ -1,14 +1,14 @@
 # 北屿营造设计工作室静态官网
 
-这是一个可部署到 GitHub Pages 的完整静态网站项目。入口文件保留为 `index.html`，样式位于 `assets/css/styles.css`，交互与 mock 数据位于 `assets/js/app.js`。
+这是一个可部署到 GitHub Pages 的完整静态网站项目。入口文件保留为 `index.html`，样式位于 `assets/css/styles.css`，交互逻辑位于 `assets/js/app.js`，线上正式内容位于 `assets/data/site-data.json`。
 
 ## 正式维护方式
 
-本项目采用“GitHub 静态站 + 手动维护素材路径”。
+本项目采用“直接代码发布模式”：前台默认读取 `assets/data/site-data.json`，这个文件就是线上正式内容来源。
 
-GitHub Pages 不能在线写入仓库，也不连接数据库、服务器或对象存储。图片、GIF、视频、GLB、PDF 等正式素材需要先手动上传到 GitHub 仓库的 `assets` 目录，再进入后台填写相对路径。
+GitHub Pages 不能在线写入仓库，也不连接数据库、服务器或对象存储。图片、GIF、视频、GLB、PDF 等正式素材需要先手动上传到 GitHub 仓库的 `assets` 目录，再把相对路径写入 `assets/data/site-data.json`。
 
-后台保存会写入当前浏览器的 `localStorage`，用于本机预览。要让所有访客看到更新，需要导出 JSON，并把更新后的数据和素材文件一起提交到 GitHub 仓库。
+个人维护台保存会写入当前浏览器的 `localStorage`，只用于本机临时预览。刷新页面默认仍读取线上正式 JSON；如果本机显示和其他设备不同，请在维护台点击“使用线上数据 / Clear Draft”清除本地草稿。
 
 ## 推荐目录
 
@@ -32,11 +32,11 @@ assets/backgrounds/works-bg.jpg
 assets/backgrounds/research-bg.jpg
 ```
 
-瓦当图标当前代码使用 `assets/images/watang.png`，项目中也兼容放置了 `assets/watang/watang.png`。
+瓦当图标当前代码优先使用 `assets/images/watang.webp`，并保留 `assets/watang/watang.png` 作为备用。
 
-## 后台维护
+## 个人维护台
 
-点击右下角瓦当入口打开后台 overlay。
+公开页面不显示维护入口。个人维护台通过隐藏触发方式打开，并需要输入维护密码；登录状态只保存在 `sessionStorage`，关闭浏览器后失效。
 
 项目素材在“素材路径 / Asset Path Manager”中维护，支持：
 
@@ -50,6 +50,8 @@ assets/backgrounds/research-bg.jpg
 
 多图字段一行一个路径。保存后会立即刷新当前浏览器中的前台展示，并保留在 `localStorage`。
 
+要让所有设备看到更新，请直接修改 `assets/data/site-data.json`，然后把 JSON 和素材文件一起提交到 GitHub。
+
 “本地临时预览导入”只保存到当前浏览器 IndexedDB，用于临时看效果；更换设备、清理站点数据或换浏览器后会丢失。正式发布请使用 `assets/...` 相对路径。
 
 ## 文章块路径
@@ -59,7 +61,7 @@ assets/backgrounds/research-bg.jpg
 ```json
 [
   { "type": "heading", "text": "设计命题" },
-  { "type": "paragraph", "text": "本项目从北方高台建筑的体量感出发……" },
+  { "type": "paragraph", "text": "这里填写完整项目正文。" },
   {
     "type": "image",
     "asset": "assets/projects/p001-northern-wind-court/article-01.jpg",
@@ -103,16 +105,16 @@ assets/backgrounds/research-bg.jpg
 
 ## 导入导出
 
-后台支持：
+个人维护台支持：
 
 - 导出 `projects JSON`
 - 导出 `siteSettings JSON`
-- 导出 `full-site-data JSON`
+- 导出 `site-data.json`
 - 导入 `projects JSON`
 - 导入 `siteSettings JSON`
-- 导入 `full-site-data JSON`
+- 导入 `site-data.json`
 
-导出的 JSON 只包含路径和数据，不包含素材文件。正式发布时，请确认素材文件已经提交到 GitHub 仓库。
+导出的 JSON 只包含路径和数据，不包含素材文件。正式发布时，请用导出的内容更新 `assets/data/site-data.json`，并确认素材文件已经提交到 GitHub 仓库。
 
 ## GitHub Pages 部署
 
