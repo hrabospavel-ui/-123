@@ -16,14 +16,18 @@
   var ASSET_DB_VERSION = 1;
   var ASSET_STORE = "assets";
   var ASSET_ID_PREFIX = "asset_";
+  var SITE_DATA_URL = "assets/data/site-data.json";
+  var ADMIN_HASH_ROUTE = "#atelier-console";
+  var ADMIN_SESSION_KEY = "northernAtelier.adminSession.v1";
+  var ADMIN_PASSWORD_HASH = "50b1458955475f1f949da12c1ac7f4c6e77264e59df06ceb82ac1e650ae2d02d";
 
   var siteSettings = {
-    studioName: "北屿营造",
-    studioSeal: "北屿",
-    taglineCN: "在黑色天幕中，重构北方高古的空间秩序。",
-    taglineEN: "Northern Tectonics Reframed for Contemporary Space and Objects.",
-    intro: "以建筑、器物、空间研究和数字模型为方法，把传统营造的秩序转译为当代生活与展示系统。",
-    philosophy: "我们关注北方建筑的尺度、风、影、材料和秩序，也关注产品在手中被使用的瞬间。每个项目从线稿、模型、图纸和现场材料同时推进。",
+    studioName: "营造设计工作室",
+    studioSeal: "营造",
+    taglineCN: "内容正在从正式数据文件加载。",
+    taglineEN: "Loading official site data.",
+    intro: "请维护 assets/data/site-data.json 作为线上正式内容来源。",
+    philosophy: "正式案例、路径和详情文字集中维护在 assets/data/site-data.json。",
     email: "hello@northern-atelier.example",
     portfolioPdf: "assets/portfolio/northern-atelier-portfolio.pdf",
     accentColor: "#536A63",
@@ -37,228 +41,10 @@
     { labelCN: "器物", labelEN: "Objects", href: "#objects" },
     { labelCN: "研究", labelEN: "Research", href: "#research" },
     { labelCN: "营造", labelEN: "Studio", href: "#studio" },
-    { labelCN: "联系", labelEN: "Contact", href: "#contact" },
-    { labelCN: "维护", labelEN: "Admin", href: "#admin" }
+    { labelCN: "联系", labelEN: "Contact", href: "#contact" }
   ];
 
-  var projects = [
-    {
-      id: "p001",
-      titleCN: "北台风庭",
-      titleEN: "Northern Wind Court",
-      category: "Architecture",
-      year: "2026",
-      location: "Hohhot",
-      status: "Published",
-      material: "brick, dark timber, glass, wind channel",
-      scale: "1,850 sqm",
-      role: "concept, spatial design, exhibition route",
-      concept: "把台基、风廊和中轴线压缩成一座可行走的数字高台。",
-      description: "项目从北方高台建筑的体量感出发，用暗色砖石、冷青光线和折线屋脊组织展陈路径，让空间像从黑色地平线中升起。",
-      coverImage: "abstract:ridge",
-      gallery: ["assets/projects/p001-northern-wind-court/article-01.png"],
-      drawings: ["assets/projects/p001-northern-wind-court/drawings.pdf"],
-      model3d: "assets/projects/p001-northern-wind-court/model.glb",
-      panorama: "assets/projects/p001-northern-wind-court/panorama.png",
-      video: "",
-      pdf: "assets/projects/p001-northern-wind-court/case.pdf",
-      tags: ["中轴线", "台基", "展陈", "冷青光"],
-      featured: true,
-      published: true
-    },
-    {
-      id: "p002",
-      titleCN: "器物之山",
-      titleEN: "Vessel Mountain Index",
-      category: "Objects",
-      year: "2026",
-      location: "Beijing",
-      status: "Prototype",
-      material: "aluminum, ash wood, cyan glaze",
-      scale: "object series",
-      role: "product design, prototype direction",
-      concept: "把山墙与瓦当转译成可握持、可陈列的器物比例。",
-      description: "一组从山墙折线、瓦灰与青釉中生成的桌面器物，不追求仿古，而用当代加工方式保留北方器物的稳定和锋利。",
-      coverImage: "abstract:vessel",
-      gallery: ["assets/projects/p002-vessel-mountain-index/article-01.png"],
-      drawings: [],
-      model3d: "assets/projects/p002-vessel-mountain-index/model.glb",
-      panorama: "",
-      video: "",
-      pdf: "assets/projects/p002-vessel-mountain-index/case.pdf",
-      tags: ["器物", "青釉", "瓦当", "产品"],
-      featured: true,
-      published: true
-    },
-    {
-      id: "p003",
-      titleCN: "黑穹模型台",
-      titleEN: "Obsidian Model Platform",
-      category: "Research",
-      year: "2025",
-      location: "Online Lab",
-      status: "Published",
-      material: "web canvas, GLB, point light",
-      scale: "digital prototype",
-      role: "interaction research, viewer prototype",
-      concept: "让模型在加载前保持沉默，只在需要时展开。",
-      description: "面向未来项目库的 3D 展示模块研究，默认不加载大型模型，点击后再进入模型台，以保证作品集首屏和列表体验轻盈。",
-      coverImage: "abstract:grid",
-      gallery: [],
-      drawings: [],
-      model3d: "assets/projects/p003-obsidian-model-platform/model.glb",
-      panorama: "",
-      video: "",
-      pdf: "",
-      tags: ["3D", "GLB", "交互", "模型台"],
-      featured: true,
-      published: true
-    },
-    {
-      id: "p004",
-      titleCN: "塞上院落更新",
-      titleEN: "Frontier Courtyard Renewal",
-      category: "Architecture",
-      year: "2025",
-      location: "Datong",
-      status: "Design Development",
-      material: "gray brick, rammed earth, recycled wood",
-      scale: "620 sqm",
-      role: "renovation strategy, facade, interior",
-      concept: "旧院落保留风口和阴影，新界面只做必要介入。",
-      description: "以灰砖、夯土和木构为材料基础，保留院落的风道和尺度，通过现代平面和模块化构造减少历史符号堆叠。",
-      coverImage: "abstract:plinth",
-      gallery: ["assets/projects/p004-frontier-courtyard-renewal/article-01.png"],
-      drawings: ["assets/projects/p004-frontier-courtyard-renewal/drawings.pdf"],
-      model3d: "",
-      panorama: "assets/projects/p004-frontier-courtyard-renewal/panorama.png",
-      video: "",
-      pdf: "assets/projects/p004-frontier-courtyard-renewal/case.pdf",
-      tags: ["更新", "灰砖", "院落", "360"],
-      featured: false,
-      published: true
-    },
-    {
-      id: "p005",
-      titleCN: "冷青扶手系统",
-      titleEN: "Cangqing Rail System",
-      category: "Objects",
-      year: "2025",
-      location: "Shanghai",
-      status: "Prototype",
-      material: "anodized aluminum, ash wood, leather",
-      scale: "modular system",
-      role: "industrial design, detail design",
-      concept: "从斗拱的支撑逻辑抽出模块嵌套关系。",
-      description: "一套面向展厅和住宅的扶手与展架系统，结构关系来自传统支撑系统，但外观保持低调、锋利和可量产。",
-      coverImage: "",
-      gallery: [],
-      drawings: ["assets/projects/p005-cangqing-rail-system/drawings.pdf"],
-      model3d: "assets/projects/p005-cangqing-rail-system/model.glb",
-      panorama: "",
-      video: "",
-      pdf: "assets/projects/p005-cangqing-rail-system/case.pdf",
-      tags: ["产品", "模块", "支撑", "金属"],
-      featured: false,
-      published: true
-    },
-    {
-      id: "p006",
-      titleCN: "入此空间：北境展厅",
-      titleEN: "Enter Scene: Northern Gallery",
-      category: "Space",
-      year: "2024",
-      location: "Beijing",
-      status: "Published",
-      material: "panorama, light scan, dark stone",
-      scale: "immersive route",
-      role: "spatial narrative, panorama prototype",
-      concept: "把展厅入口变成一条从暗场进入光幕的路径。",
-      description: "以 360 全景为核心的空间展示原型，用户先在暗场看到轴线和光幕，再进入可滑动的全景场景。",
-      coverImage: "abstract:ridge",
-      gallery: ["assets/projects/p006-northern-gallery/article-01.png"],
-      drawings: [],
-      model3d: "",
-      panorama: "assets/projects/p006-northern-gallery/panorama.png",
-      video: "",
-      pdf: "",
-      tags: ["360", "展厅", "光幕", "叙事"],
-      featured: false,
-      published: true
-    },
-    {
-      id: "p007",
-      titleCN: "瓦灰材料谱系",
-      titleEN: "Tile Gray Material Atlas",
-      category: "Research",
-      year: "2024",
-      location: "Material Lab",
-      status: "Archive",
-      material: "tile powder, mineral pigment, paper sample",
-      scale: "material atlas",
-      role: "material research, visual system",
-      concept: "把瓦灰从历史材料转成现代设计色谱。",
-      description: "研究瓦灰、木褐、冷青与朱砂在不同材质上的显色关系，输出适用于建筑界面、产品外壳和图册系统的材料索引。",
-      coverImage: "abstract:paper",
-      gallery: [],
-      drawings: ["assets/projects/p007-tile-gray-material-atlas/drawings.pdf"],
-      model3d: "",
-      panorama: "",
-      video: "",
-      pdf: "assets/projects/p007-tile-gray-material-atlas/case.pdf",
-      tags: ["材料", "色谱", "图册", "瓦灰"],
-      featured: false,
-      published: true
-    },
-    {
-      id: "p008",
-      titleCN: "轴线生成研究",
-      titleEN: "Axis Generation Study",
-      category: "Research",
-      year: "2023",
-      location: "Computational Studio",
-      status: "Published",
-      material: "parametric drawing, SVG, canvas",
-      scale: "research notes",
-      role: "geometry research, drawing system",
-      concept: "不复刻总平面，而提取秩序、方向和节奏。",
-      description: "项目以传统建筑中轴线为出发点，生成一套可用于页面布局、展陈路线和项目编号的几何系统。",
-      coverImage: "",
-      gallery: [],
-      drawings: ["assets/projects/p008-axis-generation-study/drawings.pdf"],
-      model3d: "",
-      panorama: "",
-      video: "",
-      pdf: "assets/projects/p008-axis-generation-study/case.pdf",
-      tags: ["参数化", "中轴线", "图纸", "系统"],
-      featured: false,
-      published: true
-    },
-    {
-      id: "p009",
-      titleCN: "木构灯具一号",
-      titleEN: "Timber Lamp 01",
-      category: "Objects",
-      year: "2023",
-      location: "Hangzhou",
-      status: "Private Draft",
-      material: "dark timber, linen, brass line",
-      scale: "lighting prototype",
-      role: "object design",
-      concept: "用极少木构线条支撑一层柔光。",
-      description: "未发布草稿项目，用于展示维护端的发布状态切换和前台过滤逻辑。",
-      coverImage: "abstract:plinth",
-      gallery: [],
-      drawings: [],
-      model3d: "",
-      panorama: "",
-      video: "",
-      pdf: "",
-      tags: ["草稿", "木构", "灯具"],
-      featured: false,
-      published: false
-    }
-  ];
+  var projects = [];
 
   var state = {
     settings: null,
@@ -281,7 +67,13 @@
     assetDb: null,
     assetDbReady: false,
     assetDbError: "",
-    assetPreviewRefs: []
+    assetPreviewRefs: [],
+    dataSource: "official",
+    dataLoadError: "",
+    hasLocalDraft: false,
+    adminEntryClickCount: 0,
+    adminEntryTimer: 0,
+    adminAuthPending: false
   };
 
   var ASSET_FIELD_CONFIG = {
@@ -330,16 +122,14 @@
     }
   };
 
-  var methods = [
-    { no: "01", title: "秩序提取", text: "从中轴线、台基、屋脊和院落尺度中提取组织方法，而不是复刻传统符号。" },
-    { no: "02", title: "材料转译", text: "把瓦灰、木褐、冷青、朱砂和砖石触感转成当代材料、色彩与界面系统。" },
-    { no: "03", title: "数字预演", text: "通过图纸、模型台和全景场景提前测试空间氛围、观看路径和维护方式。" },
-    { no: "04", title: "轻量交付", text: "官网内容以后可由数据层维护，项目、素材和发布状态都预留接口位置。" }
-  ];
+  var methods = [];
 
   var STORAGE_KEYS = {
     settings: "northernAtelier.siteSettings.v3",
-    projects: "northernAtelier.projects.v3"
+    projects: "northernAtelier.projects.v3",
+    navigation: "northernAtelier.navigation.v1",
+    methods: "northernAtelier.methods.v1",
+    draftSavedAt: "northernAtelier.localDraftSavedAt.v1"
   };
   var defaultSiteSettings = clone(siteSettings);
   var defaultProjects = clone(projects);
@@ -598,6 +388,21 @@
     }
   }
 
+  function localDraftExists() {
+    try {
+      if (typeof localStorage === "undefined") {
+        return false;
+      }
+      return Boolean(localStorage.getItem(STORAGE_KEYS.settings) || localStorage.getItem(STORAGE_KEYS.projects) || localStorage.getItem(STORAGE_KEYS.navigation) || localStorage.getItem(STORAGE_KEYS.methods));
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function updateLocalDraftState() {
+    state.hasLocalDraft = localDraftExists();
+  }
+
   function writeStorage() {
     try {
       if (typeof localStorage === "undefined") {
@@ -605,21 +410,263 @@
       }
       localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(siteSettings));
       localStorage.setItem(STORAGE_KEYS.projects, JSON.stringify(projects));
+      localStorage.setItem(STORAGE_KEYS.navigation, JSON.stringify(navigation));
+      localStorage.setItem(STORAGE_KEYS.methods, JSON.stringify(methods));
+      localStorage.setItem(STORAGE_KEYS.draftSavedAt, new Date().toISOString());
+      state.dataSource = "local";
+      updateLocalDraftState();
     } catch (error) {
       console.warn("Mock data could not be persisted.", error);
     }
   }
 
-  function loadStoredData() {
-    siteSettings = normalizeSiteSettings(readStorage(STORAGE_KEYS.settings, defaultSiteSettings));
-    projects = readStorage(STORAGE_KEYS.projects, defaultProjects).map(normalizeProject);
+  function normalizeNavigation(items) {
+    var list = Array.isArray(items) ? items : navigation;
+    return list.map(function (item) {
+      return {
+        labelCN: String(item.labelCN || ""),
+        labelEN: String(item.labelEN || ""),
+        href: String(item.href || "#")
+      };
+    });
   }
 
-  function resetMockData() {
-    siteSettings = normalizeSiteSettings(defaultSiteSettings);
-    projects = clone(defaultProjects).map(normalizeProject);
-    writeStorage();
-    return delay({ ok: true });
+  function normalizeMethods(items) {
+    if (!Array.isArray(items)) {
+      return methods;
+    }
+    return items.map(function (item) {
+      return {
+        no: String(item.no || ""),
+        title: String(item.title || ""),
+        text: String(item.text || "")
+      };
+    });
+  }
+
+  function normalizeSiteData(data) {
+    var incoming = data || {};
+    return {
+      siteSettings: normalizeSiteSettings(incoming.siteSettings || incoming.settings || {}),
+      navigation: normalizeNavigation(incoming.navigation),
+      methods: normalizeMethods(incoming.methods),
+      projects: Array.isArray(incoming.projects) ? incoming.projects.map(normalizeProject) : []
+    };
+  }
+
+  function applySiteData(data, source) {
+    var normalized = normalizeSiteData(data);
+    siteSettings = normalized.siteSettings;
+    navigation = normalized.navigation;
+    methods = normalized.methods;
+    projects = normalized.projects;
+    state.dataSource = source || "official";
+    updateLocalDraftState();
+    if (state.dataSource === "official") {
+      defaultSiteSettings = clone(siteSettings);
+      defaultProjects = clone(projects);
+    }
+  }
+
+  async function loadOfficialSiteData() {
+    try {
+      var response = await fetch(SITE_DATA_URL, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error("HTTP " + response.status);
+      }
+      applySiteData(await response.json(), "official");
+      state.dataLoadError = "";
+      return true;
+    } catch (error) {
+      state.dataLoadError = "正式数据文件读取失败：" + (error && error.message ? error.message : "未知错误");
+      console.warn(state.dataLoadError);
+      applySiteData({
+        siteSettings: defaultSiteSettings,
+        navigation: navigation,
+        methods: methods,
+        projects: defaultProjects
+      }, "official");
+      return false;
+    }
+  }
+
+  function loadLocalDraftData() {
+    if (!localDraftExists()) {
+      updateLocalDraftState();
+      return false;
+    }
+    applySiteData({
+      siteSettings: readStorage(STORAGE_KEYS.settings, defaultSiteSettings),
+      navigation: readStorage(STORAGE_KEYS.navigation, navigation),
+      methods: readStorage(STORAGE_KEYS.methods, methods),
+      projects: readStorage(STORAGE_KEYS.projects, defaultProjects)
+    }, "local");
+    return true;
+  }
+
+  async function useOfficialSiteData() {
+    clearLocalDraftStorage();
+    await loadOfficialSiteData();
+    return { ok: true };
+  }
+
+  function useLocalDraftData() {
+    var ok = loadLocalDraftData();
+    return delay({ ok: ok });
+  }
+
+  function clearLocalDraftStorage() {
+    try {
+      if (typeof localStorage === "undefined") {
+        return;
+      }
+      localStorage.removeItem(STORAGE_KEYS.settings);
+      localStorage.removeItem(STORAGE_KEYS.projects);
+      localStorage.removeItem(STORAGE_KEYS.navigation);
+      localStorage.removeItem(STORAGE_KEYS.methods);
+      localStorage.removeItem(STORAGE_KEYS.draftSavedAt);
+    } catch (error) {
+      console.warn("Local draft could not be cleared.", error);
+    }
+    updateLocalDraftState();
+  }
+
+  async function resetMockData() {
+    return useOfficialSiteData();
+  }
+
+  // 前端级入口保护：这里的哈希校验只能防止普通游客误入维护台，
+  // 不能替代真正的服务端认证或访问控制。
+  function hasAdminSession() {
+    try {
+      return typeof sessionStorage !== "undefined" && sessionStorage.getItem(ADMIN_SESSION_KEY) === "ok";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function setAdminSession() {
+    try {
+      if (typeof sessionStorage !== "undefined") {
+        sessionStorage.setItem(ADMIN_SESSION_KEY, "ok");
+      }
+    } catch (error) {
+      console.warn("Admin session could not be stored.", error);
+    }
+  }
+
+  async function sha256Hex(value) {
+    if (!window.crypto || !window.crypto.subtle || typeof TextEncoder === "undefined") {
+      throw new Error("当前浏览器不支持前端密码校验。");
+    }
+    var bytes = new TextEncoder().encode(String(value || ""));
+    var digest = await window.crypto.subtle.digest("SHA-256", bytes);
+    return Array.prototype.map.call(new Uint8Array(digest), function (byte) {
+      return byte.toString(16).padStart(2, "0");
+    }).join("");
+  }
+
+  async function requestAdminAccess() {
+    if (hasAdminSession()) {
+      return true;
+    }
+    if (state.adminAuthPending) {
+      return false;
+    }
+    state.adminAuthPending = true;
+    try {
+      var password = await promptAdminPassword();
+      if (!password) {
+        showAdminAccessDenied("");
+        return false;
+      }
+      var hash = await sha256Hex(password);
+      if (hash === ADMIN_PASSWORD_HASH) {
+        setAdminSession();
+        return true;
+      }
+      showAdminAccessDenied("无权限访问。");
+      return false;
+    } catch (error) {
+      showAdminAccessDenied(error && error.message ? error.message : "无法验证权限。");
+      return false;
+    } finally {
+      state.adminAuthPending = false;
+    }
+  }
+
+  function promptAdminPassword() {
+    return new Promise(function (resolve) {
+      var oldPrompt = qs("#adminAuthPrompt");
+      if (oldPrompt) {
+        oldPrompt.remove();
+      }
+      var prompt = document.createElement("div");
+      prompt.className = "admin-auth-prompt";
+      prompt.id = "adminAuthPrompt";
+      prompt.innerHTML =
+        '<div class="admin-auth-card" role="dialog" aria-modal="true" aria-labelledby="adminAuthTitle">' +
+          '<form id="adminAuthForm">' +
+            '<h2 id="adminAuthTitle">维护验证</h2>' +
+            '<p>请输入维护密码。</p>' +
+            '<label><span>密码</span><input id="adminAuthPassword" type="password" autocomplete="current-password" required></label>' +
+            '<div class="form-actions">' +
+              '<button class="button button-primary" type="submit"><span>进入</span><em>Verify</em></button>' +
+              '<button class="button button-outline" type="button" id="adminAuthCancel"><span>取消</span><em>Cancel</em></button>' +
+            '</div>' +
+          '</form>' +
+        '</div>';
+      document.body.appendChild(prompt);
+      document.body.classList.add("admin-auth-open");
+      var passwordInput = qs("#adminAuthPassword", prompt);
+      var form = qs("#adminAuthForm", prompt);
+      var cancel = qs("#adminAuthCancel", prompt);
+
+      function finish(value) {
+        document.removeEventListener("keydown", handleEscape);
+        document.body.classList.remove("admin-auth-open");
+        prompt.remove();
+        resolve(value || "");
+      }
+
+      function handleEscape(event) {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          finish("");
+        }
+      }
+
+      if (form) {
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          finish(passwordInput ? passwordInput.value : "");
+        });
+      }
+      if (cancel) {
+        cancel.addEventListener("click", function () { finish(""); });
+      }
+      prompt.addEventListener("click", function (event) {
+        if (event.target === prompt) {
+          finish("");
+        }
+      });
+      document.addEventListener("keydown", handleEscape);
+      window.setTimeout(function () {
+        if (passwordInput) {
+          passwordInput.focus();
+        }
+      }, 0);
+    });
+  }
+
+  function showAdminAccessDenied(message) {
+    closeAdminConsole(true);
+    if (window.location.hash === ADMIN_HASH_ROUTE || window.location.hash === "#admin") {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+    if (message && window.alert) {
+      window.alert(message);
+    }
   }
 
   function exportJSON(filename, data, options) {
@@ -642,8 +689,10 @@
   }
 
   function exportFullSiteData() {
-    exportJSON("northern-atelier-full-site-data.json", {
+    exportJSON("site-data.json", {
       siteSettings: siteSettings,
+      navigation: navigation,
+      methods: methods,
       projects: projects
     });
   }
@@ -834,8 +883,8 @@
     };
   }
 
-  // GitHub Pages 正式版本使用本地 mock API、localStorage 和手动维护的 assets 相对路径。
-  // 不在线写入仓库；需要公开发布时导出 JSON 并提交到 GitHub。
+  // GitHub Pages 正式版本读取 assets/data/site-data.json。
+  // 维护台保存只写入本机 localStorage，用于当前浏览器临时预览。
   function fetchSiteSettings() {
     return delay(siteSettings);
   }
@@ -1068,6 +1117,8 @@
     uploadAsset: uploadAsset,
     removeAsset: removeAsset,
     resetMockData: resetMockData,
+    useOfficialSiteData: useOfficialSiteData,
+    useLocalDraftData: useLocalDraftData,
     initAssetDB: initAssetDB,
     saveAssetToDB: saveAssetToDB,
     getAssetFromDB: getAssetFromDB,
@@ -1082,7 +1133,7 @@
 
   async function init() {
     await initAssetDB();
-    loadStoredData();
+    await loadOfficialSiteData();
     await refreshData();
     renderAll();
     bindGlobalEvents();
@@ -1118,6 +1169,7 @@
     renderSectionBgControls();
     renderArticleEditorControls();
     fillSettingsForm();
+    renderDataSourceStatus();
   }
 
   function renderSettings() {
@@ -1140,6 +1192,29 @@
       pdfLink.href = settings.portfolioPdf || "#";
     }
     document.documentElement.style.setProperty("--cangqing", settings.accentColor || "#536A63");
+  }
+
+  function renderDataSourceStatus() {
+    updateLocalDraftState();
+    var status = qs("#dataSourceStatus");
+    var useOfficialButton = qs("#useOfficialDataButton");
+    var useLocalDraftButton = qs("#useLocalDraftButton");
+    if (status) {
+      var label = state.dataSource === "local" ? "当前：本机草稿预览" : "当前：线上正式数据";
+      if (state.hasLocalDraft && state.dataSource !== "local") {
+        label += " / 检测到本机草稿";
+      }
+      if (state.dataLoadError && state.dataSource !== "local") {
+        label += " / " + state.dataLoadError;
+      }
+      status.textContent = label;
+    }
+    if (useOfficialButton) {
+      useOfficialButton.disabled = state.dataSource === "official" && !state.hasLocalDraft;
+    }
+    if (useLocalDraftButton) {
+      useLocalDraftButton.disabled = !state.hasLocalDraft || state.dataSource === "local";
+    }
   }
 
   function applySectionBackgrounds() {
@@ -1509,7 +1584,7 @@
       var anchor = event.target.closest('a[href^="#"]');
       if (anchor) {
         var href = anchor.getAttribute("href");
-        if (href === "#admin") {
+        if (href === ADMIN_HASH_ROUTE) {
           event.preventDefault();
           openAdminConsole();
           return;
@@ -2039,9 +2114,12 @@
   function bindAdminEvents() {
     var loginButton = qs("#adminLoginButton");
     if (loginButton) {
-      loginButton.addEventListener("click", function () {
-        qs("#adminLogin").classList.add("is-hidden");
-        qs("#adminConsole").classList.remove("is-hidden");
+      loginButton.addEventListener("click", async function () {
+        var allowed = await requestAdminAccess();
+        if (allowed) {
+          qs("#adminLogin").classList.add("is-hidden");
+          qs("#adminConsole").classList.remove("is-hidden");
+        }
       });
     }
 
@@ -2066,6 +2144,31 @@
     var settingsForm = qs("#settingsForm");
     if (settingsForm) {
       settingsForm.addEventListener("submit", handleSettingsSubmit);
+    }
+
+    var useOfficialButton = qs("#useOfficialDataButton");
+    if (useOfficialButton) {
+      useOfficialButton.addEventListener("click", async function () {
+        await useOfficialSiteData();
+        await refreshData();
+        renderAll();
+        showAdminStamp("已使用线上数据");
+      });
+    }
+
+    var useLocalDraftButton = qs("#useLocalDraftButton");
+    if (useLocalDraftButton) {
+      useLocalDraftButton.addEventListener("click", async function () {
+        var result = await useLocalDraftData();
+        if (!result.ok) {
+          renderDataSourceStatus();
+          showAdminStamp("暂无本机草稿");
+          return;
+        }
+        await refreshData();
+        renderAll();
+        showAdminStamp("已使用本机草稿");
+      });
     }
 
     var uploadButton = qs("#uploadButton");
@@ -2678,6 +2781,11 @@
     if (trigger) {
       trigger.addEventListener("click", openAdminConsole);
     }
+    var brand = qs(".brand-pill");
+    if (brand) {
+      brand.addEventListener("click", handleHiddenAdminLogoClick);
+    }
+    document.addEventListener("keydown", handleHiddenAdminKey);
     qsa("[data-admin-close]").forEach(function (button) {
       button.addEventListener("click", closeAdminConsole);
     });
@@ -2685,12 +2793,46 @@
   }
 
   function handleAdminHashRoute() {
-    if (window.location.hash === "#admin") {
+    if (window.location.hash === ADMIN_HASH_ROUTE) {
       window.setTimeout(openAdminConsole, 0);
     }
   }
 
-  function openAdminConsole() {
+  function handleHiddenAdminLogoClick(event) {
+    window.clearTimeout(state.adminEntryTimer);
+    state.adminEntryClickCount += 1;
+    if (state.adminEntryClickCount >= 5) {
+      state.adminEntryClickCount = 0;
+      event.preventDefault();
+      event.stopPropagation();
+      openAdminConsole();
+      return;
+    }
+    state.adminEntryTimer = window.setTimeout(function () {
+      state.adminEntryClickCount = 0;
+    }, 1800);
+  }
+
+  function handleHiddenAdminKey(event) {
+    if (!event.ctrlKey || !event.altKey || event.shiftKey || event.metaKey) {
+      return;
+    }
+    if (String(event.key || "").toLowerCase() !== "m") {
+      return;
+    }
+    event.preventDefault();
+    openAdminConsole();
+  }
+
+  async function openAdminConsole() {
+    var allowed = await requestAdminAccess();
+    if (!allowed) {
+      return;
+    }
+    showAdminConsole();
+  }
+
+  function showAdminConsole() {
     var overlay = qs("#adminOverlay");
     if (!overlay || overlay.classList.contains("is-open")) {
       return;
@@ -2715,7 +2857,7 @@
     }
   }
 
-  function closeAdminConsole() {
+  function closeAdminConsole(silent) {
     var overlay = qs("#adminOverlay");
     if (!overlay || !overlay.classList.contains("is-open")) {
       return;
@@ -2727,20 +2869,20 @@
     document.body.style.width = "";
     state.adminOpen = false;
     window.scrollTo(0, state.lastScrollY || 0);
-    if (window.location.hash === "#admin") {
+    if (window.location.hash === ADMIN_HASH_ROUTE || window.location.hash === "#admin") {
       history.replaceState(null, "", window.location.pathname + window.location.search);
     }
-    if (state.lastFocusedElement && state.lastFocusedElement.focus) {
+    if (!silent && state.lastFocusedElement && state.lastFocusedElement.focus) {
       state.lastFocusedElement.focus();
     }
   }
 
-  function toggleAdminConsole() {
+  async function toggleAdminConsole() {
     var overlay = qs("#adminOverlay");
     if (overlay && overlay.classList.contains("is-open")) {
       closeAdminConsole();
     } else {
-      openAdminConsole();
+      await openAdminConsole();
     }
   }
 
@@ -3011,7 +3153,7 @@
     }).join("") : '<div class="path-preview-card asset-preview-empty"><strong>EMPTY</strong><span>当前字段没有路径。</span></div>';
     container.innerHTML =
       '<h4>路径预览 / ' + escapeHTML(project.titleCN) + '</h4>' +
-      '<p class="asset-note">' + escapeHTML(config.label) + '。保存后会写入 localStorage 并立即更新前台；正式发布请导出 JSON 并提交到 GitHub。</p>' +
+      '<p class="asset-note">' + escapeHTML(config.label) + '。保存后会写入 localStorage 并立即更新当前浏览器预览；线上正式发布请修改 assets/data/site-data.json 并提交到 GitHub。</p>' +
       '<div class="path-preview-grid">' + preview + '</div>' +
       projectPathSummaryHTML(project);
   }
@@ -3210,12 +3352,11 @@
       return;
     }
     var data = await readJSONFile(file);
-    if (data.siteSettings || data.settings) {
-      siteSettings = normalizeSiteSettings(data.siteSettings || data.settings);
-    }
-    if (Array.isArray(data.projects)) {
-      projects = data.projects.map(normalizeProject);
-    }
+    var normalized = normalizeSiteData(data);
+    siteSettings = normalized.siteSettings;
+    navigation = normalized.navigation;
+    methods = normalized.methods;
+    projects = normalized.projects;
     writeStorage();
     await refreshData();
     renderAll();
