@@ -630,6 +630,14 @@ body.is-threshold-jumping .threshold-ember {
   color: var(--whiteInk);
   background: var(--obsidianBlack);
   isolation: isolate;
+  perspective: 1200px;
+  --hero-x: 0;
+  --hero-y: 0;
+  --light-x: 50%;
+  --light-y: 50%;
+  --tilt-x: 0;
+  --tilt-y: 0;
+  --light-strength: 0.68;
   --section-upload-bg-image: none;
   --section-upload-bg-opacity: 0;
   --section-upload-bg-position: center;
@@ -637,20 +645,166 @@ body.is-threshold-jumping .threshold-ember {
   --section-design-bg-opacity: 1;
 }
 
+.hero-depth-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  contain: paint;
+}
+
+.hero-depth-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 58%, rgba(176, 138, 84, 0.13), transparent 48%),
+    linear-gradient(180deg, rgba(3, 4, 5, 0.16), rgba(3, 4, 5, 0.66));
+}
+
+.hero-depth-layer,
+.hero-spotlight,
+.hero-depth-vignette {
+  position: absolute;
+  inset: -5%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+}
+
+.hero-depth-layer {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.hero-layer-mountain {
+  z-index: 1;
+  inset: -7%;
+  background-image:
+    linear-gradient(180deg, rgba(3, 4, 5, 0.38), rgba(3, 4, 5, 0.42)),
+    url("../hero-depth/hero-mountain.jpg");
+  background-blend-mode: multiply, normal;
+  opacity: 0.88;
+  transform: translate3d(calc(var(--hero-x) * -7px), calc(var(--hero-y) * -5px), -110px) scale(1.12);
+  filter: brightness(calc(0.5 + var(--light-strength) * 0.08)) saturate(0.86) contrast(1.08);
+}
+
+.hero-layer-fog-high {
+  z-index: 2;
+  background-image: url("../hero-depth/hero-fog-high.png");
+  mix-blend-mode: screen;
+  opacity: calc(0.24 + var(--light-strength) * 0.08);
+  transform: translate3d(calc(var(--hero-x) * -12px), calc(var(--hero-y) * -8px), -38px) scale(1.08);
+  filter: brightness(0.72) contrast(1.04);
+  animation: heroFogDrift 13s ease-in-out infinite alternate;
+}
+
+.hero-layer-window {
+  z-index: 3;
+  background-image: url("../hero-depth/hero-window-frame.png");
+  background-position: center;
+  opacity: 0.9;
+  mix-blend-mode: multiply;
+  transform:
+    translate3d(calc(var(--hero-x) * 10px), calc(var(--hero-y) * 5px), 42px)
+    rotateX(calc(var(--tilt-x) * 0.7deg))
+    rotateY(calc(var(--tilt-y) * 0.82deg))
+    scale(1.05);
+  filter:
+    brightness(calc(0.9 + var(--light-strength) * 0.08))
+    contrast(1.16)
+    drop-shadow(0 0 1px rgba(243, 238, 227, 0.42))
+    drop-shadow(0 18px 34px rgba(0, 0, 0, 0.62));
+}
+
+.hero-layer-lady {
+  z-index: 4;
+  inset: -6%;
+  background-image: url("../hero-depth/hero-lady.png");
+  background-position: left bottom;
+  opacity: 0.9;
+  transform: translate3d(calc(var(--hero-x) * 17px), calc(var(--hero-y) * 9px), 76px) scale(1.075);
+  filter:
+    brightness(calc(0.66 + var(--light-strength) * 0.16))
+    saturate(0.9)
+    contrast(1.05)
+    drop-shadow(0 16px 30px rgba(0, 0, 0, 0.46));
+}
+
+.hero-layer-fog-low {
+  z-index: 5;
+  inset: -7%;
+  background-image: url("../hero-depth/hero-fog-low.png");
+  background-position: center bottom;
+  mix-blend-mode: screen;
+  opacity: calc(0.36 + var(--light-strength) * 0.1);
+  transform: translate3d(calc(var(--hero-x) * 20px), calc(var(--hero-y) * 10px), 98px) scale(1.1);
+  filter: brightness(0.68) contrast(1.05);
+  animation: heroLowFogDrift 16s ease-in-out infinite alternate;
+}
+
+.hero-spotlight {
+  z-index: 6;
+  inset: -8%;
+  background:
+    radial-gradient(circle at var(--light-x) var(--light-y),
+      rgba(255, 218, 154, 0.58) 0%,
+      rgba(255, 184, 92, 0.3) 17%,
+      rgba(255, 151, 54, 0.13) 36%,
+      rgba(0, 0, 0, 0) 63%),
+    radial-gradient(ellipse at var(--light-x) var(--light-y),
+      rgba(255, 196, 108, 0.22) 0%,
+      rgba(255, 160, 80, 0.11) 34%,
+      rgba(0, 0, 0, 0) 72%);
+  opacity: calc(0.36 + var(--light-strength) * 0.42);
+  mix-blend-mode: screen;
+  filter: saturate(1.05);
+  transform: translate3d(calc(var(--hero-x) * 8px), calc(var(--hero-y) * 5px), 120px);
+}
+
+.hero-depth-vignette {
+  z-index: 7;
+  inset: 0;
+  background-image: url("../hero-depth/hero-vignette.png");
+  opacity: 0.86;
+  mix-blend-mode: multiply;
+  transform: translate3d(calc(var(--hero-x) * -2px), calc(var(--hero-y) * -1px), 130px) scale(1.01);
+}
+
+@keyframes heroFogDrift {
+  from { transform: translate3d(calc(var(--hero-x) * -12px - 5px), calc(var(--hero-y) * -8px - 2px), -38px) scale(1.08); }
+  to { transform: translate3d(calc(var(--hero-x) * -12px + 5px), calc(var(--hero-y) * -8px + 3px), -38px) scale(1.085); }
+}
+
+@keyframes heroLowFogDrift {
+  from { transform: translate3d(calc(var(--hero-x) * 20px - 7px), calc(var(--hero-y) * 10px + 2px), 98px) scale(1.1); }
+  to { transform: translate3d(calc(var(--hero-x) * 20px + 6px), calc(var(--hero-y) * 10px - 3px), 98px) scale(1.105); }
+}
+
 .hero-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: -3;
+  z-index: 1;
+  background: transparent;
+  pointer-events: none;
+  opacity: 0.42;
   transition: opacity 0.3s ease;
 }
 
 .hero-grid {
   position: absolute;
   inset: 0;
-  z-index: -2;
-  opacity: 0.32;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.14;
   background:
     linear-gradient(90deg, transparent 0 calc(50% - 1px), rgba(142, 167, 160, 0.18) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)),
     linear-gradient(180deg, transparent 0 72%, rgba(142, 167, 160, 0.1) 72% calc(72% + 1px), transparent calc(72% + 1px));
@@ -663,7 +817,8 @@ body.is-threshold-jumping .threshold-ember {
   position: absolute;
   inset: auto 0 0;
   height: 34vh;
-  z-index: -1;
+  z-index: 6;
+  pointer-events: none;
   background:
     radial-gradient(ellipse at 50% 60%, rgba(242, 140, 56, 0.22), transparent 42%),
     radial-gradient(ellipse at 50% 72%, rgba(255, 180, 92, 0.1), transparent 36%),
@@ -679,6 +834,8 @@ body.is-threshold-jumping .threshold-ember {
 }
 
 .hero-content {
+  position: relative;
+  z-index: 12;
   width: min(100% - 36px, 1020px);
   margin-top: 42px;
   text-align: center;
@@ -905,6 +1062,7 @@ body.is-threshold-jumping .threshold-ember {
   position: absolute;
   left: 50%;
   bottom: 24px;
+  z-index: 12;
   transform: translateX(-50%);
   width: min(calc(100% - 36px), 900px);
   display: grid;
@@ -967,11 +1125,31 @@ body.is-threshold-jumping .threshold-ember {
 }
 
 .hero > .section-bg-upload {
-  z-index: -4;
+  z-index: 0;
+  display: block;
+  background-image: var(--section-upload-bg-image, none);
+  background-size: cover;
+  background-position: var(--section-upload-bg-position, center center);
+  background-repeat: no-repeat;
+  opacity: var(--section-upload-bg-opacity, 0);
+  mix-blend-mode: var(--section-upload-bg-blend-mode, normal);
 }
 
 .hero > .section-bg-design {
-  display: none;
+  z-index: 1;
+  display: block;
+  opacity: var(--section-design-bg-opacity, 1);
+}
+
+#home.debug-bg-visible .section-bg-upload {
+  z-index: 20;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+}
+
+#home.debug-bg-visible .hero-content,
+#home.debug-bg-visible .hero-bottom-strip {
+  z-index: 30;
 }
 
 .section.has-section-bg-upload > :not(.section-bg-upload):not(.section-bg-design) {
@@ -3181,6 +3359,48 @@ body.article-open {
   pointer-events: none;
 }
 
+@media (hover: none), (pointer: coarse), (max-width: 840px) {
+  .hero-depth-stage {
+    --hero-x: 0;
+    --hero-y: 0;
+    --tilt-x: 0;
+    --tilt-y: 0;
+    --light-x: 50%;
+    --light-y: 48%;
+    --light-strength: 0.46;
+  }
+
+  .hero-spotlight {
+    display: none;
+  }
+
+  .hero-layer-mountain,
+  .hero-layer-fog-high,
+  .hero-layer-window,
+  .hero-layer-lady,
+  .hero-layer-fog-low,
+  .hero-depth-vignette {
+    animation: none;
+    transform: none;
+  }
+
+  .hero-layer-mountain {
+    transform: scale(1.08);
+  }
+
+  .hero-layer-window {
+    transform: scale(1.035);
+  }
+
+  .hero-layer-lady {
+    transform: scale(1.055);
+  }
+
+  .hero-layer-fog-low {
+    opacity: 0.34;
+  }
+}
+
 @media (max-width: 1120px) {
   .nav-pill a {
     padding: 0 9px;
@@ -3454,6 +3674,30 @@ body.article-open {
 
   .hero h1::after {
     animation: none;
+  }
+
+  .hero-depth-stage {
+    --hero-x: 0;
+    --hero-y: 0;
+    --tilt-x: 0;
+    --tilt-y: 0;
+    --light-x: 50%;
+    --light-y: 50%;
+    --light-strength: 0.42;
+  }
+
+  .hero-spotlight {
+    display: none;
+  }
+
+  .hero-layer-mountain,
+  .hero-layer-fog-high,
+  .hero-layer-window,
+  .hero-layer-lady,
+  .hero-layer-fog-low,
+  .hero-depth-vignette {
+    animation: none;
+    transform: none;
   }
 
   .section-observe .section-heading,
