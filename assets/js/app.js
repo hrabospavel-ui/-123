@@ -21,6 +21,758 @@
   var ADMIN_SESSION_KEY = "northernAtelier.adminSession.v1";
   var ADMIN_PASSWORD_HASH = "50b1458955475f1f949da12c1ac7f4c6e77264e59df06ceb82ac1e650ae2d02d";
 
+  var FALLBACK_SITE_DATA = {
+    "siteSettings": {
+      "studioName": "北屿营造",
+      "studioSeal": "北屿",
+      "taglineCN": "在黑色天幕中，重构北方高古的空间秩序。",
+      "taglineEN": "Northern Tectonics Reframed for Contemporary Space and Objects.",
+      "intro": "以建筑、器物、空间研究和数字模型为方法，把传统营造的秩序转译为当代生活与展示系统。",
+      "philosophy": "我们关注北方建筑的尺度、风、影、材料和秩序，也关注产品在手中被使用的瞬间。每个项目从线稿、模型、图纸和现场材料同时推进。",
+      "email": "hello@northern-atelier.example",
+      "portfolioPdf": "assets/portfolio/northern-atelier-portfolio.pdf",
+      "accentColor": "#536A63",
+      "hero": {
+        "sealSuffix": "NORTHERN TECTONIC INDEX",
+        "primaryAction": {
+          "labelCN": "展开案例",
+          "labelEN": "Browse Works",
+          "href": "#works"
+        },
+        "secondaryAction": {
+          "labelCN": "营造探析",
+          "labelEN": "Studio Method",
+          "href": "#studio"
+        },
+        "indexLinks": [
+          {
+            "no": "01",
+            "label": "建筑",
+            "href": "#architecture"
+          },
+          {
+            "no": "02",
+            "label": "造物",
+            "href": "#objects"
+          },
+          {
+            "no": "03",
+            "label": "营造",
+            "href": "#research"
+          }
+        ],
+        "bottomStrip": [
+          "AXIS",
+          "PLINTH",
+          "EAVE LINE",
+          "MODEL PLATFORM"
+        ]
+      },
+      "sections": {
+        "featured": {
+          "eyebrow": "FEATURED WORKS / 精选作品",
+          "title": "沿通道斜切，异形玻璃体连通老建筑与新剧场。",
+          "description": "一座街区，如何同时装下菜场、市政、图书馆。"
+        },
+        "works": {
+          "eyebrow": "WORKS / 作品总览",
+          "title": "项目索引不是目录，而是一套可维护的设计案卷。",
+          "description": "项目通过统一数据层渲染，支持分类筛选、发布状态、媒体能力和后期内容更新。"
+        },
+        "architecture": {
+          "eyebrow": "ARCHITECTURE / 建筑",
+          "title": "从中轴线、台基和屋脊线开始，重排空间秩序。",
+          "description": "建筑与空间设计入口，覆盖展陈、公共空间、更新改造和沉浸式场景。"
+        },
+        "objects": {
+          "eyebrow": "OBJECTS / 器物",
+          "title": "器物不是小建筑，而是材料、尺度与手感的独立系统。",
+          "description": "产品设计、家具、装置与器物实验，保持克制的东方平面和年轻的结构敏感度。"
+        },
+        "research": {
+          "eyebrow": "RESEARCH / 研究",
+          "title": "把构造、材料、形态生成、3D 模型和全景场景放在同一张工作台上。",
+          "description": ""
+        },
+        "studio": {
+          "eyebrow": "STUDIO METHOD / 营造",
+          "title": "年轻团队，使用现代系统重新组织传统营造精神。",
+          "description": "我们关注北方建筑的尺度、风、影、材料和秩序，也关注产品在手中被使用的瞬间。每个项目从线稿、模型、图纸和现场材料同时推进。"
+        },
+        "contact": {
+          "eyebrow": "CONTACT / 联系",
+          "title": "让新的空间、器物或研究案卷从一封邮件开始。",
+          "description": ""
+        }
+      },
+      "contact": {
+        "emailLabel": "邮件联系",
+        "portfolioLabel": "作品集 PDF",
+        "portfolioCaption": "Portfolio",
+        "socialLinks": [
+          {
+            "label": "Instagram",
+            "text": "IG",
+            "href": "#"
+          },
+          {
+            "label": "Behance",
+            "text": "BE",
+            "href": "#"
+          },
+          {
+            "label": "Xiaohongshu",
+            "text": "RED",
+            "href": "#"
+          }
+        ]
+      },
+      "footer": {
+        "copyright": "© Northern Atelier",
+        "note": "Static site content is maintained in assets/data/site-data.json."
+      },
+      "visualAssets": {
+        "heroDepth": {
+          "mountain": "assets/hero-depth/hero-mountain.webp",
+          "windowFrame": "assets/hero-depth/hero-window-frame.webp",
+          "lady": "assets/hero-depth/hero-lady.webp",
+          "vignette": "assets/hero-depth/hero-vignette.webp",
+          "reference": "assets/hero-depth/hero-reference.webp"
+        },
+        "watang": {
+          "webp": "assets/images/watang.webp",
+          "pngFallback": "assets/watang/watang.png"
+        }
+      },
+      "sectionBackgrounds": {
+        "home": {
+          "image": "",
+          "imageOpacity": 0,
+          "designOpacity": 1,
+          "position": "center",
+          "blendMode": "screen"
+        },
+        "featured": {
+          "image": "",
+          "imageOpacity": 0,
+          "designOpacity": 1,
+          "position": "center",
+          "blendMode": "screen"
+        },
+        "works": {
+          "image": "",
+          "imageOpacity": 0,
+          "designOpacity": 1,
+          "position": "center top",
+          "blendMode": "multiply"
+        },
+        "architecture": {
+          "image": "",
+          "imageOpacity": 0,
+          "designOpacity": 1,
+          "position": "center",
+          "blendMode": "screen"
+        },
+        "objects": {
+          "image": "",
+          "imageOpacity": 0,
+          "designOpacity": 1,
+          "position": "center",
+          "blendMode": "screen"
+        },
+        "research": {
+          "image": "",
+          "imageOpacity": 0,
+          "designOpacity": 1,
+          "position": "center",
+          "blendMode": "screen"
+        },
+        "studio": {
+          "image": "",
+          "imageOpacity": 0,
+          "designOpacity": 1,
+          "position": "center",
+          "blendMode": "screen"
+        },
+        "contact": {
+          "image": "",
+          "imageOpacity": 0,
+          "designOpacity": 1,
+          "position": "center",
+          "blendMode": "screen"
+        }
+      }
+    },
+    "navigation": [
+      {
+        "labelCN": "首页",
+        "labelEN": "Home",
+        "href": "#home"
+      },
+      {
+        "labelCN": "作品",
+        "labelEN": "Works",
+        "href": "#works"
+      },
+      {
+        "labelCN": "建筑",
+        "labelEN": "Architecture",
+        "href": "#architecture"
+      },
+      {
+        "labelCN": "器物",
+        "labelEN": "Objects",
+        "href": "#objects"
+      },
+      {
+        "labelCN": "研究",
+        "labelEN": "Research",
+        "href": "#research"
+      },
+      {
+        "labelCN": "营造",
+        "labelEN": "Studio",
+        "href": "#studio"
+      },
+      {
+        "labelCN": "联系",
+        "labelEN": "Contact",
+        "href": "#contact"
+      }
+    ],
+    "methods": [
+      {
+        "no": "01",
+        "title": "秩序提取",
+        "text": "从中轴线、台基、屋脊和院落尺度中提取组织方法，而不是复刻传统符号。"
+      },
+      {
+        "no": "02",
+        "title": "材料转译",
+        "text": "把瓦灰、木褐、冷青、朱砂和砖石触感转成当代材料、色彩与界面系统。"
+      },
+      {
+        "no": "03",
+        "title": "数字预演",
+        "text": "通过图纸、模型台和全景场景提前测试空间氛围、观看路径和维护方式。"
+      },
+      {
+        "no": "04",
+        "title": "轻量交付",
+        "text": "官网内容以后可由数据层维护，项目、素材和发布状态都预留接口位置。"
+      }
+    ],
+    "projects": [
+      {
+        "id": "p001",
+        "titleCN": "北台风庭",
+        "titleEN": "Northern Wind Court",
+        "category": "Architecture",
+        "year": "2026",
+        "location": "Hohhot",
+        "status": "Published",
+        "material": "brick, dark timber, glass, wind channel",
+        "scale": "1,850 sqm",
+        "role": "concept, spatial design, exhibition route",
+        "concept": "把台基、风廊和中轴线压缩成一座可行走的数字高台。",
+        "description": "项目从北方高台建筑的体量感出发，用暗色砖石、冷青光线和折线屋脊组织展陈路径，让空间像从黑色地平线中升起。",
+        "coverImage": "abstract:ridge",
+        "gallery": [
+          "assets/projects/p001-northern-wind-court/article-01.png"
+        ],
+        "drawings": [
+          "assets/projects/p001-northern-wind-court/drawings.pdf"
+        ],
+        "model3d": "assets/projects/p001-northern-wind-court/model.glb",
+        "panorama": "assets/projects/p001-northern-wind-court/panorama.png",
+        "video": "",
+        "pdf": "assets/projects/p001-northern-wind-court/case.pdf",
+        "tags": [
+          "中轴线",
+          "台基",
+          "展陈",
+          "冷青光"
+        ],
+        "articleBlocks": [
+          {
+            "type": "heading",
+            "text": "项目概述"
+          },
+          {
+            "type": "paragraph",
+            "text": "项目从北方高台建筑的体量感出发，用暗色砖石、冷青光线和折线屋脊组织展陈路径，让空间像从黑色地平线中升起。"
+          },
+          {
+            "type": "quote",
+            "text": "把台基、风廊和中轴线压缩成一座可行走的数字高台。"
+          },
+          {
+            "type": "image",
+            "asset": "assets/projects/p001-northern-wind-court/article-01.png",
+            "caption": "项目图像"
+          },
+          {
+            "type": "pdf",
+            "asset": "assets/projects/p001-northern-wind-court/drawings.pdf",
+            "label": "查看图纸 / Drawing"
+          },
+          {
+            "type": "model3d",
+            "asset": "assets/projects/p001-northern-wind-court/model.glb"
+          },
+          {
+            "type": "panorama",
+            "asset": "assets/projects/p001-northern-wind-court/panorama.png"
+          },
+          {
+            "type": "pdf",
+            "asset": "assets/projects/p001-northern-wind-court/case.pdf",
+            "label": "下载完整项目 PDF"
+          }
+        ],
+        "featured": true,
+        "published": true
+      },
+      {
+        "id": "p002",
+        "titleCN": "器物之山",
+        "titleEN": "Vessel Mountain Index",
+        "category": "Objects",
+        "year": "2026",
+        "location": "Beijing",
+        "status": "Prototype",
+        "material": "aluminum, ash wood, cyan glaze",
+        "scale": "object series",
+        "role": "product design, prototype direction",
+        "concept": "把山墙与瓦当转译成可握持、可陈列的器物比例。",
+        "description": "一组从山墙折线、瓦灰与青釉中生成的桌面器物，不追求仿古，而用当代加工方式保留北方器物的稳定和锋利。",
+        "coverImage": "abstract:vessel",
+        "gallery": [
+          "assets/projects/p002-vessel-mountain-index/article-01.png"
+        ],
+        "drawings": [],
+        "model3d": "assets/projects/p002-vessel-mountain-index/model.glb",
+        "panorama": "",
+        "video": "",
+        "pdf": "assets/projects/p002-vessel-mountain-index/case.pdf",
+        "tags": [
+          "器物",
+          "青釉",
+          "瓦当",
+          "产品"
+        ],
+        "articleBlocks": [
+          {
+            "type": "heading",
+            "text": "项目概述"
+          },
+          {
+            "type": "paragraph",
+            "text": "一组从山墙折线、瓦灰与青釉中生成的桌面器物，不追求仿古，而用当代加工方式保留北方器物的稳定和锋利。"
+          },
+          {
+            "type": "quote",
+            "text": "把山墙与瓦当转译成可握持、可陈列的器物比例。"
+          },
+          {
+            "type": "image",
+            "asset": "assets/projects/p002-vessel-mountain-index/article-01.png",
+            "caption": "项目图像"
+          },
+          {
+            "type": "model3d",
+            "asset": "assets/projects/p002-vessel-mountain-index/model.glb"
+          },
+          {
+            "type": "pdf",
+            "asset": "assets/projects/p002-vessel-mountain-index/case.pdf",
+            "label": "下载完整项目 PDF"
+          }
+        ],
+        "featured": true,
+        "published": true
+      },
+      {
+        "id": "p003",
+        "titleCN": "黑穹模型台",
+        "titleEN": "Obsidian Model Platform",
+        "category": "Research",
+        "year": "2025",
+        "location": "Online Lab",
+        "status": "Published",
+        "material": "web canvas, GLB, point light",
+        "scale": "digital prototype",
+        "role": "interaction research, viewer prototype",
+        "concept": "让模型在加载前保持沉默，只在需要时展开。",
+        "description": "面向未来项目库的 3D 展示模块研究，默认不加载大型模型，点击后再进入模型台，以保证作品集首屏和列表体验轻盈。",
+        "coverImage": "abstract:grid",
+        "gallery": [],
+        "drawings": [],
+        "model3d": "assets/projects/p003-obsidian-model-platform/model.glb",
+        "panorama": "",
+        "video": "",
+        "pdf": "",
+        "tags": [
+          "3D",
+          "GLB",
+          "交互",
+          "模型台"
+        ],
+        "articleBlocks": [
+          {
+            "type": "heading",
+            "text": "项目概述"
+          },
+          {
+            "type": "paragraph",
+            "text": "面向未来项目库的 3D 展示模块研究，默认不加载大型模型，点击后再进入模型台，以保证作品集首屏和列表体验轻盈。"
+          },
+          {
+            "type": "quote",
+            "text": "让模型在加载前保持沉默，只在需要时展开。"
+          },
+          {
+            "type": "model3d",
+            "asset": "assets/projects/p003-obsidian-model-platform/model.glb"
+          }
+        ],
+        "featured": true,
+        "published": true
+      },
+      {
+        "id": "p004",
+        "titleCN": "塞上院落更新",
+        "titleEN": "Frontier Courtyard Renewal",
+        "category": "Architecture",
+        "year": "2025",
+        "location": "Datong",
+        "status": "Design Development",
+        "material": "gray brick, rammed earth, recycled wood",
+        "scale": "620 sqm",
+        "role": "renovation strategy, facade, interior",
+        "concept": "旧院落保留风口和阴影，新界面只做必要介入。",
+        "description": "以灰砖、夯土和木构为材料基础，保留院落的风道和尺度，通过现代平面和模块化构造减少历史符号堆叠。",
+        "coverImage": "abstract:plinth",
+        "gallery": [
+          "assets/projects/p004-frontier-courtyard-renewal/article-01.png"
+        ],
+        "drawings": [
+          "assets/projects/p004-frontier-courtyard-renewal/drawings.pdf"
+        ],
+        "model3d": "",
+        "panorama": "assets/projects/p004-frontier-courtyard-renewal/panorama.png",
+        "video": "",
+        "pdf": "assets/projects/p004-frontier-courtyard-renewal/case.pdf",
+        "tags": [
+          "更新",
+          "灰砖",
+          "院落",
+          "360"
+        ],
+        "articleBlocks": [
+          {
+            "type": "heading",
+            "text": "项目概述"
+          },
+          {
+            "type": "paragraph",
+            "text": "以灰砖、夯土和木构为材料基础，保留院落的风道和尺度，通过现代平面和模块化构造减少历史符号堆叠。"
+          },
+          {
+            "type": "quote",
+            "text": "旧院落保留风口和阴影，新界面只做必要介入。"
+          },
+          {
+            "type": "image",
+            "asset": "assets/projects/p004-frontier-courtyard-renewal/article-01.png",
+            "caption": "项目图像"
+          },
+          {
+            "type": "pdf",
+            "asset": "assets/projects/p004-frontier-courtyard-renewal/drawings.pdf",
+            "label": "查看图纸 / Drawing"
+          },
+          {
+            "type": "panorama",
+            "asset": "assets/projects/p004-frontier-courtyard-renewal/panorama.png"
+          },
+          {
+            "type": "pdf",
+            "asset": "assets/projects/p004-frontier-courtyard-renewal/case.pdf",
+            "label": "下载完整项目 PDF"
+          }
+        ],
+        "featured": false,
+        "published": true
+      },
+      {
+        "id": "p005",
+        "titleCN": "冷青扶手系统",
+        "titleEN": "Cangqing Rail System",
+        "category": "Objects",
+        "year": "2025",
+        "location": "Shanghai",
+        "status": "Prototype",
+        "material": "anodized aluminum, ash wood, leather",
+        "scale": "modular system",
+        "role": "industrial design, detail design",
+        "concept": "从斗拱的支撑逻辑抽出模块嵌套关系。",
+        "description": "一套面向展厅和住宅的扶手与展架系统，结构关系来自传统支撑系统，但外观保持低调、锋利和可量产。",
+        "coverImage": "",
+        "gallery": [],
+        "drawings": [
+          "assets/projects/p005-cangqing-rail-system/drawings.pdf"
+        ],
+        "model3d": "assets/projects/p005-cangqing-rail-system/model.glb",
+        "panorama": "",
+        "video": "",
+        "pdf": "assets/projects/p005-cangqing-rail-system/case.pdf",
+        "tags": [
+          "产品",
+          "模块",
+          "支撑",
+          "金属"
+        ],
+        "articleBlocks": [
+          {
+            "type": "heading",
+            "text": "项目概述"
+          },
+          {
+            "type": "paragraph",
+            "text": "一套面向展厅和住宅的扶手与展架系统，结构关系来自传统支撑系统，但外观保持低调、锋利和可量产。"
+          },
+          {
+            "type": "quote",
+            "text": "从斗拱的支撑逻辑抽出模块嵌套关系。"
+          },
+          {
+            "type": "pdf",
+            "asset": "assets/projects/p005-cangqing-rail-system/drawings.pdf",
+            "label": "查看图纸 / Drawing"
+          },
+          {
+            "type": "model3d",
+            "asset": "assets/projects/p005-cangqing-rail-system/model.glb"
+          },
+          {
+            "type": "pdf",
+            "asset": "assets/projects/p005-cangqing-rail-system/case.pdf",
+            "label": "下载完整项目 PDF"
+          }
+        ],
+        "featured": false,
+        "published": true
+      },
+      {
+        "id": "p006",
+        "titleCN": "入此空间：北境展厅",
+        "titleEN": "Enter Scene: Northern Gallery",
+        "category": "Space",
+        "year": "2024",
+        "location": "Beijing",
+        "status": "Published",
+        "material": "panorama, light scan, dark stone",
+        "scale": "immersive route",
+        "role": "spatial narrative, panorama prototype",
+        "concept": "把展厅入口变成一条从暗场进入光幕的路径。",
+        "description": "以 360 全景为核心的空间展示原型，用户先在暗场看到轴线和光幕，再进入可滑动的全景场景。",
+        "coverImage": "abstract:ridge",
+        "gallery": [
+          "assets/projects/p006-northern-gallery/article-01.png"
+        ],
+        "drawings": [],
+        "model3d": "",
+        "panorama": "assets/projects/p006-northern-gallery/panorama.png",
+        "video": "",
+        "pdf": "",
+        "tags": [
+          "360",
+          "展厅",
+          "光幕",
+          "叙事"
+        ],
+        "articleBlocks": [
+          {
+            "type": "heading",
+            "text": "项目概述"
+          },
+          {
+            "type": "paragraph",
+            "text": "以 360 全景为核心的空间展示原型，用户先在暗场看到轴线和光幕，再进入可滑动的全景场景。"
+          },
+          {
+            "type": "quote",
+            "text": "把展厅入口变成一条从暗场进入光幕的路径。"
+          },
+          {
+            "type": "image",
+            "asset": "assets/projects/p006-northern-gallery/article-01.png",
+            "caption": "项目图像"
+          },
+          {
+            "type": "panorama",
+            "asset": "assets/projects/p006-northern-gallery/panorama.png"
+          }
+        ],
+        "featured": false,
+        "published": true
+      },
+      {
+        "id": "p007",
+        "titleCN": "瓦灰材料谱系",
+        "titleEN": "Tile Gray Material Atlas",
+        "category": "Research",
+        "year": "2024",
+        "location": "Material Lab",
+        "status": "Archive",
+        "material": "tile powder, mineral pigment, paper sample",
+        "scale": "material atlas",
+        "role": "material research, visual system",
+        "concept": "把瓦灰从历史材料转成现代设计色谱。",
+        "description": "研究瓦灰、木褐、冷青与朱砂在不同材质上的显色关系，输出适用于建筑界面、产品外壳和图册系统的材料索引。",
+        "coverImage": "abstract:paper",
+        "gallery": [],
+        "drawings": [
+          "assets/projects/p007-tile-gray-material-atlas/drawings.pdf"
+        ],
+        "model3d": "",
+        "panorama": "",
+        "video": "",
+        "pdf": "assets/projects/p007-tile-gray-material-atlas/case.pdf",
+        "tags": [
+          "材料",
+          "色谱",
+          "图册",
+          "瓦灰"
+        ],
+        "articleBlocks": [
+          {
+            "type": "heading",
+            "text": "项目概述"
+          },
+          {
+            "type": "paragraph",
+            "text": "研究瓦灰、木褐、冷青与朱砂在不同材质上的显色关系，输出适用于建筑界面、产品外壳和图册系统的材料索引。"
+          },
+          {
+            "type": "quote",
+            "text": "把瓦灰从历史材料转成现代设计色谱。"
+          },
+          {
+            "type": "pdf",
+            "asset": "assets/projects/p007-tile-gray-material-atlas/drawings.pdf",
+            "label": "查看图纸 / Drawing"
+          },
+          {
+            "type": "pdf",
+            "asset": "assets/projects/p007-tile-gray-material-atlas/case.pdf",
+            "label": "下载完整项目 PDF"
+          }
+        ],
+        "featured": false,
+        "published": true
+      },
+      {
+        "id": "p008",
+        "titleCN": "轴线生成研究",
+        "titleEN": "Axis Generation Study",
+        "category": "Research",
+        "year": "2023",
+        "location": "Computational Studio",
+        "status": "Published",
+        "material": "parametric drawing, SVG, canvas",
+        "scale": "research notes",
+        "role": "geometry research, drawing system",
+        "concept": "不复刻总平面，而提取秩序、方向和节奏。",
+        "description": "项目以传统建筑中轴线为出发点，生成一套可用于页面布局、展陈路线和项目编号的几何系统。",
+        "coverImage": "",
+        "gallery": [],
+        "drawings": [
+          "assets/projects/p008-axis-generation-study/drawings.pdf"
+        ],
+        "model3d": "",
+        "panorama": "",
+        "video": "",
+        "pdf": "assets/projects/p008-axis-generation-study/case.pdf",
+        "tags": [
+          "参数化",
+          "中轴线",
+          "图纸",
+          "系统"
+        ],
+        "articleBlocks": [
+          {
+            "type": "heading",
+            "text": "项目概述"
+          },
+          {
+            "type": "paragraph",
+            "text": "项目以传统建筑中轴线为出发点，生成一套可用于页面布局、展陈路线和项目编号的几何系统。"
+          },
+          {
+            "type": "quote",
+            "text": "不复刻总平面，而提取秩序、方向和节奏。"
+          },
+          {
+            "type": "pdf",
+            "asset": "assets/projects/p008-axis-generation-study/drawings.pdf",
+            "label": "查看图纸 / Drawing"
+          },
+          {
+            "type": "pdf",
+            "asset": "assets/projects/p008-axis-generation-study/case.pdf",
+            "label": "下载完整项目 PDF"
+          }
+        ],
+        "featured": false,
+        "published": true
+      },
+      {
+        "id": "p009",
+        "titleCN": "木构灯具一号",
+        "titleEN": "Timber Lamp 01",
+        "category": "Objects",
+        "year": "2023",
+        "location": "Hangzhou",
+        "status": "Private Draft",
+        "material": "dark timber, linen, brass line",
+        "scale": "lighting prototype",
+        "role": "object design",
+        "concept": "用极少木构线条支撑一层柔光。",
+        "description": "未发布草稿项目，用于展示维护端的发布状态切换和前台过滤逻辑。",
+        "coverImage": "abstract:plinth",
+        "gallery": [],
+        "drawings": [],
+        "model3d": "",
+        "panorama": "",
+        "video": "",
+        "pdf": "",
+        "tags": [
+          "草稿",
+          "木构",
+          "灯具"
+        ],
+        "articleBlocks": [
+          {
+            "type": "heading",
+            "text": "项目概述"
+          },
+          {
+            "type": "paragraph",
+            "text": "未发布草稿项目，用于展示维护端的发布状态切换和前台过滤逻辑。"
+          },
+          {
+            "type": "quote",
+            "text": "用极少木构线条支撑一层柔光。"
+          }
+        ],
+        "featured": false,
+        "published": false
+      }
+    ]
+  };
+
   var siteSettings = {
     studioName: "营造设计工作室",
     studioSeal: "营造",
@@ -31,6 +783,11 @@
     email: "hello@northern-atelier.example",
     portfolioPdf: "assets/portfolio/northern-atelier-portfolio.pdf",
     accentColor: "#536A63",
+    hero: createDefaultHeroContent(),
+    sections: createDefaultSectionContent(),
+    contact: createDefaultContactContent(),
+    footer: createDefaultFooterContent(),
+    visualAssets: createDefaultVisualAssets(),
     sectionBackgrounds: createDefaultSectionBackgrounds()
   };
 
@@ -155,6 +912,104 @@
     return result;
   }
 
+  function createDefaultHeroContent() {
+    return {
+      sealSuffix: "NORTHERN TECTONIC INDEX",
+      primaryAction: {
+        labelCN: "展开案例",
+        labelEN: "Browse Works",
+        href: "#works"
+      },
+      secondaryAction: {
+        labelCN: "营造探析",
+        labelEN: "Studio Method",
+        href: "#studio"
+      },
+      indexLinks: [
+        { no: "01", label: "建筑", href: "#architecture" },
+        { no: "02", label: "造物", href: "#objects" },
+        { no: "03", label: "营造", href: "#research" }
+      ],
+      bottomStrip: ["AXIS", "PLINTH", "EAVE LINE", "MODEL PLATFORM"]
+    };
+  }
+
+  function createDefaultSectionContent() {
+    return {
+      featured: {
+        eyebrow: "FEATURED WORKS / 精选作品",
+        title: "沿通道斜切，异形玻璃体连通老建筑与新剧场。",
+        description: "一座街区，如何同时装下菜场、市政、图书馆。"
+      },
+      works: {
+        eyebrow: "WORKS / 作品总览",
+        title: "项目索引不是目录，而是一套可维护的设计案卷。",
+        description: "项目通过统一数据层渲染，支持分类筛选、发布状态、媒体能力和后期内容更新。"
+      },
+      architecture: {
+        eyebrow: "ARCHITECTURE / 建筑",
+        title: "从中轴线、台基和屋脊线开始，重排空间秩序。",
+        description: "建筑与空间设计入口，覆盖展陈、公共空间、更新改造和沉浸式场景。"
+      },
+      objects: {
+        eyebrow: "OBJECTS / 器物",
+        title: "器物不是小建筑，而是材料、尺度与手感的独立系统。",
+        description: "产品设计、家具、装置与器物实验，保持克制的东方平面和年轻的结构敏感度。"
+      },
+      research: {
+        eyebrow: "RESEARCH / 研究",
+        title: "把构造、材料、形态生成、3D 模型和全景场景放在同一张工作台上。",
+        description: ""
+      },
+      studio: {
+        eyebrow: "STUDIO METHOD / 营造",
+        title: "年轻团队，使用现代系统重新组织传统营造精神。",
+        description: "我们关注北方建筑的尺度、风、影、材料和秩序，也关注产品在手中被使用的瞬间。每个项目从线稿、模型、图纸和现场材料同时推进。"
+      },
+      contact: {
+        eyebrow: "CONTACT / 联系",
+        title: "让新的空间、器物或研究案卷从一封邮件开始。",
+        description: ""
+      }
+    };
+  }
+
+  function createDefaultContactContent() {
+    return {
+      emailLabel: "邮件联系",
+      portfolioLabel: "作品集 PDF",
+      portfolioCaption: "Portfolio",
+      socialLinks: [
+        { label: "Instagram", text: "IG", href: "#" },
+        { label: "Behance", text: "BE", href: "#" },
+        { label: "Xiaohongshu", text: "RED", href: "#" }
+      ]
+    };
+  }
+
+  function createDefaultFooterContent() {
+    return {
+      copyright: "© Northern Atelier",
+      note: "Static site content is maintained in assets/data/site-data.json."
+    };
+  }
+
+  function createDefaultVisualAssets() {
+    return {
+      heroDepth: {
+        mountain: "assets/hero-depth/hero-mountain.webp",
+        windowFrame: "assets/hero-depth/hero-window-frame.webp",
+        lady: "assets/hero-depth/hero-lady.webp",
+        vignette: "assets/hero-depth/hero-vignette.webp",
+        reference: "assets/hero-depth/hero-reference.webp"
+      },
+      watang: {
+        webp: "assets/images/watang.webp",
+        pngFallback: "assets/watang/watang.png"
+      }
+    };
+  }
+
   function defaultSectionBackground(id) {
     return {
       image: "",
@@ -193,9 +1048,118 @@
     return normalized;
   }
 
+  function normalizeAction(input, fallback) {
+    var source = input || {};
+    var defaults = fallback || {};
+    return {
+      labelCN: String(source.labelCN || defaults.labelCN || ""),
+      labelEN: String(source.labelEN || defaults.labelEN || ""),
+      href: String(source.href || defaults.href || "#")
+    };
+  }
+
+  function normalizeHeroContent(input) {
+    var defaults = createDefaultHeroContent();
+    var source = input || {};
+    var defaultIndexLinks = defaults.indexLinks;
+    var indexLinks = Array.isArray(source.indexLinks) ? source.indexLinks : defaultIndexLinks;
+    return {
+      sealSuffix: String(source.sealSuffix || defaults.sealSuffix),
+      primaryAction: normalizeAction(source.primaryAction, defaults.primaryAction),
+      secondaryAction: normalizeAction(source.secondaryAction, defaults.secondaryAction),
+      indexLinks: indexLinks.map(function (item, index) {
+        var fallback = defaultIndexLinks[index] || {};
+        return {
+          no: String(item.no || fallback.no || padNumber(index)),
+          label: String(item.label || fallback.label || ""),
+          href: String(item.href || fallback.href || "#")
+        };
+      }),
+      bottomStrip: parseList(source.bottomStrip && source.bottomStrip.length ? source.bottomStrip : defaults.bottomStrip)
+    };
+  }
+
+  function normalizeSectionContent(input) {
+    var defaults = createDefaultSectionContent();
+    var source = input || {};
+    var normalized = {};
+    Object.keys(defaults).forEach(function (id) {
+      var current = Object.assign({}, defaults[id], source[id] || {});
+      normalized[id] = {
+        eyebrow: String(current.eyebrow || ""),
+        title: String(current.title || ""),
+        description: String(current.description || "")
+      };
+    });
+    Object.keys(source).forEach(function (id) {
+      if (normalized[id]) {
+        return;
+      }
+      var current = source[id] || {};
+      normalized[id] = {
+        eyebrow: String(current.eyebrow || ""),
+        title: String(current.title || ""),
+        description: String(current.description || "")
+      };
+    });
+    return normalized;
+  }
+
+  function normalizeContactContent(input) {
+    var defaults = createDefaultContactContent();
+    var source = input || {};
+    var links = Array.isArray(source.socialLinks) ? source.socialLinks : defaults.socialLinks;
+    return {
+      emailLabel: String(source.emailLabel || defaults.emailLabel),
+      portfolioLabel: String(source.portfolioLabel || defaults.portfolioLabel),
+      portfolioCaption: String(source.portfolioCaption || defaults.portfolioCaption),
+      socialLinks: links.map(function (link) {
+        return {
+          label: String(link.label || link.text || ""),
+          text: String(link.text || link.label || ""),
+          href: String(link.href || "#")
+        };
+      })
+    };
+  }
+
+  function normalizeFooterContent(input) {
+    var defaults = createDefaultFooterContent();
+    var source = input || {};
+    return {
+      copyright: String(source.copyright || defaults.copyright),
+      note: String(source.note || defaults.note)
+    };
+  }
+
+  function normalizeVisualAssets(input) {
+    var defaults = createDefaultVisualAssets();
+    var source = input || {};
+    var heroDepth = Object.assign({}, defaults.heroDepth, source.heroDepth || {});
+    var watang = Object.assign({}, defaults.watang, source.watang || {});
+    return {
+      heroDepth: {
+        mountain: String(heroDepth.mountain || ""),
+        windowFrame: String(heroDepth.windowFrame || ""),
+        lady: String(heroDepth.lady || ""),
+        vignette: String(heroDepth.vignette || ""),
+        reference: String(heroDepth.reference || "")
+      },
+      watang: {
+        webp: String(watang.webp || ""),
+        pngFallback: String(watang.pngFallback || "")
+      }
+    };
+  }
+
   function normalizeSiteSettings(settings) {
     var incoming = settings || {};
     var merged = Object.assign({}, defaultSiteSettings || siteSettings, incoming);
+    merged.hero = normalizeHeroContent(incoming.hero || merged.hero);
+    merged.sections = normalizeSectionContent(incoming.sections || merged.sections);
+    merged.contact = normalizeContactContent(incoming.contact || merged.contact);
+    merged.footer = normalizeFooterContent(incoming.footer || merged.footer);
+    merged.visualAssets = normalizeVisualAssets(incoming.visualAssets || merged.visualAssets);
     merged.sectionBackgrounds = normalizeSectionBackgrounds(incoming.sectionBackgrounds || merged.sectionBackgrounds);
     return merged;
   }
@@ -480,12 +1444,7 @@
     } catch (error) {
       state.dataLoadError = "正式数据文件读取失败：" + (error && error.message ? error.message : "未知错误");
       console.warn(state.dataLoadError);
-      applySiteData({
-        siteSettings: defaultSiteSettings,
-        navigation: navigation,
-        methods: methods,
-        projects: defaultProjects
-      }, "official");
+      applySiteData(FALLBACK_SITE_DATA, "fallback");
       return false;
     }
   }
@@ -688,13 +1647,90 @@
     URL.revokeObjectURL(url);
   }
 
-  function exportFullSiteData() {
-    exportJSON("site-data.json", {
+  function currentSiteData() {
+    return {
       siteSettings: siteSettings,
       navigation: navigation,
       methods: methods,
       projects: projects
+    };
+  }
+
+  function exportFullSiteData() {
+    var data = currentSiteData();
+    var pathIssues = collectOfficialPathIssues(data);
+    if (pathIssues.length && typeof window !== "undefined" && window.confirm) {
+      var preview = pathIssues.slice(0, 8).map(function (issue) {
+        return "- " + issue;
+      }).join("\n");
+      var ok = window.confirm("导出的 site-data.json 中发现非正式项目相对路径。提交到 GitHub 前建议改成 assets/... 路径。\n\n" + preview + (pathIssues.length > 8 ? "\n- 还有 " + (pathIssues.length - 8) + " 项" : "") + "\n\n仍然继续导出？");
+      if (!ok) {
+        return;
+      }
+    }
+    exportJSON("site-data.json", data);
+  }
+
+  function collectOfficialPathIssues(data) {
+    var issues = [];
+    var settings = data.siteSettings || {};
+    checkOfficialPath(settings.portfolioPdf, "siteSettings.portfolioPdf", issues, false);
+    var visualAssets = normalizeVisualAssets(settings.visualAssets);
+    checkOfficialPath(visualAssets.heroDepth.mountain, "siteSettings.visualAssets.heroDepth.mountain", issues, false);
+    checkOfficialPath(visualAssets.heroDepth.windowFrame, "siteSettings.visualAssets.heroDepth.windowFrame", issues, false);
+    checkOfficialPath(visualAssets.heroDepth.lady, "siteSettings.visualAssets.heroDepth.lady", issues, false);
+    checkOfficialPath(visualAssets.heroDepth.vignette, "siteSettings.visualAssets.heroDepth.vignette", issues, false);
+    checkOfficialPath(visualAssets.heroDepth.reference, "siteSettings.visualAssets.heroDepth.reference", issues, false);
+    checkOfficialPath(visualAssets.watang.webp, "siteSettings.visualAssets.watang.webp", issues, false);
+    checkOfficialPath(visualAssets.watang.pngFallback, "siteSettings.visualAssets.watang.pngFallback", issues, false);
+    var backgrounds = normalizeSectionBackgrounds(settings.sectionBackgrounds);
+    Object.keys(backgrounds).forEach(function (id) {
+      checkOfficialPath(backgrounds[id].image, "siteSettings.sectionBackgrounds." + id + ".image", issues, false);
     });
+    (data.projects || []).forEach(function (project, projectIndex) {
+      var prefix = "projects[" + projectIndex + "]." + (project.id || "project");
+      checkOfficialPath(project.coverImage, prefix + ".coverImage", issues, true);
+      ["gallery", "drawings"].forEach(function (field) {
+        parseList(project[field]).forEach(function (path, pathIndex) {
+          checkOfficialPath(path, prefix + "." + field + "[" + pathIndex + "]", issues, false);
+        });
+      });
+      ["model3d", "panorama", "video", "pdf"].forEach(function (field) {
+        checkOfficialPath(project[field], prefix + "." + field, issues, false);
+      });
+      normalizeArticleBlocks(project.articleBlocks).forEach(function (block, blockIndex) {
+        checkOfficialPath(block.asset, prefix + ".articleBlocks[" + blockIndex + "].asset", issues, false);
+        parseList(block.assets).forEach(function (path, pathIndex) {
+          checkOfficialPath(path, prefix + ".articleBlocks[" + blockIndex + "].assets[" + pathIndex + "]", issues, false);
+        });
+      });
+    });
+    return issues;
+  }
+
+  function checkOfficialPath(value, label, issues, allowAbstract) {
+    var path = String(value || "").trim();
+    if (!path) {
+      return;
+    }
+    if (allowAbstract && path.indexOf("abstract:") === 0) {
+      return;
+    }
+    if (isAssetReference(path) || isMockReference(path)) {
+      issues.push(label + " 使用了本机临时资源：" + path);
+      return;
+    }
+    if (/^[A-Za-z]:\\|^file:\/\//.test(path)) {
+      issues.push(label + " 使用了本机绝对路径：" + path);
+      return;
+    }
+    if (/^(https?:)?\/\//i.test(path) || path.charAt(0) === "/") {
+      issues.push(label + " 不是项目内相对路径：" + path);
+      return;
+    }
+    if (path.indexOf("assets/") !== 0 && path.indexOf("./assets/") !== 0) {
+      issues.push(label + " 建议改为 assets/... 路径：" + path);
+    }
   }
 
   function readJSONFile(file) {
@@ -1192,6 +2228,103 @@
       pdfLink.href = settings.portfolioPdf || "#";
     }
     document.documentElement.style.setProperty("--cangqing", settings.accentColor || "#536A63");
+    renderHeroContent(settings.hero);
+    renderSectionContent(settings.sections, settings.philosophy);
+    renderContactContent(settings.contact);
+    applyVisualAssets(settings.visualAssets);
+  }
+
+  function renderHeroContent(hero) {
+    var content = normalizeHeroContent(hero);
+    var sealSuffix = qs("#home .seal-line span:last-child");
+    if (sealSuffix) {
+      sealSuffix.textContent = content.sealSuffix;
+    }
+    renderHeroAction("#home .hero-actions .button-primary", content.primaryAction);
+    renderHeroAction("#home .hero-actions .button-ghost", content.secondaryAction);
+    var index = qs("#home .hero-index");
+    if (index) {
+      index.innerHTML = content.indexLinks.map(function (link) {
+        return '<a href="' + escapeHTML(link.href) + '"><span>' + escapeHTML(link.no) + '</span> ' + escapeHTML(link.label) + '</a>';
+      }).join("");
+    }
+    var bottomStrip = qs("#home .hero-bottom-strip");
+    if (bottomStrip) {
+      bottomStrip.innerHTML = content.bottomStrip.map(function (item) {
+        return '<span>' + escapeHTML(item) + '</span>';
+      }).join("");
+    }
+  }
+
+  function renderHeroAction(selector, action) {
+    var link = qs(selector);
+    if (!link || !action) {
+      return;
+    }
+    link.href = action.href || "#";
+    link.innerHTML = '<span>' + escapeHTML(action.labelCN) + '</span><em>' + escapeHTML(action.labelEN) + '</em>';
+  }
+
+  function renderSectionContent(sections, studioFallback) {
+    var content = normalizeSectionContent(sections);
+    Object.keys(content).forEach(function (id) {
+      var section = qs("#" + id);
+      var heading = section ? qs(".section-heading", section) : null;
+      if (!heading) {
+        return;
+      }
+      var copy = content[id];
+      var eyebrow = qs(".eyebrow", heading);
+      var title = qs("h2", heading);
+      var description = qsa("p", heading).find(function (node) {
+        return !node.classList.contains("eyebrow");
+      });
+      if (eyebrow && copy.eyebrow) {
+        eyebrow.textContent = copy.eyebrow;
+      }
+      if (title && copy.title) {
+        title.textContent = copy.title;
+      }
+      if (description) {
+        description.textContent = copy.description || (id === "studio" ? studioFallback || "" : description.textContent);
+      }
+    });
+  }
+
+  function renderContactContent(contact) {
+    var content = normalizeContactContent(contact);
+    var emailLabel = qs("#emailLink span");
+    var pdfLabel = qs("#pdfLink span");
+    var pdfCaption = qs("#pdfLink em");
+    var socialLinks = qs("#contact .social-links");
+    if (emailLabel) {
+      emailLabel.textContent = content.emailLabel;
+    }
+    if (pdfLabel) {
+      pdfLabel.textContent = content.portfolioLabel;
+    }
+    if (pdfCaption) {
+      pdfCaption.textContent = content.portfolioCaption;
+    }
+    if (socialLinks) {
+      socialLinks.innerHTML = content.socialLinks.map(function (link) {
+        return '<a href="' + escapeHTML(link.href) + '" aria-label="' + escapeHTML(link.label) + '">' + escapeHTML(link.text) + '</a>';
+      }).join("");
+    }
+  }
+
+  function applyVisualAssets(visualAssets) {
+    var assets = normalizeVisualAssets(visualAssets);
+    var root = document.documentElement;
+    if (assets.heroDepth.mountain) {
+      root.style.setProperty("--hero-mountain-image", cssUrl(assets.heroDepth.mountain));
+    }
+    if (assets.heroDepth.windowFrame) {
+      root.style.setProperty("--hero-window-image", cssUrl(assets.heroDepth.windowFrame));
+    }
+    if (assets.heroDepth.lady) {
+      root.style.setProperty("--hero-lady-image", cssUrl(assets.heroDepth.lady));
+    }
   }
 
   function renderDataSourceStatus() {
@@ -1200,7 +2333,7 @@
     var useOfficialButton = qs("#useOfficialDataButton");
     var useLocalDraftButton = qs("#useLocalDraftButton");
     if (status) {
-      var label = state.dataSource === "local" ? "当前：本机草稿预览" : "当前：线上正式数据";
+      var label = state.dataSource === "local" ? "当前：本机草稿预览" : state.dataSource === "fallback" ? "当前：内置 fallback 数据" : "当前：线上正式数据";
       if (state.hasLocalDraft && state.dataSource !== "local") {
         label += " / 检测到本机草稿";
       }
@@ -3418,8 +4551,9 @@
       return;
     }
 
-    var watangWebpUrl = new URL("assets/images/watang.webp", window.location.href).href;
-    var watangPngUrl = new URL("assets/watang/watang.png", window.location.href).href;
+    var visualAssets = normalizeVisualAssets(state.settings && state.settings.visualAssets);
+    var watangWebpUrl = new URL(visualAssets.watang.webp || "assets/images/watang.webp", window.location.href).href;
+    var watangPngUrl = new URL(visualAssets.watang.pngFallback || "assets/watang/watang.png", window.location.href).href;
     var image = new Image();
     image.onload = function () {
       document.documentElement.style.setProperty("--watang-image", 'url("' + image.src + '")');
