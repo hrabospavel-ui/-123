@@ -1088,6 +1088,7 @@
     bindGlobalEvents();
     initWatangCursor();
     initHeroCanvas();
+    initHeroDepthStage();
     initEmberCanvas();
     initSectionObserver();
   }
@@ -1153,35 +1154,61 @@
       }
       ensureSectionBackgroundLayers(section);
       var config = backgrounds[sectionInfo.id] || defaultSectionBackground(sectionInfo.id);
-      var hasImage = Boolean(config.image);
-      var bgUrl = resolveAssetURL(config.image) || config.image;
-      section.classList.toggle("has-section-bg-upload", hasImage);
-      section.style.setProperty("--section-upload-bg-image", hasImage && bgUrl ? cssUrl(bgUrl) : "none");
-      section.style.setProperty("--section-upload-bg-opacity", hasImage ? String(config.imageOpacity) : "0");
-      section.style.setProperty("--section-upload-bg-position", config.position || "center");
-      section.style.setProperty("--section-upload-bg-blend-mode", config.blendMode || "screen");
-      section.style.setProperty("--section-design-bg-opacity", hasImage ? String(config.designOpacity) : "1");
+      applySectionBackgroundConfig(section, config);
     });
   }
 
+  function applySectionBackgroundConfig(section, config) {
+    if (!section) {
+      return;
+    }
+    ensureSectionBackgroundLayers(section);
+    var current = config || defaultSectionBackground(section.id || "home");
+    var hasImage = Boolean(current.image);
+    var bgUrl = resolveAssetURL(current.image) || current.image;
+    section.classList.toggle("has-section-bg-upload", hasImage);
+    section.style.setProperty("--section-upload-bg-image", hasImage && bgUrl ? cssUrl(bgUrl) : "none");
+    section.style.setProperty("--section-upload-bg-opacity", hasImage ? String(current.imageOpacity) : "0");
+    section.style.setProperty("--section-upload-bg-position", current.position || "center");
+    section.style.setProperty("--section-upload-bg-blend-mode", current.blendMode || "screen");
+    section.style.setProperty("--section-design-bg-opacity", hasImage ? String(current.designOpacity) : "1");
+  }
+
   function ensureSectionBackgroundLayers(section) {
-    if (!qs(".section-bg-upload", section)) {
-      var uploadLayer = document.createElement("div");
+    var uploadLayer = qs(".section-bg-upload", section);
+    var designLayer = qs(".section-bg-design", section);
+    if (!uploadLayer) {
+      uploadLayer = document.createElement("div");
       uploadLayer.className = "section-bg-upload";
       uploadLayer.setAttribute("aria-hidden", "true");
       section.insertBefore(uploadLayer, section.firstChild);
     }
-    if (!qs(".section-bg-design", section)) {
-      var designLayer = document.createElement("div");
+    if (!designLayer) {
+      designLayer = document.createElement("div");
       designLayer.className = "section-bg-design";
       designLayer.setAttribute("aria-hidden", "true");
-      var upload = qs(".section-bg-upload", section);
-      section.insertBefore(designLayer, upload ? upload.nextSibling : section.firstChild);
+    }
+    if (uploadLayer.parentNode !== section) {
+      section.insertBefore(uploadLayer, section.firstChild);
+    }
+    if (designLayer.parentNode !== section) {
+      section.insertBefore(designLayer, uploadLayer.nextSibling);
+    } else if (designLayer.previousSibling !== uploadLayer) {
+      section.insertBefore(designLayer, uploadLayer.nextSibling);
     }
   }
 
   function cssUrl(value) {
-    return 'url("' + String(value || "").replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/[\n\r]/g, "") + '")';
+    var raw = String(value || "").trim();
+    var resolved = raw;
+    if (raw && !/^(?:[a-z][a-z0-9+.-]*:|\/)/i.test(raw)) {
+      try {
+        resolved = new URL(raw, window.location.href).href;
+      } catch (error) {
+        resolved = raw;
+      }
+    }
+    return 'url("' + resolved.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/[\n\r]/g, "") + '")';
   }
 
   function isAssetReference(value) {
@@ -2120,6 +2147,7 @@
     var targetSelect = qs("#sectionBgTarget");
     var saveButton = qs("#saveSectionBgButton");
     var previewButton = qs("#previewSectionBgButton");
+    var forceButton = qs("#forceShowSectionBgButton");
     var uploadButton = qs("#uploadSectionBgButton");
     var clearButton = qs("#clearSectionBgButton");
     var resetButton = qs("#resetSectionBgButton");
@@ -2150,6 +2178,10 @@
 
     if (previewButton) {
       previewButton.addEventListener("click", previewSectionBackgroundFromForm);
+    }
+
+    if (forceButton) {
+      forceButton.addEventListener("click", forceShowCurrentSectionBackground);
     }
 
     if (uploadButton) {
@@ -2242,6 +2274,7 @@
 
   async function saveSectionBackgroundFromForm() {
     var sectionId = state.activeSectionBgId || "home";
+    qsa(".debug-bg-visible").forEach(function (section) { section.classList.remove("debug-bg-visible"); });
     var backgrounds = normalizeSectionBackgrounds(state.settings.sectionBackgrounds);
     backgrounds[sectionId] = sectionBgFromForm(sectionId);
     await updateSiteSettings({ sectionBackgrounds: backgrounds });
@@ -2254,8 +2287,58 @@
   function previewSectionBackgroundFromForm() {
     var sectionId = state.activeSectionBgId || "home";
     var config = sectionBgFromForm(sectionId);
+    var section = qs("#" + sectionId);
+    if (section) {
+      section.classList.remove("debug-bg-visible");
+      applySectionBackgroundConfig(section, config);
+    }
     renderSectionBgPreview(config);
     showAdminStamp("背景预览已更新");
+  }
+
+  function forceShowCurrentSectionBackground() {
+    var sectionId = state.activeSectionBgId || "home";
+    var imageOpacity = qs("#sectionBgImageOpacity");
+    var designOpacity = qs("#sectionBgDesignOpacity");
+    var blendSelect = qs("#sectionBgBlendMode");
+    if (imageOpacity) {
+      imageOpacity.value = "1";
+    }
+    if (designOpacity) {
+      designOpacity.value = "0";
+    }
+    if (blendSelect) {
+      blendSelect.value = "normal";
+    }
+    updateSectionBgRangeLabels();
+    var section = qs("#" + sectionId);
+    var config = sectionBgFromForm(sectionId);
+    if (section) {
+      applySectionBackgroundConfig(section, config);
+      section.classList.toggle("debug-bg-visible", sectionId === "home");
+    }
+    renderSectionBgPreview(config);
+    if (sectionId === "home") {
+      logHomeBackgroundDebug();
+    }
+    showAdminStamp("已强制显示背景");
+  }
+
+  function logHomeBackgroundDebug() {
+    var home = document.getElementById("home");
+    var uploadLayer = document.querySelector("#home .section-bg-upload");
+    var uploadStyles = uploadLayer ? getComputedStyle(uploadLayer) : null;
+    console.log({
+      uploadLayer: uploadLayer,
+      backgroundImage: uploadStyles ? uploadStyles.backgroundImage : "",
+      uploadOpacity: uploadStyles ? uploadStyles.opacity : "",
+      uploadZIndex: uploadStyles ? uploadStyles.zIndex : "",
+      homeVars: home ? {
+        image: home.style.getPropertyValue("--section-upload-bg-image"),
+        opacity: home.style.getPropertyValue("--section-upload-bg-opacity"),
+        blend: home.style.getPropertyValue("--section-upload-bg-blend-mode")
+      } : {}
+    });
   }
 
   async function uploadSectionBackgroundFromForm() {
@@ -2287,6 +2370,7 @@
 
   async function clearCurrentSectionBackground() {
     var sectionId = state.activeSectionBgId || "home";
+    qsa(".debug-bg-visible").forEach(function (section) { section.classList.remove("debug-bg-visible"); });
     var backgrounds = normalizeSectionBackgrounds(state.settings.sectionBackgrounds);
     backgrounds[sectionId] = defaultSectionBackground(sectionId);
     await updateSiteSettings({ sectionBackgrounds: backgrounds });
@@ -2297,6 +2381,7 @@
   }
 
   async function resetAllSectionBackgrounds() {
+    qsa(".debug-bg-visible").forEach(function (section) { section.classList.remove("debug-bg-visible"); });
     await updateSiteSettings({ sectionBackgrounds: createDefaultSectionBackgrounds() });
     await refreshData();
     applySectionBackgrounds();
@@ -3381,6 +3466,148 @@
     });
     resize();
     requestAnimationFrame(draw);
+  }
+
+  function initHeroDepthStage() {
+    var hero = qs("#home.hero");
+    var stage = hero ? qs(".hero-depth-stage", hero) : null;
+    var pointerQuery = window.matchMedia ? window.matchMedia("(hover: hover) and (pointer: fine)") : { matches: false };
+    if (!hero || !stage) {
+      return;
+    }
+
+    var reduceMotion = reduceMotionQuery.matches;
+    var allowMotion = pointerQuery.matches && !reduceMotion;
+    var rect = null;
+    var rectDirty = true;
+    var isVisible = true;
+    var raf = 0;
+    var target = { x: 0, y: 0, lightX: 50, lightY: 50, strength: 0.68 };
+    var current = { x: 0, y: 0, lightX: 50, lightY: 50, strength: allowMotion ? 0.68 : 0.42 };
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function markRectDirty() {
+      rectDirty = true;
+    }
+
+    function updateRect() {
+      rect = hero.getBoundingClientRect();
+      rectDirty = false;
+    }
+
+    function applyVars() {
+      hero.style.setProperty("--hero-x", current.x.toFixed(4));
+      hero.style.setProperty("--hero-y", current.y.toFixed(4));
+      hero.style.setProperty("--light-x", current.lightX.toFixed(2) + "%");
+      hero.style.setProperty("--light-y", current.lightY.toFixed(2) + "%");
+      hero.style.setProperty("--tilt-x", (-current.y).toFixed(4));
+      hero.style.setProperty("--tilt-y", current.x.toFixed(4));
+      hero.style.setProperty("--light-strength", current.strength.toFixed(4));
+    }
+
+    function setTargetCenter(strength) {
+      target.x = 0;
+      target.y = 0;
+      target.lightX = 50;
+      target.lightY = 50;
+      target.strength = strength;
+    }
+
+    function needsFrame() {
+      return Math.abs(target.x - current.x) > 0.001 ||
+        Math.abs(target.y - current.y) > 0.001 ||
+        Math.abs(target.lightX - current.lightX) > 0.04 ||
+        Math.abs(target.lightY - current.lightY) > 0.04 ||
+        Math.abs(target.strength - current.strength) > 0.002;
+    }
+
+    function renderFrame() {
+      raf = 0;
+      if (!allowMotion || !isVisible) {
+        return;
+      }
+
+      current.x += (target.x - current.x) * 0.09;
+      current.y += (target.y - current.y) * 0.09;
+      current.lightX += (target.lightX - current.lightX) * 0.12;
+      current.lightY += (target.lightY - current.lightY) * 0.12;
+      current.strength += (target.strength - current.strength) * 0.08;
+      applyVars();
+
+      if (needsFrame()) {
+        raf = requestAnimationFrame(renderFrame);
+      }
+    }
+
+    function requestRender() {
+      if (!allowMotion || !isVisible || raf) {
+        return;
+      }
+      raf = requestAnimationFrame(renderFrame);
+    }
+
+    function handlePointerMove(event) {
+      if (!allowMotion || (event.pointerType && event.pointerType !== "mouse")) {
+        return;
+      }
+      if (rectDirty || !rect) {
+        updateRect();
+      }
+      if (!rect.width || !rect.height) {
+        return;
+      }
+
+      var localX = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+      var localY = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+      target.x = (localX - 0.5) * 2;
+      target.y = (localY - 0.5) * 2;
+      target.lightX = clamp(localX * 100, 8, 92);
+      target.lightY = clamp(localY * 100, 10, 90);
+      target.strength = 1;
+      requestRender();
+    }
+
+    if (!allowMotion) {
+      applyVars();
+      return;
+    }
+
+    hero.addEventListener("pointerenter", function () {
+      markRectDirty();
+    }, { passive: true });
+    hero.addEventListener("pointermove", handlePointerMove, { passive: true });
+    hero.addEventListener("pointerleave", function () {
+      setTargetCenter(0.68);
+      requestRender();
+    }, { passive: true });
+
+    window.addEventListener("resize", markRectDirty, { passive: true });
+    window.addEventListener("scroll", markRectDirty, { passive: true });
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        var entry = entries[0];
+        isVisible = Boolean(entry && entry.isIntersecting && entry.intersectionRatio > 0.04);
+        if (isVisible) {
+          markRectDirty();
+          requestRender();
+        } else {
+          setTargetCenter(0.42);
+          current.x = target.x;
+          current.y = target.y;
+          current.lightX = target.lightX;
+          current.lightY = target.lightY;
+          current.strength = target.strength;
+          applyVars();
+        }
+      }, { threshold: [0, 0.04, 0.2] });
+      observer.observe(hero);
+    }
+
+    applyVars();
   }
 
   function initHeroCanvas() {
