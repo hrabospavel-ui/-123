@@ -1,0 +1,290 @@
+[
+  {
+    "id": "p001",
+    "titleCN": "北台风庭123",
+    "titleEN": "Northern Wind Court",
+    "category": "Architecture",
+    "year": "2026",
+    "location": "Hohhot",
+    "status": "Published",
+    "material": "brick, dark timber, glass, wind channel",
+    "scale": "1,850 sqm",
+    "role": "concept, spatial design, exhibition route",
+    "concept": "把台基、风廊和中轴线压缩成一座可行走的数字高台。",
+    "description": "项目从北方高台建筑的体量感出发，用暗色砖石、冷青光线和折线屋脊组织展陈路径，让空间像从黑色地平线中升起。",
+    "coverImage": "abstract:ridge",
+    "gallery": [
+      "assets/projects/p001-northern-wind-court/article-01.png"
+    ],
+    "drawings": [
+      "assets/projects/p001-northern-wind-court/drawings.pdf"
+    ],
+    "model3d": "assets/projects/p001-northern-wind-court/model.glb",
+    "panorama": "assets/projects/p001-northern-wind-court/panorama.png",
+    "video": "",
+    "pdf": "assets/projects/p001-northern-wind-court/case.pdf",
+    "tags": [
+      "中轴线",
+      "台基",
+      "展陈",
+      "冷青光",
+      "123"
+    ],
+    "articleBlocks": [],
+    "featured": true,
+    "published": true
+  },
+  {
+    "id": "p002",
+    "titleCN": "器物之山",
+    "titleEN": "Vessel Mountain Index",
+    "category": "Objects",
+    "year": "2026",
+    "location": "Beijing",
+    "status": "Prototype",
+    "material": "aluminum, ash wood, cyan glaze",
+    "scale": "object series",
+    "role": "product design, prototype direction",
+    "concept": "把山墙与瓦当转译成可握持、可陈列的器物比例。",
+    "description": "一组从山墙折线、瓦灰与青釉中生成的桌面器物，不追求仿古，而用当代加工方式保留北方器物的稳定和锋利。",
+    "coverImage": "abstract:vessel",
+    "gallery": [
+      "assets/projects/p002-vessel-mountain-index/article-01.png"
+    ],
+    "drawings": [],
+    "model3d": "assets/projects/p002-vessel-mountain-index/model.glb",
+    "panorama": "",
+    "video": "",
+    "pdf": "assets/projects/p002-vessel-mountain-index/case.pdf",
+    "tags": [
+      "器物",
+      "青釉",
+      "瓦当",
+      "产品"
+    ],
+    "articleBlocks": [],
+    "featured": true,
+    "published": true
+  },
+  {
+    "id": "p003",
+    "titleCN": "黑穹模型台",
+    "titleEN": "Obsidian Model Platform",
+    "category": "Research",
+    "year": "2025",
+    "location": "Online Lab",
+    "status": "Published",
+    "material": "web canvas, GLB, point light",
+    "scale": "digital prototype",
+    "role": "interaction research, viewer prototype",
+    "concept": "让模型在加载前保持沉默，只在需要时展开。",
+    "description": "面向未来项目库的 3D 展示模块研究，默认不加载大型模型，点击后再进入模型台，以保证作品集首屏和列表体验轻盈。",
+    "coverImage": "abstract:grid",
+    "gallery": [],
+    "drawings": [],
+    "model3d": "assets/projects/p003-obsidian-model-platform/model.glb",
+    "panorama": "",
+    "video": "",
+    "pdf": "",
+    "tags": [
+      "3D",
+      "GLB",
+      "交互",
+      "模型台"
+    ],
+    "articleBlocks": [],
+    "featured": true,
+    "published": true
+  },
+  {
+    "id": "p004",
+    "titleCN": "塞上院落更新",
+    "titleEN": "Frontier Courtyard Renewal",
+    "category": "Architecture",
+    "year": "2025",
+    "location": "Datong",
+    "status": "Design Development",
+    "material": "gray brick, rammed earth, recycled wood",
+    "scale": "620 sqm",
+    "role": "renovation strategy, facade, interior",
+    "concept": "旧院落保留风口和阴影，新界面只做必要介入。",
+    "description": "以灰砖、夯土和木构为材料基础，保留院落的风道和尺度，通过现代平面和模块化构造减少历史符号堆叠。",
+    "coverImage": "abstract:plinth",
+    "gallery": [
+      "assets/projects/p004-frontier-courtyard-renewal/article-01.png"
+    ],
+    "drawings": [
+      "assets/projects/p004-frontier-courtyard-renewal/drawings.pdf"
+    ],
+    "model3d": "",
+    "panorama": "assets/projects/p004-frontier-courtyard-renewal/panorama.png",
+    "video": "",
+    "pdf": "assets/projects/p004-frontier-courtyard-renewal/case.pdf",
+    "tags": [
+      "更新",
+      "灰砖",
+      "院落",
+      "360"
+    ],
+    "articleBlocks": [],
+    "featured": false,
+    "published": true
+  },
+  {
+    "id": "p005",
+    "titleCN": "冷青扶手系统",
+    "titleEN": "Cangqing Rail System",
+    "category": "Objects",
+    "year": "2025",
+    "location": "Shanghai",
+    "status": "Prototype",
+    "material": "anodized aluminum, ash wood, leather",
+    "scale": "modular system",
+    "role": "industrial design, detail design",
+    "concept": "从斗拱的支撑逻辑抽出模块嵌套关系。",
+    "description": "一套面向展厅和住宅的扶手与展架系统，结构关系来自传统支撑系统，但外观保持低调、锋利和可量产。",
+    "coverImage": "",
+    "gallery": [],
+    "drawings": [
+      "assets/projects/p005-cangqing-rail-system/drawings.pdf"
+    ],
+    "model3d": "assets/projects/p005-cangqing-rail-system/model.glb",
+    "panorama": "",
+    "video": "",
+    "pdf": "assets/projects/p005-cangqing-rail-system/case.pdf",
+    "tags": [
+      "产品",
+      "模块",
+      "支撑",
+      "金属"
+    ],
+    "articleBlocks": [],
+    "featured": false,
+    "published": true
+  },
+  {
+    "id": "p006",
+    "titleCN": "入此空间：北境展厅",
+    "titleEN": "Enter Scene: Northern Gallery",
+    "category": "Space",
+    "year": "2024",
+    "location": "Beijing",
+    "status": "Published",
+    "material": "panorama, light scan, dark stone",
+    "scale": "immersive route",
+    "role": "spatial narrative, panorama prototype",
+    "concept": "把展厅入口变成一条从暗场进入光幕的路径。",
+    "description": "以 360 全景为核心的空间展示原型，用户先在暗场看到轴线和光幕，再进入可滑动的全景场景。",
+    "coverImage": "abstract:ridge",
+    "gallery": [
+      "assets/projects/p006-northern-gallery/article-01.png"
+    ],
+    "drawings": [],
+    "model3d": "",
+    "panorama": "assets/projects/p006-northern-gallery/panorama.png",
+    "video": "",
+    "pdf": "",
+    "tags": [
+      "360",
+      "展厅",
+      "光幕",
+      "叙事"
+    ],
+    "articleBlocks": [],
+    "featured": false,
+    "published": true
+  },
+  {
+    "id": "p007",
+    "titleCN": "瓦灰材料谱系",
+    "titleEN": "Tile Gray Material Atlas",
+    "category": "Research",
+    "year": "2024",
+    "location": "Material Lab",
+    "status": "Archive",
+    "material": "tile powder, mineral pigment, paper sample",
+    "scale": "material atlas",
+    "role": "material research, visual system",
+    "concept": "把瓦灰从历史材料转成现代设计色谱。",
+    "description": "研究瓦灰、木褐、冷青与朱砂在不同材质上的显色关系，输出适用于建筑界面、产品外壳和图册系统的材料索引。",
+    "coverImage": "abstract:paper",
+    "gallery": [],
+    "drawings": [
+      "assets/projects/p007-tile-gray-material-atlas/drawings.pdf"
+    ],
+    "model3d": "",
+    "panorama": "",
+    "video": "",
+    "pdf": "assets/projects/p007-tile-gray-material-atlas/case.pdf",
+    "tags": [
+      "材料",
+      "色谱",
+      "图册",
+      "瓦灰"
+    ],
+    "articleBlocks": [],
+    "featured": false,
+    "published": true
+  },
+  {
+    "id": "p008",
+    "titleCN": "轴线生成研究",
+    "titleEN": "Axis Generation Study",
+    "category": "Research",
+    "year": "2023",
+    "location": "Computational Studio",
+    "status": "Published",
+    "material": "parametric drawing, SVG, canvas",
+    "scale": "research notes",
+    "role": "geometry research, drawing system",
+    "concept": "不复刻总平面，而提取秩序、方向和节奏。",
+    "description": "项目以传统建筑中轴线为出发点，生成一套可用于页面布局、展陈路线和项目编号的几何系统。",
+    "coverImage": "",
+    "gallery": [],
+    "drawings": [
+      "assets/projects/p008-axis-generation-study/drawings.pdf"
+    ],
+    "model3d": "",
+    "panorama": "",
+    "video": "",
+    "pdf": "assets/projects/p008-axis-generation-study/case.pdf",
+    "tags": [
+      "参数化",
+      "中轴线",
+      "图纸",
+      "系统"
+    ],
+    "articleBlocks": [],
+    "featured": false,
+    "published": true
+  },
+  {
+    "id": "p009",
+    "titleCN": "木构灯具一号",
+    "titleEN": "Timber Lamp 01",
+    "category": "Objects",
+    "year": "2023",
+    "location": "Hangzhou",
+    "status": "Private Draft",
+    "material": "dark timber, linen, brass line",
+    "scale": "lighting prototype",
+    "role": "object design",
+    "concept": "用极少木构线条支撑一层柔光。",
+    "description": "未发布草稿项目，用于展示维护端的发布状态切换和前台过滤逻辑。",
+    "coverImage": "abstract:plinth",
+    "gallery": [],
+    "drawings": [],
+    "model3d": "",
+    "panorama": "",
+    "video": "",
+    "pdf": "",
+    "tags": [
+      "草稿",
+      "木构",
+      "灯具"
+    ],
+    "articleBlocks": [],
+    "featured": false,
+    "published": false
+  }
+]
