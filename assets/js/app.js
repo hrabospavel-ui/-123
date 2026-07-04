@@ -926,7 +926,7 @@
   };
   var defaultSiteSettings = clone(siteSettings);
   var defaultProjects = clone(projects);
-  var reduceMotionQuery = { matches: false };
+  var reduceMotionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
 
   function qs(selector, root) {
     return (root || document).querySelector(selector);
@@ -4987,13 +4987,13 @@
       document.documentElement.classList.add("watang-image-ready");
     };
     image.onerror = function () {
-      if (image.src !== watangPngUrl) {
-        image.src = watangPngUrl;
+      if (image.src !== watangWebpUrl) {
+        image.src = watangWebpUrl;
         return;
       }
       document.documentElement.classList.add("watang-image-fallback");
     };
-    image.src = watangWebpUrl;
+    image.src = watangPngUrl;
 
     if (!pointerQuery.matches || reduceMotionQuery.matches) {
       document.documentElement.classList.add("watang-cursor-static");
@@ -5006,6 +5006,8 @@
     var raf = 0;
     var lastX = pointer.x;
     var rotation = 0;
+    var cursorVisible = false;
+    var cursorTyping = false;
 
     function isFormTarget(target) {
       return Boolean(target && target.closest("input, textarea, select, option, label, .admin-form, .asset-uploader"));
@@ -5042,17 +5044,24 @@
       }
       pointer.x = event.clientX;
       pointer.y = event.clientY;
-      document.body.classList.add("watang-cursor-visible");
-      document.body.classList.toggle("watang-cursor-typing", isFormTarget(event.target));
-      state.cursorHover = isInteractiveTarget(event.target) && !isFormTarget(event.target);
-      document.body.classList.toggle("watang-cursor-hover", state.cursorHover);
+      if (!cursorVisible) {
+        cursorVisible = true;
+        document.body.classList.add("watang-cursor-visible");
+      }
       requestRender();
     }, { passive: true });
 
     document.addEventListener("pointerover", function (event) {
-      state.cursorHover = isInteractiveTarget(event.target) && !isFormTarget(event.target);
-      document.body.classList.toggle("watang-cursor-hover", state.cursorHover);
-      document.body.classList.toggle("watang-cursor-typing", isFormTarget(event.target));
+      var nextTyping = isFormTarget(event.target);
+      var nextHover = isInteractiveTarget(event.target) && !nextTyping;
+      if (nextHover !== state.cursorHover) {
+        state.cursorHover = nextHover;
+        document.body.classList.toggle("watang-cursor-hover", state.cursorHover);
+      }
+      if (nextTyping !== cursorTyping) {
+        cursorTyping = nextTyping;
+        document.body.classList.toggle("watang-cursor-typing", cursorTyping);
+      }
       requestRender();
     }, { passive: true });
 
@@ -5072,6 +5081,7 @@
     }, { passive: true });
 
     document.addEventListener("mouseleave", function () {
+      cursorVisible = false;
       document.body.classList.remove("watang-cursor-visible");
     });
   }
@@ -5237,23 +5247,29 @@
         return;
       }
 
-      current.x += (target.x - current.x) * 0.09;
-      current.y += (target.y - current.y) * 0.09;
-      current.lightX += (target.lightX - current.lightX) * 0.12;
-      current.lightY += (target.lightY - current.lightY) * 0.12;
-      current.strength += (target.strength - current.strength) * 0.08;
-      applyVars();
-
       if (needsFrame()) {
-        raf = requestAnimationFrame(renderFrame);
+        current.x += (target.x - current.x) * 0.09;
+        current.y += (target.y - current.y) * 0.09;
+        current.lightX += (target.lightX - current.lightX) * 0.12;
+        current.lightY += (target.lightY - current.lightY) * 0.12;
+        current.strength += (target.strength - current.strength) * 0.08;
+        applyVars();
       }
+      raf = requestAnimationFrame(renderFrame);
     }
 
-    function requestRender() {
+    function startLoop() {
       if (!allowMotion || !isVisible || raf) {
         return;
       }
       raf = requestAnimationFrame(renderFrame);
+    }
+
+    function stopLoop() {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
     }
 
     function handlePointerMove(event) {
@@ -5274,7 +5290,6 @@
       target.lightX = clamp(localX * 100, 8, 92);
       target.lightY = clamp(localY * 100, 10, 90);
       target.strength = 1;
-      requestRender();
     }
 
     if (!allowMotion) {
@@ -5284,11 +5299,11 @@
 
     hero.addEventListener("pointerenter", function () {
       markRectDirty();
+      startLoop();
     }, { passive: true });
     hero.addEventListener("pointermove", handlePointerMove, { passive: true });
     hero.addEventListener("pointerleave", function () {
       setTargetCenter(0.68);
-      requestRender();
     }, { passive: true });
 
     window.addEventListener("resize", markRectDirty, { passive: true });
@@ -5300,7 +5315,7 @@
         isVisible = Boolean(entry && entry.isIntersecting && entry.intersectionRatio > 0.04);
         if (isVisible) {
           markRectDirty();
-          requestRender();
+          startLoop();
         } else {
           setTargetCenter(0.42);
           current.x = target.x;
@@ -5308,6 +5323,7 @@
           current.lightX = target.lightX;
           current.lightY = target.lightY;
           current.strength = target.strength;
+          stopLoop();
           applyVars();
         }
       }, { threshold: [0, 0.04, 0.2] });
@@ -5315,6 +5331,7 @@
     }
 
     applyVars();
+    startLoop();
   }
 
   function initHeroCanvas() {
@@ -5328,6 +5345,8 @@
     var size = { width: 0, height: 0, dpr: 1 };
     var stars = [];
     var mouse = { x: 0, y: 0 };
+    var heroRect = null;
+    var heroRectDirty = true;
     var resizeTimer = 0;
     var canvasRaf = 0;
     var isVisible = true;
@@ -5341,6 +5360,7 @@
         canvas.width = Math.floor(size.width * size.dpr);
         canvas.height = Math.floor(size.height * size.dpr);
         ctx.setTransform(size.dpr, 0, 0, size.dpr, 0, 0);
+        heroRectDirty = true;
         createStars();
         if (reduceMotion) {
           draw(performance.now());
@@ -5526,15 +5546,32 @@
 
     window.addEventListener("resize", resize);
     if (hero) {
+      function markHeroRectDirty() {
+        heroRectDirty = true;
+      }
+
+      function getHeroRect() {
+        if (heroRectDirty || !heroRect) {
+          heroRect = hero.getBoundingClientRect();
+          heroRectDirty = false;
+        }
+        return heroRect;
+      }
+
       hero.addEventListener("mousemove", function (event) {
-        var rect = hero.getBoundingClientRect();
+        var rect = getHeroRect();
+        if (!rect.width || !rect.height) {
+          return;
+        }
         mouse.x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
         mouse.y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-      });
+      }, { passive: true });
       hero.addEventListener("mouseleave", function () {
         mouse.x = 0;
         mouse.y = 0;
       });
+      window.addEventListener("scroll", markHeroRectDirty, { passive: true });
+      window.addEventListener("resize", markHeroRectDirty, { passive: true });
       if ("IntersectionObserver" in window && !reduceMotion) {
         var observer = new IntersectionObserver(function (entries) {
           var entry = entries[0];
