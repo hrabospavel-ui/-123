@@ -5191,41 +5191,18 @@
   function initHeroStageStable() {
     var hero = qs("#home.hero");
     var stage = hero ? qs(".hero-depth-stage", hero) : null;
-    var mountain = hero ? qs(".hero-layer-mountain", hero) : null;
-    var windowLayer = hero ? qs(".hero-layer-window", hero) : null;
-    var lady = hero ? qs(".hero-layer-lady", hero) : null;
-    var spotlight = hero ? qs(".hero-spotlight", hero) : null;
-    var vignette = hero ? qs(".hero-depth-vignette", hero) : null;
-
+    var pointerQuery = window.matchMedia ? window.matchMedia("(hover: hover) and (pointer: fine)") : { matches: false };
     if (!hero || !stage) {
       return;
     }
 
-    if (hero.dataset.heroMotionBound === "true") {
-      return;
-    }
-    hero.dataset.heroMotionBound = "true";
-
+    var reduceMotion = reduceMotionQuery.matches;
+    var allowMotion = pointerQuery.matches && !reduceMotion;
     var rect = null;
+    var isVisible = true;
     var raf = 0;
-    var reduceMotion = reduceMotionQuery && reduceMotionQuery.matches;
-    var motionScale = reduceMotion ? 0.62 : 1;
-
-    var target = {
-      x: 0,
-      y: 0,
-      lightX: 50,
-      lightY: 48,
-      strength: 0.62
-    };
-
-    var current = {
-      x: 0,
-      y: 0,
-      lightX: 50,
-      lightY: 48,
-      strength: 0.62
-    };
+    var target = { x: 0, y: 0, lightX: 50, lightY: 50 };
+    var current = { x: 0, y: 0, lightX: 50, lightY: 50 };
 
     function clamp(value, min, max) {
       return Math.max(min, Math.min(max, value));
@@ -5235,178 +5212,107 @@
       rect = hero.getBoundingClientRect();
     }
 
-    function setTransform(el, value) {
-      if (!el) {
-        return;
-      }
-      el.style.setProperty("transform", value, "important");
-    }
-
-    function applyVarsAndTransforms() {
-      var x = current.x;
-      var y = current.y;
-
-      hero.style.setProperty("--hero-x", x.toFixed(4));
-      hero.style.setProperty("--hero-y", y.toFixed(4));
-      hero.style.setProperty("--tilt-x", (-y).toFixed(4));
-      hero.style.setProperty("--tilt-y", x.toFixed(4));
+    function applyVars() {
+      hero.style.setProperty("--hero-x", current.x.toFixed(4));
+      hero.style.setProperty("--hero-y", current.y.toFixed(4));
       hero.style.setProperty("--light-x", current.lightX.toFixed(2) + "%");
       hero.style.setProperty("--light-y", current.lightY.toFixed(2) + "%");
-      hero.style.setProperty("--light-strength", current.strength.toFixed(4));
-
-      setTransform(
-        mountain,
-        "translate3d(" + (-18 * x).toFixed(2) + "px, " + (-10 * y).toFixed(2) + "px, 0) scale(1.14)"
-      );
-
-      setTransform(
-        windowLayer,
-        "translate3d(" + (42 * x).toFixed(2) + "px, " + (22 * y).toFixed(2) + "px, 0) rotateX(" + (-2.2 * y).toFixed(2) + "deg) rotateY(" + (2.8 * x).toFixed(2) + "deg) scale(1.065)"
-      );
-
-      setTransform(
-        lady,
-        "translate3d(" + (72 * x).toFixed(2) + "px, " + (34 * y).toFixed(2) + "px, 0) scale(1.09)"
-      );
-
-      setTransform(
-        spotlight,
-        "translate3d(" + (24 * x).toFixed(2) + "px, " + (14 * y).toFixed(2) + "px, 0) scale(1.02)"
-      );
-
-      setTransform(
-        vignette,
-        "translate3d(" + (-8 * x).toFixed(2) + "px, " + (-4 * y).toFixed(2) + "px, 0) scale(1.01)"
-      );
+      hero.style.setProperty("--tilt-x", (-current.y).toFixed(4));
+      hero.style.setProperty("--tilt-y", current.x.toFixed(4));
     }
 
     function setTargetCenter() {
       target.x = 0;
       target.y = 0;
       target.lightX = 50;
-      target.lightY = 48;
-      target.strength = reduceMotion ? 0.48 : 0.62;
+      target.lightY = 50;
     }
 
     function needsFrame() {
       return Math.abs(target.x - current.x) > 0.001 ||
         Math.abs(target.y - current.y) > 0.001 ||
         Math.abs(target.lightX - current.lightX) > 0.04 ||
-        Math.abs(target.lightY - current.lightY) > 0.04 ||
-        Math.abs(target.strength - current.strength) > 0.002;
+        Math.abs(target.lightY - current.lightY) > 0.04;
     }
 
     function renderFrame() {
       raf = 0;
+      if (!allowMotion) {
+        return;
+      }
 
-      current.x += (target.x - current.x) * 0.16;
-      current.y += (target.y - current.y) * 0.16;
-      current.lightX += (target.lightX - current.lightX) * 0.18;
-      current.lightY += (target.lightY - current.lightY) * 0.18;
-      current.strength += (target.strength - current.strength) * 0.12;
+      if (!isVisible) {
+        setTargetCenter();
+      }
+      current.x += (target.x - current.x) * 0.09;
+      current.y += (target.y - current.y) * 0.09;
+      current.lightX += (target.lightX - current.lightX) * 0.12;
+      current.lightY += (target.lightY - current.lightY) * 0.12;
+      applyVars();
 
-      applyVarsAndTransforms();
-
-      if (needsFrame()) {
-        requestRender();
+      if (isVisible || needsFrame()) {
+        raf = requestAnimationFrame(renderFrame);
       }
     }
 
     function requestRender() {
-      if (raf) {
+      if (!allowMotion || raf) {
         return;
       }
       raf = requestAnimationFrame(renderFrame);
     }
 
-    function updateTargetFromPointer(clientX, clientY) {
-      if (!rect || !rect.width || !rect.height) {
-        updateRect();
-      }
-
-      if (!rect || !rect.width || !rect.height) {
-        return;
-      }
-
-      var localX = clamp((clientX - rect.left) / rect.width, 0, 1);
-      var localY = clamp((clientY - rect.top) / rect.height, 0, 1);
-
-      target.x = (localX - 0.5) * 2 * motionScale;
-      target.y = (localY - 0.5) * 2 * motionScale;
-      target.lightX = clamp(localX * 100, 5, 95);
-      target.lightY = clamp(localY * 100, 7, 92);
-      target.strength = reduceMotion ? 0.54 : 0.72;
-
-      requestRender();
-    }
-
     function handlePointerMove(event) {
-      if (event.pointerType && event.pointerType !== "mouse") {
+      if (!allowMotion || (event.pointerType && event.pointerType !== "mouse")) {
         return;
       }
-      updateTargetFromPointer(event.clientX, event.clientY);
-    }
-
-    function handleWindowPointerMove(event) {
-      if (event.pointerType && event.pointerType !== "mouse") {
-        return;
-      }
-
       if (!rect || !rect.width || !rect.height) {
-        updateRect();
-      }
-
-      if (!rect) {
         return;
       }
 
-      if (
-        event.clientX < rect.left ||
-        event.clientX > rect.right ||
-        event.clientY < rect.top ||
-        event.clientY > rect.bottom
-      ) {
-        return;
-      }
-
-      updateTargetFromPointer(event.clientX, event.clientY);
+      var localX = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+      var localY = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+      target.x = (localX - 0.5) * 2;
+      target.y = (localY - 0.5) * 2;
+      target.lightX = clamp(localX * 100, 8, 92);
+      target.lightY = clamp(localY * 100, 10, 90);
     }
 
-    hero.addEventListener("pointerenter", function (event) {
-      updateRect();
-      if (!event.pointerType || event.pointerType === "mouse") {
-        updateTargetFromPointer(event.clientX, event.clientY);
-      }
-    }, { passive: true });
-
-    hero.addEventListener("pointermove", handlePointerMove, { passive: true });
-    window.addEventListener("pointermove", handleWindowPointerMove, { passive: true });
-
-    hero.addEventListener("pointerleave", function () {
-      setTargetCenter();
-      requestRender();
-    }, { passive: true });
-
-    window.addEventListener("resize", function () {
-      updateRect();
-      requestRender();
-    }, { passive: true });
-
-    window.addEventListener("scroll", function () {
-      updateRect();
-    }, { passive: true });
-
-    if (reduceMotionQuery && typeof reduceMotionQuery.addEventListener === "function") {
-      reduceMotionQuery.addEventListener("change", function () {
-        reduceMotion = reduceMotionQuery.matches;
-        motionScale = reduceMotion ? 0.62 : 1;
-        setTargetCenter();
-        requestRender();
-      });
+    if (!allowMotion) {
+      applyVars();
+      return;
     }
 
     updateRect();
-    applyVarsAndTransforms();
+    hero.addEventListener("pointerenter", function () {
+      updateRect();
+      isVisible = true;
+      requestRender();
+    }, { passive: true });
+    hero.addEventListener("pointermove", handlePointerMove, { passive: true });
+    hero.addEventListener("pointerleave", function () {
+      setTargetCenter();
+    }, { passive: true });
+
+    window.addEventListener("resize", updateRect, { passive: true });
+    window.addEventListener("scroll", updateRect, { passive: true });
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        var entry = entries[0];
+        isVisible = Boolean(entry && entry.isIntersecting && entry.intersectionRatio > 0.04);
+        if (isVisible) {
+          updateRect();
+          requestRender();
+        } else {
+          setTargetCenter();
+        }
+      }, { threshold: [0, 0.04, 0.2] });
+      observer.observe(hero);
+    }
+
+    applyVars();
+    requestRender();
   }
 
   function initHeroDepthStage() {
