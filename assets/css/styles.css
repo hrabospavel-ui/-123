@@ -26,7 +26,7 @@
   --max-width: 1180px;
   --section-pad: clamp(76px, 9vw, 132px);
   --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
-  --watang-image: url("../watang/watang.png");
+  --watang-image: url("../images/watang.webp");
   --hero-mountain-image: url("../hero-depth/hero-mountain.webp");
   --hero-window-image: url("../hero-depth/hero-window-frame.webp");
   --hero-lady-image: url("../hero-depth/hero-lady.webp");
@@ -118,7 +118,7 @@ body.admin-open {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 420;
+  z-index: 9999;
   pointer-events: none;
   opacity: 0;
   will-change: transform, opacity;

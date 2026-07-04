@@ -4973,7 +4973,9 @@
   function initWatangCursor() {
     var cursor = qs("#watangCursor");
     var dot = qs("#watangCursorDot");
-    var pointerQuery = window.matchMedia ? window.matchMedia("(hover: hover) and (pointer: fine)") : { matches: false };
+    var pointerQuery = window.matchMedia ? window.matchMedia("(hover: hover) and (pointer: fine)") : { matches: true };
+    var hoverQuery = window.matchMedia ? window.matchMedia("(hover: hover)") : { matches: true };
+    var coarseQuery = window.matchMedia ? window.matchMedia("(pointer: coarse)") : { matches: false };
     if (!cursor || !dot) {
       return;
     }
@@ -4987,19 +4989,20 @@
       document.documentElement.classList.add("watang-image-ready");
     };
     image.onerror = function () {
-      if (image.src !== watangWebpUrl) {
-        image.src = watangWebpUrl;
+      if (image.src !== watangPngUrl) {
+        image.src = watangPngUrl;
         return;
       }
       document.documentElement.classList.add("watang-image-fallback");
     };
-    image.src = watangPngUrl;
+    image.src = watangWebpUrl;
 
-    if (!pointerQuery.matches || reduceMotionQuery.matches) {
+    if (!pointerQuery.matches && (!hoverQuery.matches || coarseQuery.matches)) {
       document.documentElement.classList.add("watang-cursor-static");
       return;
     }
 
+    document.documentElement.classList.remove("watang-cursor-static");
     document.body.classList.add("watang-cursor-enabled");
     var pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     var follower = { x: pointer.x, y: pointer.y };
