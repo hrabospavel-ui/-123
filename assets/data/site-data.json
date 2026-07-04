@@ -269,11 +269,11 @@
       "role": "Alain Tousignant, Annie Lebel, Marie-Chantal Croft, Jacques Plante",
       "concept": "沿通道斜切，异形玻璃体连通老建筑与新剧场。",
       "description": "Le Diamant 坐落于魁北克市文化区核心地带的德尤维尔广场（Place d'Youville）边缘。该项目将建于 1879 年的前 YMCA 大楼（一座第二帝国风格建筑）改造为一座集戏剧创作与表演于一体的多功能中心。该项目专为 Ex Machina 剧团打造，将历史建筑的保护与一个拥有 625 个座位的多功能剧场、一个创作工作室以及全新公共空间的置入完美结合。",
-      "coverImage": "assets\\projects\\p001-northern-wind-court",
+      "coverImage": "assets/projects/p001-northern-wind-court/Le Diamant fengmiantupian.webp",
       "detailImage": "assets/projects/p001-northern-wind-court/Le Diamant fengmiantupian.webp",
       "articleCoverImage": "assets/projects/p001-northern-wind-court/Le Diamant fengmiantupian.webp",
       "gallery": [
-        "assets/projects/p001-northern-wind-court/article-01.png"
+        "assets/projects/p001-northern-wind-court/Le Diamant fengmiantupian.webp"
       ],
       "drawings": [
         "assets/projects/p001-northern-wind-court/drawings.pdf"
@@ -281,7 +281,7 @@
       "model3d": "assets/projects/p001-northern-wind-court/model.glb",
       "modelThumbnail": "",
       "panorama": "assets/projects/p001-northern-wind-court/panorama.png",
-      "panoramaThumbnail": "",
+      "panoramaThumbnail": "assets/projects/p001-northern-wind-court/Le Diamant fengmiantupian.webp",
       "video": "",
       "videoPoster": "",
       "pdf": "assets/projects/p001-northern-wind-court/case.pdf",
