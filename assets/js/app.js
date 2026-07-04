@@ -926,7 +926,7 @@
   };
   var defaultSiteSettings = clone(siteSettings);
   var defaultProjects = clone(projects);
-  var reduceMotionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
+  var reduceMotionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce) and (hover: none), (prefers-reduced-motion: reduce) and (pointer: coarse)") : { matches: false };
 
   function qs(selector, root) {
     return (root || document).querySelector(selector);
@@ -4973,9 +4973,7 @@
   function initWatangCursor() {
     var cursor = qs("#watangCursor");
     var dot = qs("#watangCursorDot");
-    var pointerQuery = window.matchMedia ? window.matchMedia("(hover: hover) and (pointer: fine)") : { matches: true };
-    var hoverQuery = window.matchMedia ? window.matchMedia("(hover: hover)") : { matches: true };
-    var coarseQuery = window.matchMedia ? window.matchMedia("(pointer: coarse)") : { matches: false };
+    var pointerQuery = window.matchMedia ? window.matchMedia("(hover: hover) and (pointer: fine)") : { matches: false };
     if (!cursor || !dot) {
       return;
     }
@@ -4997,12 +4995,11 @@
     };
     image.src = watangWebpUrl;
 
-    if (!pointerQuery.matches && (!hoverQuery.matches || coarseQuery.matches)) {
+    if (!pointerQuery.matches || reduceMotionQuery.matches) {
       document.documentElement.classList.add("watang-cursor-static");
       return;
     }
 
-    document.documentElement.classList.remove("watang-cursor-static");
     document.body.classList.add("watang-cursor-enabled");
     var pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     var follower = { x: pointer.x, y: pointer.y };
@@ -5050,6 +5047,16 @@
       if (!cursorVisible) {
         cursorVisible = true;
         document.body.classList.add("watang-cursor-visible");
+      }
+      var nextTyping = isFormTarget(event.target);
+      var nextHover = isInteractiveTarget(event.target) && !nextTyping;
+      if (nextTyping !== cursorTyping) {
+        cursorTyping = nextTyping;
+        document.body.classList.toggle("watang-cursor-typing", cursorTyping);
+      }
+      if (nextHover !== state.cursorHover) {
+        state.cursorHover = nextHover;
+        document.body.classList.toggle("watang-cursor-hover", state.cursorHover);
       }
       requestRender();
     }, { passive: true });
@@ -5250,29 +5257,23 @@
         return;
       }
 
+      current.x += (target.x - current.x) * 0.09;
+      current.y += (target.y - current.y) * 0.09;
+      current.lightX += (target.lightX - current.lightX) * 0.12;
+      current.lightY += (target.lightY - current.lightY) * 0.12;
+      current.strength += (target.strength - current.strength) * 0.08;
+      applyVars();
+
       if (needsFrame()) {
-        current.x += (target.x - current.x) * 0.09;
-        current.y += (target.y - current.y) * 0.09;
-        current.lightX += (target.lightX - current.lightX) * 0.12;
-        current.lightY += (target.lightY - current.lightY) * 0.12;
-        current.strength += (target.strength - current.strength) * 0.08;
-        applyVars();
+        raf = requestAnimationFrame(renderFrame);
       }
-      raf = requestAnimationFrame(renderFrame);
     }
 
-    function startLoop() {
+    function requestRender() {
       if (!allowMotion || !isVisible || raf) {
         return;
       }
       raf = requestAnimationFrame(renderFrame);
-    }
-
-    function stopLoop() {
-      if (raf) {
-        cancelAnimationFrame(raf);
-        raf = 0;
-      }
     }
 
     function handlePointerMove(event) {
@@ -5293,6 +5294,7 @@
       target.lightX = clamp(localX * 100, 8, 92);
       target.lightY = clamp(localY * 100, 10, 90);
       target.strength = 1;
+      requestRender();
     }
 
     if (!allowMotion) {
@@ -5302,11 +5304,11 @@
 
     hero.addEventListener("pointerenter", function () {
       markRectDirty();
-      startLoop();
     }, { passive: true });
     hero.addEventListener("pointermove", handlePointerMove, { passive: true });
     hero.addEventListener("pointerleave", function () {
       setTargetCenter(0.68);
+      requestRender();
     }, { passive: true });
 
     window.addEventListener("resize", markRectDirty, { passive: true });
@@ -5318,7 +5320,7 @@
         isVisible = Boolean(entry && entry.isIntersecting && entry.intersectionRatio > 0.04);
         if (isVisible) {
           markRectDirty();
-          startLoop();
+          requestRender();
         } else {
           setTargetCenter(0.42);
           current.x = target.x;
@@ -5326,7 +5328,6 @@
           current.lightX = target.lightX;
           current.lightY = target.lightY;
           current.strength = target.strength;
-          stopLoop();
           applyVars();
         }
       }, { threshold: [0, 0.04, 0.2] });
@@ -5334,7 +5335,6 @@
     }
 
     applyVars();
-    startLoop();
   }
 
   function initHeroCanvas() {

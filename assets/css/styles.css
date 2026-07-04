@@ -26,7 +26,10 @@
   --max-width: 1180px;
   --section-pad: clamp(76px, 9vw, 132px);
   --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
-  --watang-image: url("../images/watang.webp");
+  --watang-image: image-set(
+    url("../images/watang.webp") type("image/webp"),
+    url("../watang/watang.png") type("image/png")
+  );
   --hero-mountain-image: url("../hero-depth/hero-mountain.webp");
   --hero-window-image: url("../hero-depth/hero-window-frame.webp");
   --hero-lady-image: url("../hero-depth/hero-lady.webp");
@@ -118,13 +121,10 @@ body.admin-open {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 9999;
+  z-index: 420;
   pointer-events: none;
   opacity: 0;
   will-change: transform, opacity;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-  contain: layout style paint;
 }
 
 .watang-cursor {
@@ -132,7 +132,8 @@ body.admin-open {
   height: 38px;
   border-radius: 50%;
   transform: translate3d(-100px, -100px, 0);
-  transition: opacity 0.18s ease;
+  filter: drop-shadow(0 0 0 rgba(242, 140, 56, 0));
+  transition: opacity 0.18s ease, filter 0.22s ease;
 }
 
 .watang-cursor span,
@@ -193,11 +194,11 @@ body.watang-cursor-visible .watang-cursor-dot {
 }
 
 body.watang-cursor-hover .watang-cursor {
-  opacity: 0.96;
+  filter: drop-shadow(0 0 14px rgba(242, 140, 56, 0.46)) drop-shadow(0 0 28px rgba(242, 140, 56, 0.18));
 }
 
 body.watang-cursor-down .watang-cursor {
-  opacity: 0.88;
+  filter: drop-shadow(0 0 10px rgba(163, 58, 46, 0.42));
 }
 
 body.watang-cursor-typing .watang-cursor,
@@ -664,7 +665,6 @@ body.is-threshold-jumping .threshold-ember {
   z-index: 2;
   overflow: hidden;
   pointer-events: none;
-  transform: translate3d(0, 0, 0);
   transform-style: preserve-3d;
   backface-visibility: hidden;
   will-change: transform, opacity;
@@ -694,8 +694,6 @@ body.is-threshold-jumping .threshold-ember {
   backface-visibility: hidden;
   transform-style: preserve-3d;
   will-change: transform, opacity;
-  transform-origin: center;
-  contain: paint;
 }
 
 .hero-depth-layer {
@@ -709,8 +707,10 @@ body.is-threshold-jumping .threshold-ember {
   background-image:
     linear-gradient(180deg, rgba(3, 4, 5, 0.46), rgba(3, 4, 5, 0.54)),
     var(--hero-mountain-image);
+  background-blend-mode: multiply, normal;
   opacity: 0.9;
   transform: translate3d(calc(var(--hero-x) * -6px), calc(var(--hero-y) * -4px), -110px) scale(1.13);
+  filter: brightness(0.54) saturate(0.86) contrast(1.06);
 }
 
 .hero-layer-window {
@@ -725,6 +725,7 @@ body.is-threshold-jumping .threshold-ember {
     rotateX(calc(var(--tilt-x) * 0.58deg))
     rotateY(calc(var(--tilt-y) * 0.72deg))
     scale(1.055);
+  filter: brightness(0.9) contrast(1.08);
 }
 
 .hero-layer-lady {
@@ -734,6 +735,7 @@ body.is-threshold-jumping .threshold-ember {
   background-position: left bottom;
   opacity: 0.92;
   transform: translate3d(calc(var(--hero-x) * 15px), calc(var(--hero-y) * 8px), 76px) scale(1.075);
+  filter: brightness(0.76) saturate(0.9) contrast(1.04);
 }
 
 .hero-spotlight {
@@ -776,9 +778,6 @@ body.is-threshold-jumping .threshold-ember {
   pointer-events: none;
   opacity: 0.22;
   transition: opacity 0.3s ease;
-  backface-visibility: hidden;
-  transform: translate3d(0, 0, 0);
-  will-change: opacity;
 }
 
 .hero-grid {
