@@ -171,11 +171,13 @@
         <div>
           <p class="eyebrow">ARCHIVE CONSOLE / 案卷维护台</p>
           <h2 id="adminOverlayTitle">案卷维护台 / Archive Console</h2>
-          <p>当前为直接代码发布模式。前台默认读取 assets/data/site-data.json；维护台保存只作为当前浏览器本机草稿预览，不会覆盖线上正式数据。</p>
+          <p>保存后仅当前浏览器可见，用于本机预览。若要让所有设备看到，请导出 site-data.json，覆盖 assets/data/site-data.json，并提交到 GitHub。</p>
           <div class="admin-data-actions">
-            <strong id="dataSourceStatus">线上正式数据</strong>
-            <button class="button button-outline" type="button" id="useOfficialDataButton"><span>使用线上数据</span><em>Clear Draft</em></button>
-            <button class="button button-outline" type="button" id="useLocalDraftButton"><span>使用本机草稿预览</span><em>Local Draft</em></button>
+            <strong id="dataSourceStatus">当前使用：线上 JSON 数据；</strong>
+            <button class="button button-outline" type="button" id="exportFullDataTopButton"><span>导出 JSON</span><em>site-data.json</em></button>
+            <label class="import-button"><input type="file" id="importFullDataTopInput" accept="application/json">导入 JSON</label>
+            <button class="button button-outline" type="button" id="useOfficialDataButton"><span>恢复线上数据 / 清除本机草稿</span><em>Clear Draft</em></button>
+            <button class="button button-outline" type="button" id="useLocalDraftButton"><span>使用本机草稿</span><em>Local Draft</em></button>
           </div>
         </div>
         <button class="modal-close admin-close" type="button" data-admin-close aria-label="关闭案卷维护台">×</button>
@@ -194,6 +196,7 @@
             <button type="button" data-admin-tab="assets">素材路径</button>
             <button type="button" data-admin-tab="backgrounds">板块背景</button>
             <button type="button" data-admin-tab="article">项目文章</button>
+            <button type="button" data-admin-tab="pathCheck">路径检查</button>
           </div>
           <div class="admin-panels">
             <div class="admin-panel is-active" data-admin-panel="projects">
@@ -210,12 +213,18 @@
                 <label>尺度<input name="scale" placeholder="1,850 sqm / object series"></label>
                 <label>角色<input name="role" placeholder="concept, spatial design"></label>
                 <label>封面键或路径<input name="coverImage" placeholder="abstract:ridge 或 assets/projects/p001-northern-wind-court/cover.jpg"></label>
+                <label>详情主图路径<input name="detailImage" placeholder="assets/projects/p001-northern-wind-court/detail-hero.jpg"></label>
+                <label>文章封面图路径<input name="articleCoverImage" placeholder="assets/projects/p001-northern-wind-court/article-cover.jpg"></label>
                 <label>图集<textarea name="gallery" rows="3" placeholder="一行一个路径，支持 jpg / png / webp / gif"></textarea></label>
                 <label>图纸<textarea name="drawings" rows="3" placeholder="一行一个路径，支持 pdf / jpg / png"></textarea></label>
                 <label>3D 模型<input name="model3d" placeholder="assets/projects/p001-northern-wind-court/model.glb"></label>
+                <label>模型缩略图路径<input name="modelThumbnail" placeholder="assets/projects/p001-northern-wind-court/model-thumb.jpg"></label>
                 <label>360 全景<input name="panorama" placeholder="assets/projects/p001-northern-wind-court/panorama.jpg"></label>
+                <label>全景缩略图路径<input name="panoramaThumbnail" placeholder="assets/projects/p001-northern-wind-court/panorama-thumb.jpg"></label>
                 <label>视频<input name="video" placeholder="assets/projects/p001-northern-wind-court/walkthrough.mp4"></label>
+                <label>视频封面 poster 路径<input name="videoPoster" placeholder="assets/projects/p001-northern-wind-court/video-poster.jpg"></label>
                 <label>PDF<input name="pdf" placeholder="assets/projects/p001-northern-wind-court/drawings.pdf"></label>
+                <label class="full">附件清单<textarea name="attachments" rows="4" placeholder="一行一个附件：assets/projects/p001/file.pdf | 文件名 | pdf | 描述"></textarea></label>
                 <label>标签<input name="tags" placeholder="中轴线, 台基, 3D"></label>
                 <label class="full">设计命题<textarea name="concept" rows="2" placeholder="一句话说明项目的设计命题"></textarea></label>
                 <label class="full">摘要<textarea name="description" rows="4" placeholder="项目简述"></textarea></label>
@@ -237,13 +246,20 @@
               <label class="full">首页介绍<textarea name="intro" rows="3"></textarea></label>
               <label>联系邮箱<input name="email"></label>
               <label>作品集 PDF<input name="portfolioPdf"></label>
-              <p class="admin-note full">此处保存会写入当前浏览器 localStorage，仅用于本机预览。线上正式内容请直接修改 assets/data/site-data.json 并提交到 GitHub。</p>
+              <label>首页山体层路径<input name="heroDepthMountain" placeholder="assets/hero-depth/hero-mountain.webp"></label>
+              <label>首页窗框层路径<input name="heroDepthWindowFrame" placeholder="assets/hero-depth/hero-window-frame.webp"></label>
+              <label>首页人物层路径<input name="heroDepthLady" placeholder="assets/hero-depth/hero-lady.webp"></label>
+              <label>首页暗角层路径<input name="heroDepthVignette" placeholder="assets/hero-depth/hero-vignette.webp"></label>
+              <label>首页参考图路径<input name="heroDepthReference" placeholder="assets/hero-depth/hero-reference.webp"></label>
+              <label>瓦当 WebP 路径<input name="watangWebp" placeholder="assets/images/watang.webp"></label>
+              <label>瓦当 PNG 备用路径<input name="watangPngFallback" placeholder="assets/watang/watang.png"></label>
+              <p class="admin-note full">保存后仅当前浏览器可见，用于本机预览。若要让所有设备看到，请导出 site-data.json，覆盖 assets/data/site-data.json，并提交到 GitHub。</p>
               <div class="form-actions full">
                 <button class="button button-primary" type="submit"><span>更新首页文案</span><em>Update Settings</em></button>
                 <button class="button button-outline" type="button" id="exportSettingsButton"><span>导出设置</span><em>JSON</em></button>
-                <button class="button button-outline" type="button" id="exportFullDataButton"><span>导出 site-data.json</span><em>Full JSON</em></button>
+                <button class="button button-outline" type="button" id="exportFullDataButton"><span>导出 JSON</span><em>site-data.json</em></button>
                 <label class="import-button"><input type="file" id="importSettingsInput" accept="application/json">导入设置</label>
-                <label class="import-button"><input type="file" id="importFullDataInput" accept="application/json">导入全站数据</label>
+                <label class="import-button"><input type="file" id="importFullDataInput" accept="application/json">导入 JSON</label>
               </div>
             </form>
             <div class="admin-panel" data-admin-panel="assets">
@@ -255,18 +271,24 @@
                 <label>维护字段
                   <select id="assetType">
                     <option value="coverImage">coverImage / 封面</option>
+                    <option value="detailImage">detailImage / 详情主图</option>
+                    <option value="articleCoverImage">articleCoverImage / 文章封面</option>
                     <option value="gallery">gallery / 图集，一行一个路径</option>
                     <option value="drawings">drawings / 图纸，一行一个路径</option>
                     <option value="model3d">model3d / GLB 或 GLTF</option>
+                    <option value="modelThumbnail">modelThumbnail / 模型缩略图</option>
                     <option value="panorama">panorama / 360 全景</option>
+                    <option value="panoramaThumbnail">panoramaThumbnail / 全景缩略图</option>
                     <option value="video">video / 视频</option>
+                    <option value="videoPoster">videoPoster / 视频封面 poster</option>
                     <option value="pdf">pdf / PDF</option>
+                    <option value="attachments">attachments / 附件，一行一个</option>
                   </select>
                 </label>
                 <label class="full">素材路径<textarea id="assetPathInput" rows="5" placeholder="assets/projects/p001-northern-wind-court/cover.jpg"></textarea></label>
-                <p class="asset-note">推荐目录：assets/projects/项目ID-英文短名/cover.jpg、article-01.jpg、process.gif、walkthrough.mp4、model.glb、panorama.jpg、drawings.pdf。多图字段请一行一个路径；大小写必须与 GitHub 仓库文件完全一致。</p>
+                <p class="asset-note">推荐目录：assets/projects/项目ID-英文短名/cover.jpg、detail-hero.jpg、article-cover.jpg、gallery-01.jpg、walkthrough.mp4、video-poster.jpg、model.glb、model-thumb.jpg、panorama.jpg、panorama-thumb.jpg、case.pdf。多图字段请一行一个路径；附件格式为：file path | file name | file type | description。大小写必须与 GitHub 仓库文件完全一致。</p>
                 <label class="full">本地临时预览导入<input id="assetInput" type="file" multiple accept=".jpg,.jpeg,.png,.webp,.gif,.mp4,.webm,.pdf,.glb,.gltf,image/*,video/*,application/pdf,model/gltf-binary,model/gltf+json"></label>
-                <p class="asset-note">IndexedDB 仅保存在当前浏览器。更换设备、清理站点数据或换浏览器后会丢失。GitHub Pages 正式发布请使用 assets 路径。</p>
+                <p class="asset-note">本机上传仅用于预览。若要让所有设备看到，请将素材文件上传到 GitHub 仓库对应 assets 目录，并在后台填写项目内相对路径。</p>
                 <div class="upload-progress" id="uploadProgress" aria-hidden="true"><span></span></div>
                 <div class="form-actions">
                   <button class="button button-dark" type="button" id="saveAssetPathsButton"><span>保存路径</span><em>Save Paths</em></button>
@@ -274,7 +296,7 @@
                   <button class="button button-outline" type="button" id="uploadButton"><span>导入本地预览</span><em>Local Preview</em></button>
                   <button class="button button-outline" type="button" id="exportProjectsButton"><span>导出项目</span><em>JSON</em></button>
                   <label class="import-button"><input type="file" id="importProjectsInput" accept="application/json">导入项目</label>
-                  <button class="button button-outline" type="button" id="resetMockButton"><span>使用线上数据</span><em>Clear Draft</em></button>
+                  <button class="button button-outline" type="button" id="resetMockButton"><span>恢复线上数据 / 清除本机草稿</span><em>Clear Draft</em></button>
                 </div>
               </div>
               <div class="asset-library" id="assetLibrary"></div>
@@ -287,7 +309,10 @@
                 <p>板块背景以路径方式维护。请先把背景图提交到 GitHub 仓库 assets/backgrounds 目录，再填写相对路径；未填写时保持当前默认效果。首页 #home.hero 也会使用这里的背景路径。</p>
                 <label>选择板块<select id="sectionBgTarget"></select></label>
                 <label>背景图路径<input id="sectionBgImage" placeholder="assets/backgrounds/home-bg.jpg"></label>
-                <label>本地临时预览导入<input id="sectionBgFile" type="file" accept="image/*"></label>
+                <label>背景视频路径<input id="sectionBgVideo" placeholder="assets/backgrounds/home-bg.mp4"></label>
+                <label>背景视频 poster 路径<input id="sectionBgVideoPoster" placeholder="assets/backgrounds/home-bg-poster.jpg"></label>
+                <label>本地临时预览导入<input id="sectionBgFile" type="file" accept="image/*,video/*,.mp4,.webm"></label>
+                <p class="asset-note">本机上传仅用于预览。若要让所有设备看到，请将素材文件上传到 GitHub 仓库对应 assets 目录，并在后台填写项目内相对路径。</p>
                 <label>路径图透明度 <span id="sectionBgImageOpacityValue">0</span><input id="sectionBgImageOpacity" type="range" min="0" max="1" step="0.05" value="0"></label>
                 <label>原设计背景透明度 <span id="sectionBgDesignOpacityValue">1</span><input id="sectionBgDesignOpacity" type="range" min="0" max="1" step="0.05" value="1"></label>
                 <label>背景位置
@@ -337,12 +362,15 @@
                     <option value="model3d">模型台 model3d</option>
                     <option value="panorama">入此空间 panorama</option>
                     <option value="pdf">PDF pdf</option>
+                    <option value="attachment">附件 attachment</option>
                   </select>
                 </label>
                 <label>正文 / 标题 / 引用<textarea id="articleBlockText" rows="4" placeholder="输入文章文字"></textarea></label>
                 <label>素材路径<textarea id="articleBlockAsset" rows="4" placeholder="assets/projects/p001-northern-wind-court/article-01.jpg"></textarea></label>
+                <label>Poster / Thumbnail 路径<input id="articleBlockPoster" placeholder="assets/projects/p001-northern-wind-court/video-poster.jpg"></label>
                 <label>Caption / Label<input id="articleBlockCaption" placeholder="图片说明或按钮文字"></label>
                 <label>本地临时预览导入<input id="articleInlineFile" type="file" accept=".jpg,.jpeg,.png,.webp,.gif,.mp4,.webm,.pdf,.glb,.gltf,image/*,video/*,application/pdf"></label>
+                <p class="asset-note">本机上传仅用于预览。若要让所有设备看到，请将素材文件上传到 GitHub 仓库对应 assets 目录，并在后台填写项目内相对路径。</p>
                 <div class="form-actions">
                   <button class="button button-dark" type="button" id="addArticleBlockButton"><span>新增块</span><em>Add Block</em></button>
                   <button class="button button-outline" type="button" id="previewArticleAssetButton"><span>预览路径</span><em>Preview</em></button>
@@ -352,6 +380,19 @@
               </div>
               <div class="path-preview-grid" id="articlePathPreview"></div>
               <div class="article-block-list" id="articleBlockList"></div>
+            </div>
+            <div class="admin-panel path-check-panel" data-admin-panel="pathCheck">
+              <div class="asset-uploader">
+                <span class="seal-stamp">PUBLISH CHECK</span>
+                <h3>素材路径检查 / Publish Checklist</h3>
+                <p>检查当前后台正在使用的数据。它会列出空路径、本机路径、可疑路径，以及导出发布时所有被引用的素材路径。</p>
+                <p class="asset-note">所有正式素材都应使用项目内相对路径，例如 assets/projects/project-a/cover.jpg。不要使用 C:\Users\...、/Users/... 或 file://...。</p>
+                <div class="form-actions">
+                  <button class="button button-dark" type="button" id="runPathCheckButton"><span>重新检查</span><em>Check Paths</em></button>
+                  <button class="button button-outline" type="button" id="copyPublishListButton"><span>复制发布清单</span><em>Copy List</em></button>
+                </div>
+              </div>
+              <div class="path-report" id="pathReport"></div>
             </div>
           </div>
         </div>
