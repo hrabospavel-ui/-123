@@ -1,0 +1,11 @@
+V13 说明
+
+这版修正了 V12 看起来完全没变化的根本原因：
+V6 源码末尾还有一段 .hero-spotlight 规则，会把 ::before/::after 设为 display:none，导致前面写的新追光全部被覆盖。
+
+V13 将追光重构规则追加到 styles.css 最末尾，并用最终覆盖确保：
+1. .hero-spotlight 改成全屏追光层；
+2. ::before 显示上方锥形光束；
+3. ::after 显示落点高光；
+4. 轻微降低暗角压制；
+5. JS 提高 light-strength 目标值。

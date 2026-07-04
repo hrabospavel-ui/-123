@@ -1,0 +1,25 @@
+首页 v6 source optimized 说明
+
+本版从源头处理闪烁：
+1. 新增 assets/hero-depth/optimized/ 下的 2560px 宽显示用 WebP。原始 4928px 源图保留不动。
+2. CSS 首页变量改用 optimized 图，降低浏览器解码后内存与合成压力。
+3. index.html 预加载 4 张 optimized 首页关键图。
+4. 首页舞台等 4 张关键图 decode 后再淡入，减少首次加载闪烁。
+5. 追光从全屏 radial-gradient 改为小尺寸可移动光斑层，减少鼠标移动时的大面积重绘。
+6. 火星 canvas 延迟约 900ms 启动，避免首屏图层和 canvas 同时抢渲染。
+7. JS 仍只更新 CSS 变量，不直接写图层 transform。
+8. 保留 v3 的整体方向、完整窗框、仕女拼贴感和轻微视差。
+
+本版改动文件：
+- index.html
+- assets/css/styles.css
+- assets/js/app.js
+- assets/hero-depth/optimized/*.webp 新增
+
+未改：
+- site-data.json
+- 后台结构
+- 项目弹窗
+- 模型台
+- 全景模块
+- 原始首页素材
