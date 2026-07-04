@@ -2418,7 +2418,6 @@
     bindGlobalEvents();
     initWadangCursorStable();
     initHeroStageStable();
-    initEmberCanvas();
     initSectionObserver();
   }
 
@@ -5092,7 +5091,9 @@
   }
 
   function initEmberCanvas() {
-    var reduceMotion = reduceMotionQuery.matches;
+    if (reduceMotionQuery.matches) {
+      return;
+    }
     var canvas = document.createElement("canvas");
     canvas.className = "ember-canvas";
     canvas.setAttribute("aria-hidden", "true");
@@ -5118,7 +5119,7 @@
 
     function spawn(x, y, count, burst) {
       var mobile = window.innerWidth < 700;
-      var finalCount = reduceMotion ? Math.min(2, count || 1) : Math.min(mobile ? 3 : 8, count || 1);
+      var finalCount = Math.min(mobile ? 3 : 8, count || 1);
       for (var i = 0; i < finalCount; i += 1) {
         embers.push({
           x: x + (Math.random() - 0.5) * 70,
@@ -5140,7 +5141,7 @@
       lastScrollY = currentY;
       ctx.clearRect(0, 0, size.width, size.height);
       ambientTimer += 1;
-      if (ambientTimer > (reduceMotion ? 180 : window.innerWidth < 700 ? 150 : 92)) {
+      if (ambientTimer > (window.innerWidth < 700 ? 150 : 92)) {
         ambientTimer = 0;
         spawn(size.width * (0.48 + Math.random() * 0.18), size.height * 0.72, 1, false);
       }

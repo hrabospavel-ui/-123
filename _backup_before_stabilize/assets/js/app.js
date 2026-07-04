@@ -926,7 +926,7 @@
   };
   var defaultSiteSettings = clone(siteSettings);
   var defaultProjects = clone(projects);
-  var reduceMotionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
+  var reduceMotionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce) and (hover: none), (prefers-reduced-motion: reduce) and (pointer: coarse)") : { matches: false };
 
   function qs(selector, root) {
     return (root || document).querySelector(selector);
@@ -2416,8 +2416,9 @@
     await refreshData();
     renderAll();
     bindGlobalEvents();
-    initWadangCursorStable();
-    initHeroStageStable();
+    initWatangCursor();
+    initHeroCanvas();
+    initHeroDepthStage();
     initEmberCanvas();
     initSectionObserver();
   }
@@ -4330,7 +4331,6 @@
     state.lastFocusedElement = document.activeElement;
     state.lastScrollY = window.scrollY || window.pageYOffset || 0;
     state.adminOpen = true;
-    overlay.hidden = false;
     overlay.classList.add("is-open");
     overlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("admin-open");
@@ -4355,7 +4355,6 @@
     }
     overlay.classList.remove("is-open");
     overlay.setAttribute("aria-hidden", "true");
-    overlay.hidden = true;
     document.body.classList.remove("admin-open");
     document.body.style.top = "";
     document.body.style.width = "";
@@ -4971,7 +4970,7 @@
     }));
   }
 
-  function initWadangCursorStable() {
+  function initWatangCursor() {
     var cursor = qs("#watangCursor");
     var dot = qs("#watangCursorDot");
     var pointerQuery = window.matchMedia ? window.matchMedia("(hover: hover) and (pointer: fine)") : { matches: false };
@@ -4996,7 +4995,7 @@
     };
     image.src = watangWebpUrl;
 
-    if (!pointerQuery.matches) {
+    if (!pointerQuery.matches || reduceMotionQuery.matches) {
       document.documentElement.classList.add("watang-cursor-static");
       return;
     }
@@ -5004,12 +5003,11 @@
     document.body.classList.add("watang-cursor-enabled");
     var pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     var follower = { x: pointer.x, y: pointer.y };
+    var raf = 0;
     var lastX = pointer.x;
     var rotation = 0;
     var cursorVisible = false;
     var cursorTyping = false;
-    var cursorHover = false;
-    var raf = 0;
 
     function isFormTarget(target) {
       return Boolean(target && target.closest("input, textarea, select, option, label, .admin-form, .asset-uploader"));
@@ -5019,34 +5017,24 @@
       return Boolean(target && target.closest("a, button, .project-card, .research-card, .method-card, .contact-panel, .admin-list-item, [role='button']"));
     }
 
-    function render() {
-      var eased = reduceMotionQuery.matches ? 1 : 0.18;
-      follower.x += (pointer.x - follower.x) * eased;
-      follower.y += (pointer.y - follower.y) * eased;
-      if (reduceMotionQuery.matches) {
-        rotation = 0;
-      } else {
-        rotation += Math.max(-5, Math.min(5, (pointer.x - lastX) * 0.08));
-        rotation *= 0.86;
+    function requestRender() {
+      if (!raf) {
+        raf = requestAnimationFrame(render);
       }
-      lastX = pointer.x;
-      var scale = state.cursorDown ? 0.86 : cursorHover ? 1.14 : 1;
-      cursor.style.transform = "translate3d(" + follower.x + "px, " + follower.y + "px, 0) translate(-50%, -50%) rotate(" + rotation.toFixed(2) + "deg) scale(" + scale + ")";
-      dot.style.transform = "translate3d(" + pointer.x + "px, " + pointer.y + "px, 0) translate(-50%, -50%)";
-      raf = requestAnimationFrame(render);
     }
 
-    function setCursorTargetState(target) {
-      var nextTyping = isFormTarget(target);
-      var nextHover = isInteractiveTarget(target) && !nextTyping;
-      if (nextTyping !== cursorTyping) {
-        cursorTyping = nextTyping;
-        document.body.classList.toggle("watang-cursor-typing", cursorTyping);
-      }
-      if (nextHover !== cursorHover) {
-        cursorHover = nextHover;
-        state.cursorHover = cursorHover;
-        document.body.classList.toggle("watang-cursor-hover", cursorHover);
+    function render() {
+      raf = 0;
+      follower.x += (pointer.x - follower.x) * 0.18;
+      follower.y += (pointer.y - follower.y) * 0.18;
+      rotation += Math.max(-5, Math.min(5, (pointer.x - lastX) * 0.08));
+      rotation *= 0.86;
+      lastX = pointer.x;
+      var scale = state.cursorDown ? 0.86 : state.cursorHover ? 1.14 : 1;
+      cursor.style.transform = "translate3d(" + follower.x + "px, " + follower.y + "px, 0) translate(-50%, -50%) rotate(" + rotation.toFixed(2) + "deg) scale(" + scale + ")";
+      dot.style.transform = "translate3d(" + pointer.x + "px, " + pointer.y + "px, 0) translate(-50%, -50%)";
+      if (Math.abs(pointer.x - follower.x) > 0.2 || Math.abs(pointer.y - follower.y) > 0.2 || Math.abs(rotation) > 0.1) {
+        requestRender();
       }
     }
 
@@ -5060,10 +5048,31 @@
         cursorVisible = true;
         document.body.classList.add("watang-cursor-visible");
       }
+      var nextTyping = isFormTarget(event.target);
+      var nextHover = isInteractiveTarget(event.target) && !nextTyping;
+      if (nextTyping !== cursorTyping) {
+        cursorTyping = nextTyping;
+        document.body.classList.toggle("watang-cursor-typing", cursorTyping);
+      }
+      if (nextHover !== state.cursorHover) {
+        state.cursorHover = nextHover;
+        document.body.classList.toggle("watang-cursor-hover", state.cursorHover);
+      }
+      requestRender();
     }, { passive: true });
 
     document.addEventListener("pointerover", function (event) {
-      setCursorTargetState(event.target);
+      var nextTyping = isFormTarget(event.target);
+      var nextHover = isInteractiveTarget(event.target) && !nextTyping;
+      if (nextHover !== state.cursorHover) {
+        state.cursorHover = nextHover;
+        document.body.classList.toggle("watang-cursor-hover", state.cursorHover);
+      }
+      if (nextTyping !== cursorTyping) {
+        cursorTyping = nextTyping;
+        document.body.classList.toggle("watang-cursor-typing", cursorTyping);
+      }
+      requestRender();
     }, { passive: true });
 
     document.addEventListener("pointerdown", function (event) {
@@ -5072,27 +5081,25 @@
       }
       state.cursorDown = true;
       document.body.classList.add("watang-cursor-down");
+      requestRender();
     }, { passive: true });
 
     document.addEventListener("pointerup", function () {
       state.cursorDown = false;
       document.body.classList.remove("watang-cursor-down");
+      requestRender();
     }, { passive: true });
 
     document.addEventListener("mouseleave", function () {
       cursorVisible = false;
       document.body.classList.remove("watang-cursor-visible");
     });
-
-    raf = requestAnimationFrame(render);
-  }
-
-  function initWatangCursor() {
-    initWadangCursorStable();
   }
 
   function initEmberCanvas() {
-    var reduceMotion = reduceMotionQuery.matches;
+    if (reduceMotionQuery.matches) {
+      return;
+    }
     var canvas = document.createElement("canvas");
     canvas.className = "ember-canvas";
     canvas.setAttribute("aria-hidden", "true");
@@ -5118,7 +5125,7 @@
 
     function spawn(x, y, count, burst) {
       var mobile = window.innerWidth < 700;
-      var finalCount = reduceMotion ? Math.min(2, count || 1) : Math.min(mobile ? 3 : 8, count || 1);
+      var finalCount = Math.min(mobile ? 3 : 8, count || 1);
       for (var i = 0; i < finalCount; i += 1) {
         embers.push({
           x: x + (Math.random() - 0.5) * 70,
@@ -5140,7 +5147,7 @@
       lastScrollY = currentY;
       ctx.clearRect(0, 0, size.width, size.height);
       ambientTimer += 1;
-      if (ambientTimer > (reduceMotion ? 180 : window.innerWidth < 700 ? 150 : 92)) {
+      if (ambientTimer > (window.innerWidth < 700 ? 150 : 92)) {
         ambientTimer = 0;
         spawn(size.width * (0.48 + Math.random() * 0.18), size.height * 0.72, 1, false);
       }
@@ -5188,7 +5195,7 @@
     requestAnimationFrame(draw);
   }
 
-  function initHeroStageStable() {
+  function initHeroDepthStage() {
     var hero = qs("#home.hero");
     var stage = hero ? qs(".hero-depth-stage", hero) : null;
     var pointerQuery = window.matchMedia ? window.matchMedia("(hover: hover) and (pointer: fine)") : { matches: false };
@@ -5199,17 +5206,23 @@
     var reduceMotion = reduceMotionQuery.matches;
     var allowMotion = pointerQuery.matches && !reduceMotion;
     var rect = null;
+    var rectDirty = true;
     var isVisible = true;
     var raf = 0;
-    var target = { x: 0, y: 0, lightX: 50, lightY: 50 };
-    var current = { x: 0, y: 0, lightX: 50, lightY: 50 };
+    var target = { x: 0, y: 0, lightX: 50, lightY: 50, strength: 0.68 };
+    var current = { x: 0, y: 0, lightX: 50, lightY: 50, strength: allowMotion ? 0.68 : 0.42 };
 
     function clamp(value, min, max) {
       return Math.max(min, Math.min(max, value));
     }
 
+    function markRectDirty() {
+      rectDirty = true;
+    }
+
     function updateRect() {
       rect = hero.getBoundingClientRect();
+      rectDirty = false;
     }
 
     function applyVars() {
@@ -5219,44 +5232,45 @@
       hero.style.setProperty("--light-y", current.lightY.toFixed(2) + "%");
       hero.style.setProperty("--tilt-x", (-current.y).toFixed(4));
       hero.style.setProperty("--tilt-y", current.x.toFixed(4));
+      hero.style.setProperty("--light-strength", current.strength.toFixed(4));
     }
 
-    function setTargetCenter() {
+    function setTargetCenter(strength) {
       target.x = 0;
       target.y = 0;
       target.lightX = 50;
       target.lightY = 50;
+      target.strength = strength;
     }
 
     function needsFrame() {
       return Math.abs(target.x - current.x) > 0.001 ||
         Math.abs(target.y - current.y) > 0.001 ||
         Math.abs(target.lightX - current.lightX) > 0.04 ||
-        Math.abs(target.lightY - current.lightY) > 0.04;
+        Math.abs(target.lightY - current.lightY) > 0.04 ||
+        Math.abs(target.strength - current.strength) > 0.002;
     }
 
     function renderFrame() {
       raf = 0;
-      if (!allowMotion) {
+      if (!allowMotion || !isVisible) {
         return;
       }
 
-      if (!isVisible) {
-        setTargetCenter();
-      }
       current.x += (target.x - current.x) * 0.09;
       current.y += (target.y - current.y) * 0.09;
       current.lightX += (target.lightX - current.lightX) * 0.12;
       current.lightY += (target.lightY - current.lightY) * 0.12;
+      current.strength += (target.strength - current.strength) * 0.08;
       applyVars();
 
-      if (isVisible || needsFrame()) {
+      if (needsFrame()) {
         raf = requestAnimationFrame(renderFrame);
       }
     }
 
     function requestRender() {
-      if (!allowMotion || raf) {
+      if (!allowMotion || !isVisible || raf) {
         return;
       }
       raf = requestAnimationFrame(renderFrame);
@@ -5266,7 +5280,10 @@
       if (!allowMotion || (event.pointerType && event.pointerType !== "mouse")) {
         return;
       }
-      if (!rect || !rect.width || !rect.height) {
+      if (rectDirty || !rect) {
+        updateRect();
+      }
+      if (!rect.width || !rect.height) {
         return;
       }
 
@@ -5276,6 +5293,8 @@
       target.y = (localY - 0.5) * 2;
       target.lightX = clamp(localX * 100, 8, 92);
       target.lightY = clamp(localY * 100, 10, 90);
+      target.strength = 1;
+      requestRender();
     }
 
     if (!allowMotion) {
@@ -5283,45 +5302,42 @@
       return;
     }
 
-    updateRect();
     hero.addEventListener("pointerenter", function () {
-      updateRect();
-      isVisible = true;
-      requestRender();
+      markRectDirty();
     }, { passive: true });
     hero.addEventListener("pointermove", handlePointerMove, { passive: true });
     hero.addEventListener("pointerleave", function () {
-      setTargetCenter();
+      setTargetCenter(0.68);
+      requestRender();
     }, { passive: true });
 
-    window.addEventListener("resize", updateRect, { passive: true });
-    window.addEventListener("scroll", updateRect, { passive: true });
+    window.addEventListener("resize", markRectDirty, { passive: true });
+    window.addEventListener("scroll", markRectDirty, { passive: true });
 
     if ("IntersectionObserver" in window) {
       var observer = new IntersectionObserver(function (entries) {
         var entry = entries[0];
         isVisible = Boolean(entry && entry.isIntersecting && entry.intersectionRatio > 0.04);
         if (isVisible) {
-          updateRect();
+          markRectDirty();
           requestRender();
         } else {
-          setTargetCenter();
+          setTargetCenter(0.42);
+          current.x = target.x;
+          current.y = target.y;
+          current.lightX = target.lightX;
+          current.lightY = target.lightY;
+          current.strength = target.strength;
+          applyVars();
         }
       }, { threshold: [0, 0.04, 0.2] });
       observer.observe(hero);
     }
 
     applyVars();
-    requestRender();
-  }
-
-  function initHeroDepthStage() {
-    initHeroStageStable();
   }
 
   function initHeroCanvas() {
-    // Layered hero stage owns the only active homepage animation loop.
-    return;
     var canvas = qs("#heroCanvas");
     if (!canvas) {
       return;
