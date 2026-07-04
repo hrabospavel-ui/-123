@@ -5196,22 +5196,22 @@
       return;
     }
 
-    if (hero.dataset.heroStageStableBound === "true") {
+    if (hero.dataset.heroMotionBound === "true") {
       return;
     }
-    hero.dataset.heroStageStableBound = "true";
+    hero.dataset.heroMotionBound = "true";
 
     var rect = null;
     var raf = 0;
     var reduceMotion = reduceMotionQuery && reduceMotionQuery.matches;
-    var motionScale = reduceMotion ? 0.45 : 1;
+    var motionScale = reduceMotion ? 0.55 : 1;
 
     var target = {
       x: 0,
       y: 0,
       lightX: 50,
       lightY: 48,
-      strength: 0.52
+      strength: 0.58
     };
 
     var current = {
@@ -5219,7 +5219,7 @@
       y: 0,
       lightX: 50,
       lightY: 48,
-      strength: 0.52
+      strength: 0.58
     };
 
     function clamp(value, min, max) {
@@ -5245,7 +5245,7 @@
       target.y = 0;
       target.lightX = 50;
       target.lightY = 48;
-      target.strength = reduceMotion ? 0.42 : 0.52;
+      target.strength = reduceMotion ? 0.46 : 0.58;
     }
 
     function needsFrame() {
@@ -5259,11 +5259,11 @@
     function renderFrame() {
       raf = 0;
 
-      current.x += (target.x - current.x) * 0.1;
-      current.y += (target.y - current.y) * 0.1;
-      current.lightX += (target.lightX - current.lightX) * 0.12;
-      current.lightY += (target.lightY - current.lightY) * 0.12;
-      current.strength += (target.strength - current.strength) * 0.08;
+      current.x += (target.x - current.x) * 0.11;
+      current.y += (target.y - current.y) * 0.11;
+      current.lightX += (target.lightX - current.lightX) * 0.14;
+      current.lightY += (target.lightY - current.lightY) * 0.14;
+      current.strength += (target.strength - current.strength) * 0.1;
 
       applyVars();
 
@@ -5293,9 +5293,9 @@
 
       target.x = (localX - 0.5) * 2 * motionScale;
       target.y = (localY - 0.5) * 2 * motionScale;
-      target.lightX = clamp(localX * 100, 8, 92);
-      target.lightY = clamp(localY * 100, 10, 90);
-      target.strength = reduceMotion ? 0.46 : 0.56;
+      target.lightX = clamp(localX * 100, 6, 94);
+      target.lightY = clamp(localY * 100, 8, 92);
+      target.strength = reduceMotion ? 0.5 : 0.62;
 
       requestRender();
     }
@@ -5333,7 +5333,7 @@
     if (reduceMotionQuery && typeof reduceMotionQuery.addEventListener === "function") {
       reduceMotionQuery.addEventListener("change", function () {
         reduceMotion = reduceMotionQuery.matches;
-        motionScale = reduceMotion ? 0.45 : 1;
+        motionScale = reduceMotion ? 0.55 : 1;
         setTargetCenter();
         requestRender();
       });

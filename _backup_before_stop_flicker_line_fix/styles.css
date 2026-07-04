@@ -3591,14 +3591,25 @@ body.article-open {
 }
 
 @media (hover: none), (pointer: coarse) {
+  .hero,
+  .hero-depth-stage {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   .hero-depth-stage {
     --hero-x: 0;
     --hero-y: 0;
     --tilt-x: 0;
     --tilt-y: 0;
     --light-x: 50%;
-    --light-y: 48%;
+    --light-y: 45%;
     --light-strength: 0.42;
+  }
+
+  .hero-spotlight {
+    display: block;
+    transform: translateZ(0);
   }
 
   .hero-layer-mountain {
@@ -3876,7 +3887,7 @@ body.article-open {
   }
 
   .ember-canvas {
-    opacity: 0.22;
+    opacity: 0.28;
   }
 
   .threshold-transition {
@@ -3884,7 +3895,7 @@ body.article-open {
   }
 
   .hero h1::after {
-    display: none;
+    animation-duration: 12s;
   }
 }
 
@@ -3947,140 +3958,79 @@ body.article-open {
   }
 }
 
-/* HERO_STOP_FLICKER_AND_LINE_LOCK */
-.hero {
-  perspective: none !important;
-}
-
-.hero-grid {
-  display: none !important;
-  opacity: 0 !important;
-  background: none !important;
-  mask-image: none !important;
-  -webkit-mask-image: none !important;
-}
-
-.hero h1::after {
-  display: none !important;
-}
-
-.hero-depth-stage {
-  transform-style: flat !important;
-  contain: layout paint !important;
-}
-
-.hero-depth-stage::before {
-  background:
-    radial-gradient(ellipse at 50% 58%, rgba(176, 138, 84, 0.08), transparent 45%),
-    linear-gradient(180deg, rgba(3, 4, 5, 0.46), rgba(3, 4, 5, 0.78)) !important;
-}
-
+/* HERO_STABLE_PARALLAX_NO_FLICKER */
 .hero-depth-layer,
 .hero-spotlight,
 .hero-depth-vignette {
-  transform-style: flat !important;
-  backface-visibility: hidden !important;
-  pointer-events: none !important;
-  transition: none !important;
-}
-
-.hero-layer-mountain,
-.hero-layer-window,
-.hero-layer-lady {
-  filter: none !important;
-}
-
-.hero-layer-mountain::after,
-.hero-layer-window::after,
-.hero-layer-lady::after {
-  display: none !important;
+  pointer-events: none;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  transition: opacity 0.24s ease;
 }
 
 .hero-layer-mountain {
-  background-image:
-    linear-gradient(180deg, rgba(3, 4, 5, 0.48), rgba(3, 4, 5, 0.6)),
-    var(--hero-mountain-image) !important;
-  opacity: 0.9 !important;
-  transform: translate3d(calc(var(--hero-x) * -4px), calc(var(--hero-y) * -3px), 0) scale(1.1) !important;
+  transform: translate3d(calc(var(--hero-x) * -8px), calc(var(--hero-y) * -5px), 0) scale(1.12);
 }
 
 .hero-layer-window {
-  opacity: 0.88 !important;
-  background-position: center !important;
-  clip-path: inset(0 0 0 34%) !important;
-  transform: translate3d(calc(var(--hero-x) * 10px), calc(var(--hero-y) * 6px), 0) scale(1.045) !important;
+  transform:
+    translate3d(calc(var(--hero-x) * 18px), calc(var(--hero-y) * 10px), 0)
+    rotateX(calc(var(--tilt-x) * 0.72deg))
+    rotateY(calc(var(--tilt-y) * 0.92deg))
+    scale(1.05);
 }
 
 .hero-layer-lady {
-  opacity: 0.86 !important;
-  background-position: left bottom !important;
-  transform: translate3d(calc(var(--hero-x) * 18px), calc(var(--hero-y) * 10px), 0) scale(1.065) !important;
+  transform: translate3d(calc(var(--hero-x) * 32px), calc(var(--hero-y) * 17px), 0) scale(1.075);
 }
 
 .hero-spotlight {
-  display: block !important;
-  opacity: 1 !important;
-  background: none !important;
-  mix-blend-mode: normal !important;
-  transform: translateZ(0) !important;
+  display: block;
+  opacity: 1;
+  background: none;
+  mix-blend-mode: normal;
+  transform: translate3d(calc(var(--hero-x) * 8px), calc(var(--hero-y) * 5px), 0) scale(1.01);
+}
+
+.hero-depth-vignette {
+  transform: translate3d(calc(var(--hero-x) * -3px), calc(var(--hero-y) * -2px), 0) scale(1.01);
 }
 
 .hero-spotlight::before,
 .hero-spotlight::after {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  pointer-events: none !important;
-  background-repeat: no-repeat !important;
-  transform: translateZ(0) !important;
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
 }
 
 .hero-spotlight::before {
   background:
     radial-gradient(circle at var(--light-x) var(--light-y),
-      rgba(255, 219, 150, 0.42) 0%,
-      rgba(232, 150, 62, 0.18) 12%,
-      rgba(148, 60, 25, 0.06) 28%,
-      rgba(0, 0, 0, 0) 48%) !important;
-  opacity: calc(0.22 + var(--light-strength) * 0.18) !important;
+      rgba(255, 220, 150, 0.54) 0%,
+      rgba(237, 159, 70, 0.28) 10%,
+      rgba(178, 82, 30, 0.11) 24%,
+      rgba(0, 0, 0, 0) 48%);
+  opacity: calc(0.28 + var(--light-strength) * 0.26);
 }
 
 .hero-spotlight::after {
   background:
     radial-gradient(ellipse at var(--light-x) var(--light-y),
-      rgba(210, 120, 44, 0.09) 0%,
-      rgba(128, 52, 22, 0.045) 32%,
-      rgba(0, 0, 0, 0) 68%) !important;
-  opacity: calc(0.1 + var(--light-strength) * 0.12) !important;
-}
-
-.hero-depth-vignette {
-  background:
-    radial-gradient(ellipse at var(--light-x) var(--light-y), transparent 0 18%, rgba(5, 7, 8, 0.18) 40%, rgba(3, 4, 5, 0.84) 100%),
-    linear-gradient(180deg, rgba(3, 4, 5, 0.74), transparent 20%, transparent 58%, rgba(3, 4, 5, 0.92)),
-    linear-gradient(90deg, rgba(3, 4, 5, 0.88), transparent 23%, transparent 70%, rgba(3, 4, 5, 0.86)) !important;
-  opacity: 0.92 !important;
-  transform: translate3d(calc(var(--hero-x) * -2px), calc(var(--hero-y) * -1px), 0) scale(1.01) !important;
-}
-
-.ember-canvas {
-  opacity: 0.28 !important;
+      rgba(214, 124, 46, 0.14) 0%,
+      rgba(137, 54, 22, 0.06) 34%,
+      rgba(0, 0, 0, 0) 70%);
+  opacity: calc(0.14 + var(--light-strength) * 0.14);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .hero-layer-mountain {
-    transform: translate3d(calc(var(--hero-x) * -4px), calc(var(--hero-y) * -3px), 0) scale(1.1) !important;
-  }
-
-  .hero-layer-window {
-    transform: translate3d(calc(var(--hero-x) * 10px), calc(var(--hero-y) * 6px), 0) scale(1.045) !important;
-  }
-
-  .hero-layer-lady {
-    transform: translate3d(calc(var(--hero-x) * 18px), calc(var(--hero-y) * 10px), 0) scale(1.065) !important;
-  }
-
+  .hero-layer-mountain,
+  .hero-layer-window,
+  .hero-layer-lady,
+  .hero-spotlight,
   .hero-depth-vignette {
-    transform: translate3d(calc(var(--hero-x) * -2px), calc(var(--hero-y) * -1px), 0) scale(1.01) !important;
+    transition: opacity 0.24s ease;
   }
 }
