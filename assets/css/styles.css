@@ -3811,7 +3811,7 @@ body.article-open {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) and (max-width: 0px) {
   html {
     scroll-behavior: auto;
   }

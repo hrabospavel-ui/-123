@@ -926,7 +926,7 @@
   };
   var defaultSiteSettings = clone(siteSettings);
   var defaultProjects = clone(projects);
-  var reduceMotionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
+  var reduceMotionQuery = { matches: false };
 
   function qs(selector, root) {
     return (root || document).querySelector(selector);
