@@ -5210,7 +5210,7 @@
       y: 0,
       lightX: 44,
       lightY: 48,
-      strength: 0.50
+      strength: 0.62
     };
 
     var current = {
@@ -5218,7 +5218,7 @@
       y: 0,
       lightX: 44,
       lightY: 48,
-      strength: 0.50
+      strength: 0.62
     };
 
     function clamp(value, min, max) {
