@@ -1,10 +1,10 @@
 {
   "siteSettings": {
-    "studioName": "12345工作室",
-    "studioSeal": "营造",
-    "taglineCN": "天有时，地有气\n材有美，工有巧\n合此四者，然后可以为良。",
-    "taglineEN": "When season, place, material, and craft\ncome together in harmony,\na work of true refinement is born.",
-    "intro": "建筑是一种对抗自然的装置，也是与自然重新对话的装置。",
+    "studioName": "北屿营造",
+    "studioSeal": "北屿",
+    "taglineCN": "在黑色天幕中，重构北方高古的空间秩序。",
+    "taglineEN": "Northern Tectonics Reframed for Contemporary Space and Objects.",
+    "intro": "以建筑、器物、空间研究和数字模型为方法，把传统营造的秩序转译为当代生活与展示系统。",
     "philosophy": "我们关注北方建筑的尺度、风、影、材料和秩序，也关注产品在手中被使用的瞬间。每个项目从线稿、模型、图纸和现场材料同时推进。",
     "email": "hello@northern-atelier.example",
     "portfolioPdf": "assets/portfolio/northern-atelier-portfolio.pdf",
@@ -124,8 +124,6 @@
     "sectionBackgrounds": {
       "home": {
         "image": "",
-        "video": "",
-        "videoPoster": "",
         "imageOpacity": 0,
         "designOpacity": 1,
         "position": "center",
@@ -133,8 +131,6 @@
       },
       "featured": {
         "image": "",
-        "video": "",
-        "videoPoster": "",
         "imageOpacity": 0,
         "designOpacity": 1,
         "position": "center",
@@ -142,8 +138,6 @@
       },
       "works": {
         "image": "",
-        "video": "",
-        "videoPoster": "",
         "imageOpacity": 0,
         "designOpacity": 1,
         "position": "center top",
@@ -151,8 +145,6 @@
       },
       "architecture": {
         "image": "",
-        "video": "",
-        "videoPoster": "",
         "imageOpacity": 0,
         "designOpacity": 1,
         "position": "center",
@@ -160,8 +152,6 @@
       },
       "objects": {
         "image": "",
-        "video": "",
-        "videoPoster": "",
         "imageOpacity": 0,
         "designOpacity": 1,
         "position": "center",
@@ -169,8 +159,6 @@
       },
       "research": {
         "image": "",
-        "video": "",
-        "videoPoster": "",
         "imageOpacity": 0,
         "designOpacity": 1,
         "position": "center",
@@ -178,8 +166,6 @@
       },
       "studio": {
         "image": "",
-        "video": "",
-        "videoPoster": "",
         "imageOpacity": 0,
         "designOpacity": 1,
         "position": "center",
@@ -187,8 +173,6 @@
       },
       "contact": {
         "image": "",
-        "video": "",
-        "videoPoster": "",
         "imageOpacity": 0,
         "designOpacity": 1,
         "position": "center",
@@ -258,34 +242,28 @@
   "projects": [
     {
       "id": "p001",
-      "titleCN": "勒·迪安马特剧场更新",
-      "titleEN": "Le Diamant 剧场更新",
+      "titleCN": "北台风庭",
+      "titleEN": "Northern Wind Court",
       "category": "Architecture",
-      "year": "2019",
-      "location": "魁北克，加拿大",
+      "year": "2026",
+      "location": "Hohhot",
       "status": "Published",
-      "material": "",
-      "scale": "8500 平方米",
-      "role": "Alain Tousignant, Annie Lebel, Marie-Chantal Croft, Jacques Plante",
-      "concept": "沿通道斜切，异形玻璃体连通老建筑与新剧场。",
-      "description": "Le Diamant 坐落于魁北克市文化区核心地带的德尤维尔广场（Place d'Youville）边缘。该项目将建于 1879 年的前 YMCA 大楼（一座第二帝国风格建筑）改造为一座集戏剧创作与表演于一体的多功能中心。该项目专为 Ex Machina 剧团打造，将历史建筑的保护与一个拥有 625 个座位的多功能剧场、一个创作工作室以及全新公共空间的置入完美结合。",
-      "coverImage": "assets/projects/p001-northern-wind-court/Le Diamant fengmiantupian.webp",
-      "detailImage": "assets/projects/p001-northern-wind-court/Le Diamant fengmiantupian.webp",
-      "articleCoverImage": "assets/projects/p001-northern-wind-court/Le Diamant fengmiantupian.webp",
+      "material": "brick, dark timber, glass, wind channel",
+      "scale": "1,850 sqm",
+      "role": "concept, spatial design, exhibition route",
+      "concept": "把台基、风廊和中轴线压缩成一座可行走的数字高台。",
+      "description": "项目从北方高台建筑的体量感出发，用暗色砖石、冷青光线和折线屋脊组织展陈路径，让空间像从黑色地平线中升起。",
+      "coverImage": "abstract:ridge",
       "gallery": [
-        "assets/projects/p001-northern-wind-court/Le Diamant fengmiantupian.webp"
+        "assets/projects/p001-northern-wind-court/article-01.png"
       ],
       "drawings": [
         "assets/projects/p001-northern-wind-court/drawings.pdf"
       ],
       "model3d": "assets/projects/p001-northern-wind-court/model.glb",
-      "modelThumbnail": "",
       "panorama": "assets/projects/p001-northern-wind-court/panorama.png",
-      "panoramaThumbnail": "assets/projects/p001-northern-wind-court/Le Diamant fengmiantupian.webp",
       "video": "",
-      "videoPoster": "",
       "pdf": "assets/projects/p001-northern-wind-court/case.pdf",
-      "attachments": [],
       "tags": [
         "中轴线",
         "台基",
@@ -295,82 +273,37 @@
       "articleBlocks": [
         {
           "type": "heading",
-          "text": "项目概述",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "项目概述"
         },
         {
           "type": "paragraph",
-          "text": "项目从北方高台建筑的体量感出发，用暗色砖石、冷青光线和折线屋脊组织展陈路径，让空间像从黑色地平线中升起。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "项目从北方高台建筑的体量感出发，用暗色砖石、冷青光线和折线屋脊组织展陈路径，让空间像从黑色地平线中升起。"
         },
         {
           "type": "quote",
-          "text": "把台基、风廊和中轴线压缩成一座可行走的数字高台。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "把台基、风廊和中轴线压缩成一座可行走的数字高台。"
         },
         {
           "type": "image",
-          "text": "",
           "asset": "assets/projects/p001-northern-wind-court/article-01.png",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "项目图像",
-          "label": ""
+          "caption": "项目图像"
         },
         {
           "type": "pdf",
-          "text": "",
           "asset": "assets/projects/p001-northern-wind-court/drawings.pdf",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
           "label": "查看图纸 / Drawing"
         },
         {
           "type": "model3d",
-          "text": "",
-          "asset": "assets/projects/p001-northern-wind-court/model.glb",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "asset": "assets/projects/p001-northern-wind-court/model.glb"
         },
         {
           "type": "panorama",
-          "text": "",
-          "asset": "assets/projects/p001-northern-wind-court/panorama.png",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "asset": "assets/projects/p001-northern-wind-court/panorama.png"
         },
         {
           "type": "pdf",
-          "text": "",
           "asset": "assets/projects/p001-northern-wind-court/case.pdf",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
           "label": "下载完整项目 PDF"
         }
       ],
@@ -379,32 +312,26 @@
     },
     {
       "id": "p002",
-      "titleCN": "爱马仕三里屯旗舰店",
-      "titleEN": "Hermès Flagship Store, Sanlitun, Beijing",
-      "category": "Architecture",
-      "year": "2025",
+      "titleCN": "器物之山",
+      "titleEN": "Vessel Mountain Index",
+      "category": "Objects",
+      "year": "2026",
       "location": "Beijing",
-      "status": "竣工",
-      "material": "",
-      "scale": "",
-      "role": "Atelier Pacific",
+      "status": "Prototype",
+      "material": "aluminum, ash wood, cyan glaze",
+      "scale": "object series",
+      "role": "product design, prototype direction",
       "concept": "把山墙与瓦当转译成可握持、可陈列的器物比例。",
       "description": "一组从山墙折线、瓦灰与青釉中生成的桌面器物，不追求仿古，而用当代加工方式保留北方器物的稳定和锋利。",
       "coverImage": "abstract:vessel",
-      "detailImage": "",
-      "articleCoverImage": "",
       "gallery": [
         "assets/projects/p002-vessel-mountain-index/article-01.png"
       ],
       "drawings": [],
       "model3d": "assets/projects/p002-vessel-mountain-index/model.glb",
-      "modelThumbnail": "",
       "panorama": "",
-      "panoramaThumbnail": "",
       "video": "",
-      "videoPoster": "",
       "pdf": "assets/projects/p002-vessel-mountain-index/case.pdf",
-      "attachments": [],
       "tags": [
         "器物",
         "青釉",
@@ -414,62 +341,28 @@
       "articleBlocks": [
         {
           "type": "heading",
-          "text": "项目概述",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "项目概述"
         },
         {
           "type": "paragraph",
-          "text": "一组从山墙折线、瓦灰与青釉中生成的桌面器物，不追求仿古，而用当代加工方式保留北方器物的稳定和锋利。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "一组从山墙折线、瓦灰与青釉中生成的桌面器物，不追求仿古，而用当代加工方式保留北方器物的稳定和锋利。"
         },
         {
           "type": "quote",
-          "text": "把山墙与瓦当转译成可握持、可陈列的器物比例。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "把山墙与瓦当转译成可握持、可陈列的器物比例。"
         },
         {
           "type": "image",
-          "text": "",
           "asset": "assets/projects/p002-vessel-mountain-index/article-01.png",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "项目图像",
-          "label": ""
+          "caption": "项目图像"
         },
         {
           "type": "model3d",
-          "text": "",
-          "asset": "assets/projects/p002-vessel-mountain-index/model.glb",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "asset": "assets/projects/p002-vessel-mountain-index/model.glb"
         },
         {
           "type": "pdf",
-          "text": "",
           "asset": "assets/projects/p002-vessel-mountain-index/case.pdf",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
           "label": "下载完整项目 PDF"
         }
       ],
@@ -478,7 +371,7 @@
     },
     {
       "id": "p003",
-      "titleCN": "33333",
+      "titleCN": "黑穹模型台",
       "titleEN": "Obsidian Model Platform",
       "category": "Research",
       "year": "2025",
@@ -490,18 +383,12 @@
       "concept": "让模型在加载前保持沉默，只在需要时展开。",
       "description": "面向未来项目库的 3D 展示模块研究，默认不加载大型模型，点击后再进入模型台，以保证作品集首屏和列表体验轻盈。",
       "coverImage": "abstract:grid",
-      "detailImage": "",
-      "articleCoverImage": "",
       "gallery": [],
       "drawings": [],
       "model3d": "assets/projects/p003-obsidian-model-platform/model.glb",
-      "modelThumbnail": "",
       "panorama": "",
-      "panoramaThumbnail": "",
       "video": "",
-      "videoPoster": "",
       "pdf": "",
-      "attachments": [],
       "tags": [
         "3D",
         "GLB",
@@ -511,43 +398,19 @@
       "articleBlocks": [
         {
           "type": "heading",
-          "text": "项目概述",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "项目概述"
         },
         {
           "type": "paragraph",
-          "text": "面向未来项目库的 3D 展示模块研究，默认不加载大型模型，点击后再进入模型台，以保证作品集首屏和列表体验轻盈。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "面向未来项目库的 3D 展示模块研究，默认不加载大型模型，点击后再进入模型台，以保证作品集首屏和列表体验轻盈。"
         },
         {
           "type": "quote",
-          "text": "让模型在加载前保持沉默，只在需要时展开。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "让模型在加载前保持沉默，只在需要时展开。"
         },
         {
           "type": "model3d",
-          "text": "",
-          "asset": "assets/projects/p003-obsidian-model-platform/model.glb",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "asset": "assets/projects/p003-obsidian-model-platform/model.glb"
         }
       ],
       "featured": true,
@@ -567,8 +430,6 @@
       "concept": "旧院落保留风口和阴影，新界面只做必要介入。",
       "description": "以灰砖、夯土和木构为材料基础，保留院落的风道和尺度，通过现代平面和模块化构造减少历史符号堆叠。",
       "coverImage": "abstract:plinth",
-      "detailImage": "",
-      "articleCoverImage": "",
       "gallery": [
         "assets/projects/p004-frontier-courtyard-renewal/article-01.png"
       ],
@@ -576,13 +437,9 @@
         "assets/projects/p004-frontier-courtyard-renewal/drawings.pdf"
       ],
       "model3d": "",
-      "modelThumbnail": "",
       "panorama": "assets/projects/p004-frontier-courtyard-renewal/panorama.png",
-      "panoramaThumbnail": "",
       "video": "",
-      "videoPoster": "",
       "pdf": "assets/projects/p004-frontier-courtyard-renewal/case.pdf",
-      "attachments": [],
       "tags": [
         "更新",
         "灰砖",
@@ -592,72 +449,33 @@
       "articleBlocks": [
         {
           "type": "heading",
-          "text": "项目概述",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "项目概述"
         },
         {
           "type": "paragraph",
-          "text": "以灰砖、夯土和木构为材料基础，保留院落的风道和尺度，通过现代平面和模块化构造减少历史符号堆叠。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "以灰砖、夯土和木构为材料基础，保留院落的风道和尺度，通过现代平面和模块化构造减少历史符号堆叠。"
         },
         {
           "type": "quote",
-          "text": "旧院落保留风口和阴影，新界面只做必要介入。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "旧院落保留风口和阴影，新界面只做必要介入。"
         },
         {
           "type": "image",
-          "text": "",
           "asset": "assets/projects/p004-frontier-courtyard-renewal/article-01.png",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "项目图像",
-          "label": ""
+          "caption": "项目图像"
         },
         {
           "type": "pdf",
-          "text": "",
           "asset": "assets/projects/p004-frontier-courtyard-renewal/drawings.pdf",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
           "label": "查看图纸 / Drawing"
         },
         {
           "type": "panorama",
-          "text": "",
-          "asset": "assets/projects/p004-frontier-courtyard-renewal/panorama.png",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "asset": "assets/projects/p004-frontier-courtyard-renewal/panorama.png"
         },
         {
           "type": "pdf",
-          "text": "",
           "asset": "assets/projects/p004-frontier-courtyard-renewal/case.pdf",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
           "label": "下载完整项目 PDF"
         }
       ],
@@ -678,20 +496,14 @@
       "concept": "从斗拱的支撑逻辑抽出模块嵌套关系。",
       "description": "一套面向展厅和住宅的扶手与展架系统，结构关系来自传统支撑系统，但外观保持低调、锋利和可量产。",
       "coverImage": "",
-      "detailImage": "",
-      "articleCoverImage": "",
       "gallery": [],
       "drawings": [
         "assets/projects/p005-cangqing-rail-system/drawings.pdf"
       ],
       "model3d": "assets/projects/p005-cangqing-rail-system/model.glb",
-      "modelThumbnail": "",
       "panorama": "",
-      "panoramaThumbnail": "",
       "video": "",
-      "videoPoster": "",
       "pdf": "assets/projects/p005-cangqing-rail-system/case.pdf",
-      "attachments": [],
       "tags": [
         "产品",
         "模块",
@@ -701,62 +513,28 @@
       "articleBlocks": [
         {
           "type": "heading",
-          "text": "项目概述",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "项目概述"
         },
         {
           "type": "paragraph",
-          "text": "一套面向展厅和住宅的扶手与展架系统，结构关系来自传统支撑系统，但外观保持低调、锋利和可量产。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "一套面向展厅和住宅的扶手与展架系统，结构关系来自传统支撑系统，但外观保持低调、锋利和可量产。"
         },
         {
           "type": "quote",
-          "text": "从斗拱的支撑逻辑抽出模块嵌套关系。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "从斗拱的支撑逻辑抽出模块嵌套关系。"
         },
         {
           "type": "pdf",
-          "text": "",
           "asset": "assets/projects/p005-cangqing-rail-system/drawings.pdf",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
           "label": "查看图纸 / Drawing"
         },
         {
           "type": "model3d",
-          "text": "",
-          "asset": "assets/projects/p005-cangqing-rail-system/model.glb",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "asset": "assets/projects/p005-cangqing-rail-system/model.glb"
         },
         {
           "type": "pdf",
-          "text": "",
           "asset": "assets/projects/p005-cangqing-rail-system/case.pdf",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
           "label": "下载完整项目 PDF"
         }
       ],
@@ -777,20 +555,14 @@
       "concept": "把展厅入口变成一条从暗场进入光幕的路径。",
       "description": "以 360 全景为核心的空间展示原型，用户先在暗场看到轴线和光幕，再进入可滑动的全景场景。",
       "coverImage": "abstract:ridge",
-      "detailImage": "",
-      "articleCoverImage": "",
       "gallery": [
         "assets/projects/p006-northern-gallery/article-01.png"
       ],
       "drawings": [],
       "model3d": "",
-      "modelThumbnail": "",
       "panorama": "assets/projects/p006-northern-gallery/panorama.png",
-      "panoramaThumbnail": "",
       "video": "",
-      "videoPoster": "",
       "pdf": "",
-      "attachments": [],
       "tags": [
         "360",
         "展厅",
@@ -800,53 +572,24 @@
       "articleBlocks": [
         {
           "type": "heading",
-          "text": "项目概述",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "项目概述"
         },
         {
           "type": "paragraph",
-          "text": "以 360 全景为核心的空间展示原型，用户先在暗场看到轴线和光幕，再进入可滑动的全景场景。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "以 360 全景为核心的空间展示原型，用户先在暗场看到轴线和光幕，再进入可滑动的全景场景。"
         },
         {
           "type": "quote",
-          "text": "把展厅入口变成一条从暗场进入光幕的路径。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "把展厅入口变成一条从暗场进入光幕的路径。"
         },
         {
           "type": "image",
-          "text": "",
           "asset": "assets/projects/p006-northern-gallery/article-01.png",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "项目图像",
-          "label": ""
+          "caption": "项目图像"
         },
         {
           "type": "panorama",
-          "text": "",
-          "asset": "assets/projects/p006-northern-gallery/panorama.png",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "asset": "assets/projects/p006-northern-gallery/panorama.png"
         }
       ],
       "featured": false,
@@ -866,20 +609,14 @@
       "concept": "把瓦灰从历史材料转成现代设计色谱。",
       "description": "研究瓦灰、木褐、冷青与朱砂在不同材质上的显色关系，输出适用于建筑界面、产品外壳和图册系统的材料索引。",
       "coverImage": "abstract:paper",
-      "detailImage": "",
-      "articleCoverImage": "",
       "gallery": [],
       "drawings": [
         "assets/projects/p007-tile-gray-material-atlas/drawings.pdf"
       ],
       "model3d": "",
-      "modelThumbnail": "",
       "panorama": "",
-      "panoramaThumbnail": "",
       "video": "",
-      "videoPoster": "",
       "pdf": "assets/projects/p007-tile-gray-material-atlas/case.pdf",
-      "attachments": [],
       "tags": [
         "材料",
         "色谱",
@@ -889,52 +626,24 @@
       "articleBlocks": [
         {
           "type": "heading",
-          "text": "项目概述",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "项目概述"
         },
         {
           "type": "paragraph",
-          "text": "研究瓦灰、木褐、冷青与朱砂在不同材质上的显色关系，输出适用于建筑界面、产品外壳和图册系统的材料索引。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "研究瓦灰、木褐、冷青与朱砂在不同材质上的显色关系，输出适用于建筑界面、产品外壳和图册系统的材料索引。"
         },
         {
           "type": "quote",
-          "text": "把瓦灰从历史材料转成现代设计色谱。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "把瓦灰从历史材料转成现代设计色谱。"
         },
         {
           "type": "pdf",
-          "text": "",
           "asset": "assets/projects/p007-tile-gray-material-atlas/drawings.pdf",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
           "label": "查看图纸 / Drawing"
         },
         {
           "type": "pdf",
-          "text": "",
           "asset": "assets/projects/p007-tile-gray-material-atlas/case.pdf",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
           "label": "下载完整项目 PDF"
         }
       ],
@@ -955,20 +664,14 @@
       "concept": "不复刻总平面，而提取秩序、方向和节奏。",
       "description": "项目以传统建筑中轴线为出发点，生成一套可用于页面布局、展陈路线和项目编号的几何系统。",
       "coverImage": "",
-      "detailImage": "",
-      "articleCoverImage": "",
       "gallery": [],
       "drawings": [
         "assets/projects/p008-axis-generation-study/drawings.pdf"
       ],
       "model3d": "",
-      "modelThumbnail": "",
       "panorama": "",
-      "panoramaThumbnail": "",
       "video": "",
-      "videoPoster": "",
       "pdf": "assets/projects/p008-axis-generation-study/case.pdf",
-      "attachments": [],
       "tags": [
         "参数化",
         "中轴线",
@@ -978,52 +681,24 @@
       "articleBlocks": [
         {
           "type": "heading",
-          "text": "项目概述",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "项目概述"
         },
         {
           "type": "paragraph",
-          "text": "项目以传统建筑中轴线为出发点，生成一套可用于页面布局、展陈路线和项目编号的几何系统。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "项目以传统建筑中轴线为出发点，生成一套可用于页面布局、展陈路线和项目编号的几何系统。"
         },
         {
           "type": "quote",
-          "text": "不复刻总平面，而提取秩序、方向和节奏。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "不复刻总平面，而提取秩序、方向和节奏。"
         },
         {
           "type": "pdf",
-          "text": "",
           "asset": "assets/projects/p008-axis-generation-study/drawings.pdf",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
           "label": "查看图纸 / Drawing"
         },
         {
           "type": "pdf",
-          "text": "",
           "asset": "assets/projects/p008-axis-generation-study/case.pdf",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
           "label": "下载完整项目 PDF"
         }
       ],
@@ -1044,18 +719,12 @@
       "concept": "用极少木构线条支撑一层柔光。",
       "description": "未发布草稿项目，用于展示维护端的发布状态切换和前台过滤逻辑。",
       "coverImage": "abstract:plinth",
-      "detailImage": "",
-      "articleCoverImage": "",
       "gallery": [],
       "drawings": [],
       "model3d": "",
-      "modelThumbnail": "",
       "panorama": "",
-      "panoramaThumbnail": "",
       "video": "",
-      "videoPoster": "",
       "pdf": "",
-      "attachments": [],
       "tags": [
         "草稿",
         "木构",
@@ -1064,33 +733,15 @@
       "articleBlocks": [
         {
           "type": "heading",
-          "text": "项目概述",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "项目概述"
         },
         {
           "type": "paragraph",
-          "text": "未发布草稿项目，用于展示维护端的发布状态切换和前台过滤逻辑。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "未发布草稿项目，用于展示维护端的发布状态切换和前台过滤逻辑。"
         },
         {
           "type": "quote",
-          "text": "用极少木构线条支撑一层柔光。",
-          "asset": "",
-          "assets": [],
-          "poster": "",
-          "thumbnail": "",
-          "caption": "",
-          "label": ""
+          "text": "用极少木构线条支撑一层柔光。"
         }
       ],
       "featured": false,
