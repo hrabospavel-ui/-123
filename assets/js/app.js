@@ -1,3 +1,4 @@
+// CACHE_BUST_VERSION: 20260710053927
 (function () {
   "use strict";
 
@@ -17,6 +18,24 @@
   var ASSET_STORE = "assets";
   var ASSET_ID_PREFIX = "asset_";
   var SITE_DATA_URL = "assets/data/site-data.json";
+
+  function withCacheBust(url) {
+    var separator = url.indexOf("?") === -1 ? "?" : "&";
+    return url + separator + "v=" + Date.now();
+  }
+
+  function shouldForceOfficialData() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      return params.has("fresh") ||
+        params.has("official") ||
+        params.get("source") === "official" ||
+        params.get("clearDraft") === "1";
+    } catch (error) {
+      return false;
+    }
+  }
+
   var ADMIN_HASH_ROUTE = "#atelier-console";
   var ADMIN_SESSION_KEY = "northernAtelier.adminSession.v1";
   var ADMIN_PASSWORD_HASH = "50b1458955475f1f949da12c1ac7f4c6e77264e59df06ceb82ac1e650ae2d02d";
@@ -1509,17 +1528,42 @@
     });
   }
 
+
+  function isPlainSettingsData(data) {
+    var incoming = data || {};
+    return !incoming.siteSettings &&
+      !incoming.projects &&
+      !incoming.navigation &&
+      !incoming.methods &&
+      (
+        Object.prototype.hasOwnProperty.call(incoming, "studioName") ||
+        Object.prototype.hasOwnProperty.call(incoming, "studioSeal") ||
+        Object.prototype.hasOwnProperty.call(incoming, "taglineCN") ||
+        Object.prototype.hasOwnProperty.call(incoming, "visualAssets") ||
+        Object.prototype.hasOwnProperty.call(incoming, "sectionBackgrounds") ||
+        Object.prototype.hasOwnProperty.call(incoming, "sections")
+      );
+  }
+
+  function warnPlainSettingsData(data, source) {
+    if (source === "official" && isPlainSettingsData(data) && typeof console !== "undefined" && console.warn) {
+      console.warn("当前 assets/data/site-data.json 看起来是设置 JSON，而不是完整站点数据。页面会保留现有项目数据，但正式发布建议使用“导出完整站点数据 site-data.json”。");
+    }
+  }
+
   function normalizeSiteData(data) {
     var incoming = data || {};
+    var settingsSource = incoming.siteSettings || incoming.settings || (isPlainSettingsData(incoming) ? incoming : {});
     return {
-      siteSettings: normalizeSiteSettings(incoming.siteSettings || incoming.settings || {}),
-      navigation: normalizeNavigation(incoming.navigation),
-      methods: normalizeMethods(incoming.methods),
-      projects: Array.isArray(incoming.projects) ? incoming.projects.map(normalizeProject) : []
+      siteSettings: normalizeSiteSettings(settingsSource),
+      navigation: normalizeNavigation(Array.isArray(incoming.navigation) ? incoming.navigation : navigation),
+      methods: normalizeMethods(Array.isArray(incoming.methods) ? incoming.methods : methods),
+      projects: Array.isArray(incoming.projects) ? incoming.projects.map(normalizeProject) : projects.map(normalizeProject)
     };
   }
 
   function applySiteData(data, source) {
+    warnPlainSettingsData(data, source);
     var normalized = normalizeSiteData(data);
     siteSettings = normalized.siteSettings;
     navigation = normalized.navigation;
@@ -1535,7 +1579,7 @@
 
   async function loadOfficialSiteData() {
     try {
-      var response = await fetch(SITE_DATA_URL, { cache: "no-store" });
+      var response = await fetch(withCacheBust(SITE_DATA_URL), { cache: "no-store" });
       if (!response.ok) {
         throw new Error("HTTP " + response.status);
       }
@@ -1750,6 +1794,8 @@
 
   function currentSiteData() {
     return {
+      schema: "northern-atelier-site-data-v1",
+      exportedAt: new Date().toISOString(),
       siteSettings: siteSettings,
       navigation: navigation,
       methods: methods,
@@ -1769,7 +1815,14 @@
         return;
       }
     }
-    exportJSON("site-data.json", data);
+    if (typeof window !== "undefined" && window.confirm) {
+      var publishOk = window.confirm("即将导出完整站点数据 site-data.json。\n\n发布步骤：\n1. 下载后保持文件名 site-data.json；\n2. 上传覆盖 assets/data/site-data.json；\n3. 提交 GitHub；\n4. 用 ?fresh=1 检查线上数据。\n\n继续导出？");
+      if (!publishOk) {
+        return;
+      }
+    }
+    exportJSON("site-data.json", data, { skipNotice: true });
+    showAdminStamp("site-data.json 已导出");
   }
 
   function collectOfficialPathIssues(data) {
@@ -1990,34 +2043,49 @@
 
   function initAssetDB() {
     return new Promise(function (resolve) {
-      if (!("indexedDB" in window)) {
-        state.assetDbReady = false;
-        state.assetDbError = "当前浏览器不支持 IndexedDB，无法持久保存本地上传文件。";
-        resolve(null);
-        return;
-      }
-      var request = indexedDB.open(ASSET_DB_NAME, ASSET_DB_VERSION);
-      request.onupgradeneeded = function (event) {
-        var db = event.target.result;
-        if (!db.objectStoreNames.contains(ASSET_STORE)) {
-          var store = db.createObjectStore(ASSET_STORE, { keyPath: "id" });
-          store.createIndex("projectId", "projectId", { unique: false });
-          store.createIndex("sectionId", "sectionId", { unique: false });
-          store.createIndex("type", "type", { unique: false });
-          store.createIndex("createdAt", "createdAt", { unique: false });
+      try {
+        if (!("indexedDB" in window) || !window.indexedDB) {
+          state.assetDbReady = false;
+          state.assetDbError = "当前浏览器不支持 IndexedDB，无法持久保存本地上传文件。";
+          resolve(null);
+          return;
         }
-      };
-      request.onsuccess = function (event) {
-        state.assetDb = event.target.result;
-        state.assetDbReady = true;
-        state.assetDbError = "";
-        resolve(state.assetDb);
-      };
-      request.onerror = function () {
+
+        var request = indexedDB.open(ASSET_DB_NAME, ASSET_DB_VERSION);
+        request.onupgradeneeded = function (event) {
+          var db = event.target.result;
+          if (!db.objectStoreNames.contains(ASSET_STORE)) {
+            var store = db.createObjectStore(ASSET_STORE, { keyPath: "id" });
+            store.createIndex("projectId", "projectId", { unique: false });
+            store.createIndex("sectionId", "sectionId", { unique: false });
+            store.createIndex("type", "type", { unique: false });
+            store.createIndex("createdAt", "createdAt", { unique: false });
+          }
+        };
+        request.onsuccess = function (event) {
+          state.assetDb = event.target.result;
+          state.assetDbReady = true;
+          state.assetDbError = "";
+          resolve(state.assetDb);
+        };
+        request.onerror = function () {
+          state.assetDbReady = false;
+          state.assetDbError = "IndexedDB 初始化失败：" + (request.error && request.error.message ? request.error.message : "未知错误");
+          console.warn(state.assetDbError);
+          resolve(null);
+        };
+        request.onblocked = function () {
+          state.assetDbReady = false;
+          state.assetDbError = "IndexedDB 被浏览器阻止，本地上传素材不会持久保存，但线上项目数据仍可显示。";
+          console.warn(state.assetDbError);
+          resolve(null);
+        };
+      } catch (error) {
         state.assetDbReady = false;
-        state.assetDbError = "IndexedDB 初始化失败：" + (request.error && request.error.message ? request.error.message : "未知错误");
+        state.assetDbError = "IndexedDB 初始化被浏览器阻止：" + (error && error.message ? error.message : "未知错误");
+        console.warn(state.assetDbError);
         resolve(null);
-      };
+      }
     });
   }
 
@@ -2408,18 +2476,44 @@
   document.addEventListener("DOMContentLoaded", init);
 
   async function init() {
-    await initAssetDB();
-    await loadOfficialSiteData();
-    if (localDraftExists()) {
-      loadLocalDraftData();
+    try {
+      await initAssetDB();
+    } catch (error) {
+      state.assetDbReady = false;
+      state.assetDbError = "IndexedDB 初始化失败：" + (error && error.message ? error.message : "未知错误");
+      console.warn(state.assetDbError);
     }
-    await refreshData();
+
+    try {
+      await loadOfficialSiteData();
+      if (shouldForceOfficialData()) {
+        clearLocalDraftStorage();
+      } else if (localDraftExists()) {
+        loadLocalDraftData();
+      }
+    } catch (error) {
+      state.dataLoadError = "站点数据初始化失败：" + (error && error.message ? error.message : "未知错误");
+      console.warn(state.dataLoadError);
+      applySiteData(FALLBACK_SITE_DATA, "fallback");
+    }
+
+    try {
+      await refreshData();
+    } catch (error) {
+      console.warn("状态刷新失败，使用当前内存数据继续渲染。", error);
+      state.settings = siteSettings;
+      state.navigation = navigation;
+      state.projects = projects;
+      state.assets = [];
+    }
+
     renderAll();
     bindGlobalEvents();
     initWadangCursorStable();
     initHeroStageStable();
     window.setTimeout(initEmberCanvas, 900);
     initSectionObserver();
+    window.setTimeout(ensureProjectCardsVisible, 900);
   }
 
   async function refreshData() {
@@ -2428,6 +2522,60 @@
     state.projects = await fetchProjects();
     state.assets = await listAssetsFromDB();
     await rebuildAssetObjectURLs();
+  }
+
+
+  function ensureProjectCardsVisible() {
+    if (state.cardVisibilityFallbackTimer) {
+      window.clearTimeout(state.cardVisibilityFallbackTimer);
+    }
+
+    function isNearViewport(element) {
+      if (!element || !element.getBoundingClientRect) {
+        return false;
+      }
+      var rect = element.getBoundingClientRect();
+      var buffer = Math.min(360, Math.max(180, window.innerHeight * 0.32));
+      return rect.bottom >= -buffer && rect.top <= window.innerHeight + buffer;
+    }
+
+    function isHiddenByStyle(element) {
+      var style = window.getComputedStyle ? window.getComputedStyle(element) : null;
+      if (!style) {
+        return false;
+      }
+      return style.display === "none" || style.visibility === "hidden" || Number(style.opacity) < 0.05;
+    }
+
+    state.cardVisibilityFallbackTimer = window.setTimeout(function () {
+      var publishedExists = state.projects && state.projects.some(function (project) {
+        return project.published;
+      });
+
+      var cards = qsa(".project-card, .research-card");
+
+      if (!cards.length && publishedExists) {
+        console.warn("项目数据已加载，但项目卡片尚未渲染。正在尝试重新渲染项目区。");
+        renderFeatured();
+        renderFilters();
+        renderWorks();
+        renderCategoryRail("Architecture", "architectureRail");
+        renderCategoryRail("Objects", "objectsRail");
+        renderResearch();
+        cards = qsa(".project-card, .research-card");
+      }
+
+      var nearCards = cards.filter(function (card) {
+        return isNearViewport(card.closest(".section") || card);
+      });
+
+      if (nearCards.length && nearCards.every(isHiddenByStyle)) {
+        console.warn("项目卡片进入视口后仍不可见，启用兜底显示。");
+        document.body.classList.add("cards-fallback-visible");
+      } else {
+        document.body.classList.remove("cards-fallback-visible");
+      }
+    }, 1200);
   }
 
   function renderAll() {
@@ -2449,6 +2597,7 @@
     fillSettingsForm();
     renderDataSourceStatus();
     renderPathReport();
+    ensureProjectCardsVisible();
   }
 
   function renderSettings() {
@@ -3641,7 +3790,13 @@
     var exportSettingsButton = qs("#exportSettingsButton");
     if (exportSettingsButton) {
       exportSettingsButton.addEventListener("click", function () {
-        exportJSON("northern-atelier-site-settings.json", siteSettings);
+        if (typeof window !== "undefined" && window.confirm) {
+          var ok = window.confirm("这是“设置 JSON”，只包含首页文案、联系方式、视觉路径等设置，不包含项目、导航和方法数据。\n\n正式发布到 GitHub 时，请优先使用“导出完整站点数据 site-data.json”。\n\n仍然导出设置 JSON？");
+          if (!ok) {
+            return;
+          }
+        }
+        exportJSON("site-settings-only.json", siteSettings);
       });
     }
 
@@ -4378,6 +4533,68 @@
     }
   }
 
+  async function copyTextToClipboard(text, successMessage) {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        var input = document.createElement("textarea");
+        input.value = text;
+        input.setAttribute("readonly", "readonly");
+        input.style.position = "fixed";
+        input.style.opacity = "0";
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+      }
+      showAdminStamp(successMessage || "已复制");
+    } catch (error) {
+      if (window.prompt) {
+        window.prompt("请手动复制：", text);
+      }
+    }
+  }
+
+
+  function renderPublishCheckReport(report) {
+    var box = qs("#publishCheckReport");
+    if (!box) {
+      return;
+    }
+
+    box.classList.remove("is-ok", "is-warn", "is-error");
+
+    if (!report) {
+      box.textContent = "发布检查失败：没有返回检查结果。";
+      box.classList.add("is-error");
+      return;
+    }
+
+    if (!report.jsonValid || report.siteData !== "ok") {
+      box.innerHTML = "<strong>检查失败</strong><br>site-data.json 无法读取或 JSON 格式错误。<br><code>" + escapeHTML(report.error || "unknown error") + "</code>";
+      box.classList.add("is-error");
+      return;
+    }
+
+    var missing = Array.isArray(report.missingAssets) ? report.missingAssets : [];
+    if (!missing.length) {
+      box.innerHTML = "<strong>发布检查通过</strong><br>site-data.json 可读取，JSON 有效，未发现缺失的 assets 路径。";
+      box.classList.add("is-ok");
+      return;
+    }
+
+    var preview = missing.slice(0, 12).map(function (path) {
+      return "<li><code>" + escapeHTML(path) + "</code></li>";
+    }).join("");
+
+    box.innerHTML = "<strong>发现缺失素材：" + missing.length + " 项</strong><br>请检查以下路径是否已经上传到 GitHub：<ul>" + preview + "</ul>" + (missing.length > 12 ? "<br>还有 " + (missing.length - 12) + " 项，请在控制台查看完整结果。" : "");
+    box.classList.add("is-warn");
+  }
+
+
+  window.renderPublishCheckReport = renderPublishCheckReport;
+
   function showAdminStamp(text) {
     var drawer = qs(".admin-drawer");
     if (!drawer) {
@@ -4881,17 +5098,87 @@
     });
   }
 
+
+  function detectImportJSONType(data) {
+    if (Array.isArray(data)) {
+      return "projects";
+    }
+
+    if (!data || typeof data !== "object") {
+      return "unknown";
+    }
+
+    if (Array.isArray(data.projects) || data.siteSettings || data.navigation || data.methods || data.schema === "northern-atelier-site-data-v1") {
+      return "full";
+    }
+
+    if (isPlainSettingsData(data) || data.settings) {
+      return "settings";
+    }
+
+    return "unknown";
+  }
+
+  function describeImportJSONType(type) {
+    switch (type) {
+      case "full":
+        return "完整站点数据 site-data.json";
+      case "settings":
+        return "设置 JSON";
+      case "projects":
+        return "项目 JSON";
+      default:
+        return "未知 JSON";
+    }
+  }
+
+  function askImportConfirmation(message) {
+    if (typeof window === "undefined" || !window.confirm) {
+      return true;
+    }
+    return window.confirm(message);
+  }
+
+  function notifyImportError(message) {
+    if (typeof window !== "undefined" && window.alert) {
+      window.alert(message);
+    }
+    showAdminStamp(message);
+  }
+
   async function handleProjectsImport(event) {
     var file = event.target.files && event.target.files[0];
     if (!file) {
       return;
     }
-    projects = (await readJSONFile(file)).map(normalizeProject);
-    writeStorage();
-    await refreshData();
-    renderAll();
-    event.target.value = "";
-    showAdminStamp("项目 JSON 已导入为本机草稿");
+
+    try {
+      var data = await readJSONFile(file);
+      var type = detectImportJSONType(data);
+
+      if (type === "projects") {
+        projects = data.map(normalizeProject);
+      } else if (type === "full" && Array.isArray(data.projects)) {
+        if (!askImportConfirmation("检测到这是完整站点数据，不是单独项目 JSON。\n\n是否只导入其中的 projects 项目列表？")) {
+          event.target.value = "";
+          return;
+        }
+        projects = data.projects.map(normalizeProject);
+      } else {
+        notifyImportError("当前文件类型为：" + describeImportJSONType(type) + "。请导入项目 JSON，或使用“导入完整站点数据”。");
+        event.target.value = "";
+        return;
+      }
+
+      writeStorage();
+      await refreshData();
+      renderAll();
+      showAdminStamp("项目数据已导入为本机草稿");
+    } catch (error) {
+      notifyImportError("项目 JSON 导入失败：" + (error && error.message ? error.message : "未知错误"));
+    } finally {
+      event.target.value = "";
+    }
   }
 
   async function handleSettingsImport(event) {
@@ -4899,12 +5186,34 @@
     if (!file) {
       return;
     }
-    siteSettings = normalizeSiteSettings(await readJSONFile(file));
-    writeStorage();
-    await refreshData();
-    renderAll();
-    event.target.value = "";
-    showAdminStamp("设置 JSON 已导入为本机草稿");
+
+    try {
+      var data = await readJSONFile(file);
+      var type = detectImportJSONType(data);
+
+      if (type === "settings") {
+        siteSettings = normalizeSiteSettings(data);
+      } else if (type === "full") {
+        if (!askImportConfirmation("检测到这是完整站点数据。\n\n是否只导入其中的 siteSettings 设置部分？项目、导航和方法数据将保持当前状态。")) {
+          event.target.value = "";
+          return;
+        }
+        siteSettings = normalizeSiteSettings(data.siteSettings || data.settings || {});
+      } else {
+        notifyImportError("当前文件类型为：" + describeImportJSONType(type) + "。请导入设置 JSON，或使用“导入完整站点数据”。");
+        event.target.value = "";
+        return;
+      }
+
+      writeStorage();
+      await refreshData();
+      renderAll();
+      showAdminStamp("设置数据已导入为本机草稿");
+    } catch (error) {
+      notifyImportError("设置 JSON 导入失败：" + (error && error.message ? error.message : "未知错误"));
+    } finally {
+      event.target.value = "";
+    }
   }
 
   async function handleFullDataImport(event) {
@@ -4912,17 +5221,46 @@
     if (!file) {
       return;
     }
-    var data = await readJSONFile(file);
-    var normalized = normalizeSiteData(data);
-    siteSettings = normalized.siteSettings;
-    navigation = normalized.navigation;
-    methods = normalized.methods;
-    projects = normalized.projects;
-    writeStorage();
-    await refreshData();
-    renderAll();
-    event.target.value = "";
-    showAdminStamp("site-data.json 已导入为本机草稿");
+
+    try {
+      var data = await readJSONFile(file);
+      var type = detectImportJSONType(data);
+
+      if (type === "full") {
+        var normalized = normalizeSiteData(data);
+        siteSettings = normalized.siteSettings;
+        navigation = normalized.navigation;
+        methods = normalized.methods;
+        projects = normalized.projects;
+        showAdminStamp("完整站点数据已导入为本机草稿");
+      } else if (type === "settings") {
+        if (!askImportConfirmation("检测到这是设置 JSON，不是完整 site-data.json。\n\n是否只导入设置，并保留当前项目、导航和方法数据？")) {
+          event.target.value = "";
+          return;
+        }
+        siteSettings = normalizeSiteSettings(data);
+        showAdminStamp("设置 JSON 已合并为本机草稿");
+      } else if (type === "projects") {
+        if (!askImportConfirmation("检测到这是项目 JSON，不是完整 site-data.json。\n\n是否只导入项目列表，并保留当前站点设置？")) {
+          event.target.value = "";
+          return;
+        }
+        projects = data.map(normalizeProject);
+        showAdminStamp("项目 JSON 已合并为本机草稿");
+      } else {
+        notifyImportError("无法识别 JSON 类型。请确认文件来自本站后台导出。");
+        event.target.value = "";
+        return;
+      }
+
+      writeStorage();
+      await refreshData();
+      renderAll();
+    } catch (error) {
+      notifyImportError("JSON 导入失败：" + (error && error.message ? error.message : "未知错误"));
+    } finally {
+      event.target.value = "";
+    }
   }
 
   function initSectionObserver() {
@@ -5210,7 +5548,7 @@
       y: 0,
       lightX: 44,
       lightY: 48,
-      strength: 0.62
+      strength: 0.34
     };
 
     var current = {
@@ -5218,7 +5556,7 @@
       y: 0,
       lightX: 44,
       lightY: 48,
-      strength: 0.62
+      strength: 0.34
     };
 
     function clamp(value, min, max) {
@@ -5274,7 +5612,7 @@
       target.y = 0;
       target.lightX = 44;
       target.lightY = 48;
-      target.strength = 0.50;
+      target.strength = 0.34;
     }
 
     function needsFrame() {
@@ -5324,7 +5662,7 @@
       target.y = (localY - 0.5) * 2;
       target.lightX = clamp(localX * 100, 8, 92);
       target.lightY = clamp(localY * 100, 10, 88);
-      target.strength = 0.68;
+      target.strength = 0.34;
 
       requestRender();
     }
@@ -5353,6 +5691,7 @@
       }, { passive: true });
 
       hero.addEventListener("pointermove", handlePointerMove, { passive: true });
+      hero.addEventListener("mousemove", handleMouseMove, { passive: true });
     } else {
       hero.addEventListener("mouseenter", function (event) {
         updateRect();
@@ -5645,3 +5984,182 @@
     }
   }
 })();
+
+// V21_HOME_FX_RUNTIME
+(function () {
+  function applyV21HomeFxRuntime() {
+    var spotlightSelectors = [
+      ".hero-spotlight",
+      ".hero-spotlight-core",
+      ".hero-spotlight-glow",
+      ".hero-light-orb",
+      ".spotlight",
+      ".spotlight-core",
+      ".spotlight-glow",
+      ".pointer-spotlight",
+      ".light-spot"
+    ];
+
+    spotlightSelectors.forEach(function (selector) {
+      document.querySelectorAll(selector).forEach(function (el) {
+        if (!el.dataset.v21HomeFxApplied) {
+          el.style.willChange = "transform, opacity, filter";
+          el.style.transformOrigin = "center center";
+          el.dataset.v21HomeFxApplied = "1";
+        }
+      });
+    });
+
+    var sceneSelectors = [
+      ".hero",
+      ".hero-stage",
+      ".hero-depth",
+      ".hero-visual",
+      ".hero-scene",
+      ".hero-composite",
+      ".hero-backdrop",
+      ".hero-background"
+    ];
+
+    sceneSelectors.forEach(function (selector) {
+      document.querySelectorAll(selector).forEach(function (el) {
+        if (!el.dataset.v21SceneFxApplied) {
+          el.style.backfaceVisibility = "hidden";
+          el.style.transformStyle = "preserve-3d";
+          el.dataset.v21SceneFxApplied = "1";
+        }
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyV21HomeFxRuntime);
+  } else {
+    applyV21HomeFxRuntime();
+  }
+})();
+
+
+
+// V22_PUBLISH_CHECK
+window.runPublishCheck = async function () {
+  var report = {
+    time: new Date().toISOString(),
+    siteData: "checking",
+    missingAssets: [],
+    jsonValid: false
+  };
+
+  try {
+    var response = await fetch("assets/data/site-data.json?v=" + Date.now(), {
+      cache: "no-store"
+    });
+
+    if (!response.ok) {
+      throw new Error("HTTP " + response.status);
+    }
+
+    var data = await response.json();
+    report.jsonValid = true;
+    report.siteData = "ok";
+    report.schema = data && data.schema ? data.schema : "";
+    report.exportedAt = data && data.exportedAt ? data.exportedAt : "";
+
+    var paths = [];
+    var seen = {};
+
+    function collect(value) {
+      if (!value) {
+        return;
+      }
+
+      if (typeof value === "string") {
+        var trimmed = value.trim();
+        if (trimmed.indexOf("assets/") === 0 && !seen[trimmed]) {
+          seen[trimmed] = true;
+          paths.push(trimmed);
+        }
+        return;
+      }
+
+      if (Array.isArray(value)) {
+        value.forEach(collect);
+        return;
+      }
+
+      if (typeof value === "object") {
+        Object.keys(value).forEach(function (key) {
+          collect(value[key]);
+        });
+      }
+    }
+
+    collect(data);
+    report.checkedAssets = paths.length;
+
+    var checks = await Promise.all(paths.map(async function (path) {
+      try {
+        var url = path + (path.indexOf("?") === -1 ? "?" : "&") + "check=" + Date.now();
+        var r = await fetch(url, {
+          method: "HEAD",
+          cache: "no-store"
+        });
+
+        if (r.ok) {
+          return null;
+        }
+
+        // Some static hosts may block HEAD for certain files, so retry as a tiny GET.
+        var retry = await fetch(url, {
+          method: "GET",
+          cache: "no-store"
+        });
+        return retry.ok ? null : path;
+      } catch (e) {
+        return path;
+      }
+    }));
+
+    report.missingAssets = checks.filter(Boolean);
+  } catch (e) {
+    report.siteData = "failed";
+    report.error = String(e && e.message ? e.message : e);
+  }
+
+  if (typeof console !== "undefined") {
+    console.table(report);
+    if (report.missingAssets && report.missingAssets.length) {
+      console.warn("Missing assets:", report.missingAssets);
+    } else if (report.jsonValid) {
+      console.log("Publish check passed.");
+    }
+  }
+
+  if (typeof window.renderPublishCheckReport === "function") {
+    window.renderPublishCheckReport(report);
+  } else {
+    var reportBox = document.querySelector("#publishCheckReport");
+    if (reportBox) {
+      reportBox.textContent = report.jsonValid
+        ? "发布检查完成：" + ((report.missingAssets && report.missingAssets.length) ? "发现缺失素材 " + report.missingAssets.length + " 项。" : "未发现缺失素材。")
+        : "发布检查失败：" + (report.error || "site-data.json 读取失败。");
+    }
+  }
+  return report;
+};
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  var runPublishCheckButton = document.querySelector("#runPublishCheckButton");
+  if (runPublishCheckButton && !runPublishCheckButton.dataset.v23Bound) {
+    runPublishCheckButton.dataset.v23Bound = "1";
+    runPublishCheckButton.addEventListener("click", async function () {
+      var reportBox = document.querySelector("#publishCheckReport");
+      if (reportBox) {
+        reportBox.classList.remove("is-ok", "is-warn", "is-error");
+        reportBox.textContent = "正在检查 site-data.json 与 assets 路径，请稍候……";
+      }
+      await window.runPublishCheck();
+    });
+  }
+});

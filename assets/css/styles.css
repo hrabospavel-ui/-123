@@ -4455,3 +4455,1674 @@ body.article-open {
 }
 /* V16_BRIGHTER_BG_AND_SPOTLIGHT_END */
 
+
+
+/* V20_PUBLISH_WORKFLOW_START */
+.admin-publish-workflow {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid rgba(210, 185, 140, 0.28);
+  background:
+    linear-gradient(135deg, rgba(255, 220, 160, 0.08), rgba(255, 255, 255, 0.025)),
+    rgba(8, 9, 9, 0.62);
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+.admin-publish-workflow strong {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(255, 230, 185, 0.94);
+  letter-spacing: 0.08em;
+}
+
+.admin-publish-workflow ol {
+  margin: 0 0 12px 1.2em;
+  padding: 0;
+  color: rgba(247, 241, 228, 0.74);
+  line-height: 1.75;
+}
+
+.admin-publish-workflow code {
+  color: rgba(255, 220, 160, 0.94);
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 1px 6px;
+}
+
+.admin-mini-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+/* V20_PUBLISH_WORKFLOW_END */
+
+/* V21_HOME_FX_START */
+:root {
+  --v21-hero-brightness: 1.20;
+  --v21-hero-contrast: 1.04;
+  --v21-hero-saturate: 1.06;
+  --v21-hero-spotlight-core-opacity: 0.32;
+  --v21-hero-spotlight-halo-opacity: 0.24;
+  --v21-hero-spotlight-warm-core: rgba(255, 234, 204, 0.92);
+  --v21-hero-spotlight-warm-mid: rgba(255, 205, 142, 0.42);
+  --v21-hero-spotlight-warm-outer: rgba(255, 175, 102, 0.16);
+}
+
+/* 整体背景提亮约 20%，保持暗调但减少发灰感 */
+.hero,
+.hero-stage,
+.hero-depth,
+.hero-visual,
+.hero-media,
+.hero-scene,
+.hero-composite,
+.hero-backdrop,
+.hero-background {
+  filter: brightness(var(--v21-hero-brightness)) contrast(var(--v21-hero-contrast)) saturate(var(--v21-hero-saturate));
+}
+
+/* 让背景前景关系更清晰一些 */
+.hero::before,
+.hero-stage::before,
+.hero-depth::before,
+.hero-visual::before,
+.hero-backdrop::before {
+  opacity: 0.72;
+}
+
+/* 圆形追光：不靠粗暴加亮，而是稍微升高亮度与色温 */
+.hero-spotlight,
+.hero-spotlight-core,
+.hero-spotlight-glow,
+.hero-light-orb,
+.spotlight,
+.pointer-spotlight,
+.light-spot {
+  mix-blend-mode: screen;
+}
+
+.hero-spotlight,
+.spotlight,
+.pointer-spotlight,
+.light-spot {
+  background:
+    radial-gradient(circle at center,
+      var(--v21-hero-spotlight-warm-core) 0%,
+      rgba(255, 241, 222, 0.78) 14%,
+      var(--v21-hero-spotlight-warm-mid) 34%,
+      var(--v21-hero-spotlight-warm-outer) 58%,
+      rgba(255, 170, 96, 0.00) 78%);
+  opacity: var(--v21-hero-spotlight-core-opacity);
+  filter: blur(0px) saturate(1.12);
+  box-shadow:
+    0 0 18px rgba(255, 225, 185, 0.20),
+    0 0 44px rgba(255, 194, 120, 0.18),
+    0 0 88px rgba(255, 170, 92, 0.12);
+}
+
+.hero-spotlight-glow,
+.hero-light-orb,
+.spotlight-glow,
+.pointer-spotlight::before,
+.light-spot::before {
+  opacity: var(--v21-hero-spotlight-halo-opacity);
+  filter: blur(10px) saturate(1.10);
+}
+
+.hero-spotlight-core,
+.spotlight-core {
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 248, 237, 0.95) 0%,
+      rgba(255, 231, 198, 0.78) 24%,
+      rgba(255, 204, 144, 0.36) 56%,
+      rgba(255, 186, 118, 0.00) 84%);
+  opacity: 0.34;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .hero-stage,
+  .hero-depth,
+  .hero-visual,
+  .hero-media,
+  .hero-scene,
+  .hero-composite,
+  .hero-backdrop,
+  .hero-background {
+    filter: brightness(1.14) contrast(1.03) saturate(1.04);
+  }
+
+  .hero-spotlight,
+  .spotlight,
+  .pointer-spotlight,
+  .light-spot {
+    opacity: 0.26;
+  }
+
+  .hero-spotlight-core,
+  .spotlight-core {
+    opacity: 0.28;
+  }
+}
+/* V21_HOME_FX_END */
+
+
+/* V23_PUBLISH_CHECK_UI_START */
+.publish-check-report {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px dashed rgba(255, 225, 175, 0.22);
+  background: rgba(0, 0, 0, 0.18);
+  color: rgba(247, 241, 228, 0.68);
+  line-height: 1.7;
+  font-size: 0.9rem;
+}
+
+.publish-check-report strong {
+  color: rgba(255, 232, 190, 0.96);
+}
+
+.publish-check-report.is-ok {
+  border-color: rgba(138, 210, 164, 0.38);
+  background: rgba(30, 85, 56, 0.14);
+}
+
+.publish-check-report.is-warn {
+  border-color: rgba(245, 176, 83, 0.42);
+  background: rgba(115, 72, 20, 0.14);
+}
+
+.publish-check-report.is-error {
+  border-color: rgba(255, 118, 118, 0.42);
+  background: rgba(110, 28, 28, 0.16);
+}
+
+.publish-check-report ul {
+  margin: 8px 0 0 1.2em;
+  padding: 0;
+}
+
+.publish-check-report code {
+  color: rgba(255, 225, 180, 0.96);
+  word-break: break-all;
+}
+/* V23_PUBLISH_CHECK_UI_END */
+
+
+
+/* V27_LIGHT_TRANSITION_RESTORE_START */
+/*
+  V27:
+  - Reduce current spotlight intensity by about 40%.
+  - Lift hero background material brightness by about 10% from the current v21/v26 baseline.
+  - Restore section / page jump reveal animations by removing always-on card transform overrides.
+  - Keep card visibility fallback only as an emergency body class, not as a default state.
+*/
+:root {
+  --v21-hero-brightness: 1.32;
+  --v21-hero-contrast: 1.04;
+  --v21-hero-saturate: 1.06;
+  --v21-hero-spotlight-core-opacity: 0.14;
+  --v21-hero-spotlight-halo-opacity: 0.10;
+  --v21-hero-spotlight-warm-core: rgba(255, 234, 204, 0.46);
+  --v21-hero-spotlight-warm-mid: rgba(255, 205, 142, 0.19);
+  --v21-hero-spotlight-warm-outer: rgba(255, 175, 102, 0.06);
+}
+
+.hero-spotlight,
+.spotlight,
+.pointer-spotlight,
+.light-spot {
+  opacity: var(--v21-hero-spotlight-core-opacity);
+  box-shadow:
+    0 0 10px rgba(255, 225, 185, 0.08),
+    0 0 24px rgba(255, 194, 120, 0.07),
+    0 0 48px rgba(255, 170, 92, 0.05);
+}
+
+.hero-spotlight-glow,
+.hero-light-orb,
+.spotlight-glow,
+.pointer-spotlight::before,
+.light-spot::before {
+  opacity: var(--v21-hero-spotlight-halo-opacity);
+  filter: blur(10px) saturate(1.04);
+}
+
+.hero-spotlight-core,
+.spotlight-core {
+  opacity: 0.15;
+}
+
+/* 紧急兜底：只有 JS 判断卡片进入视口仍不可见时才启用，不再默认压掉页面跳转 / 入场动效。 */
+body.cards-fallback-visible .section-observe .project-card,
+body.cards-fallback-visible .section-observe .research-card,
+body.cards-fallback-visible .section-observe .featured-grid,
+body.cards-fallback-visible .section-observe .works-grid,
+body.cards-fallback-visible .section-observe .category-rail,
+body.cards-fallback-visible .section-observe .research-grid {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+body.cards-fallback-visible .section-observe .project-card,
+body.cards-fallback-visible .section-observe .research-card {
+  transform: translateY(0) scale(1) !important;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .hero-stage,
+  .hero-depth,
+  .hero-visual,
+  .hero-media,
+  .hero-scene,
+  .hero-composite,
+  .hero-backdrop,
+  .hero-background {
+    filter: brightness(1.25) contrast(1.03) saturate(1.04);
+  }
+
+  :root {
+    --v21-hero-spotlight-core-opacity: 0.12;
+    --v21-hero-spotlight-halo-opacity: 0.08;
+  }
+
+  .hero-spotlight,
+  .spotlight,
+  .pointer-spotlight,
+  .light-spot {
+    opacity: 0.12;
+  }
+
+  .hero-spotlight-core,
+  .spotlight-core {
+    opacity: 0.13;
+  }
+}
+/* V27_LIGHT_TRANSITION_RESTORE_END */
+
+/* V28_MOUSE_SPOTLIGHT_REFINED_START */
+/*
+  V28:
+  The visible mouse spotlight is generated by .hero-spotlight::before/::after
+  and the hero layer ::after overlays. This block adjusts those real sources:
+  smaller area, softer brightness, clearer mouse tracking.
+*/
+
+/* Keep the page background brightness from V27. */
+:root {
+  --v21-hero-brightness: 1.32;
+  --v21-hero-contrast: 1.04;
+  --v21-hero-saturate: 1.06;
+}
+
+/* The spotlight layer itself should not blanket the whole hero. */
+.hero-spotlight {
+  inset: -4%;
+  opacity: 1;
+  mix-blend-mode: screen;
+  transform: translate3d(calc(var(--hero-x) * 5px), calc(var(--hero-y) * 3px), 120px);
+}
+
+/* Main mouse-following spot: smaller, lower intensity, still warm. */
+.hero-spotlight::before {
+  background:
+    radial-gradient(circle at var(--light-x) var(--light-y),
+      rgba(255, 236, 204, 0.24) 0%,
+      rgba(242, 193, 130, 0.16) 5%,
+      rgba(225, 142, 72, 0.075) 12%,
+      rgba(165, 74, 28, 0.035) 20%,
+      rgba(0, 0, 0, 0) 30%);
+  opacity: calc(0.07 + var(--light-strength) * 0.16);
+  filter: blur(2px) saturate(1.04);
+}
+
+/* Outer halo: much tighter than before, just enough to reveal motion. */
+.hero-spotlight::after {
+  background:
+    radial-gradient(ellipse at var(--light-x) var(--light-y),
+      rgba(255, 195, 116, 0.075) 0%,
+      rgba(198, 104, 46, 0.04) 16%,
+      rgba(0, 0, 0, 0) 34%);
+  opacity: calc(0.05 + var(--light-strength) * 0.08);
+  filter: blur(6px) saturate(1.02);
+}
+
+/* Reduce the broad image-layer wash so the mouse light reads as a smaller spot. */
+.hero-layer-mountain::after {
+  background:
+    radial-gradient(ellipse at var(--light-x) var(--light-y),
+      rgba(238, 174, 92, 0.055) 0%,
+      rgba(191, 104, 46, 0.026) 13%,
+      rgba(0, 0, 0, 0) 28%);
+  opacity: calc(0.025 + var(--light-strength) * 0.055);
+}
+
+.hero-layer-window::after {
+  background:
+    radial-gradient(ellipse at var(--light-x) var(--light-y),
+      rgba(255, 210, 132, 0.055) 0%,
+      rgba(218, 130, 56, 0.026) 12%,
+      rgba(0, 0, 0, 0) 26%);
+  opacity: calc(0.025 + var(--light-strength) * 0.055);
+}
+
+.hero-layer-lady::after {
+  background:
+    radial-gradient(circle at var(--light-x) var(--light-y),
+      rgba(255, 214, 143, 0.055) 0%,
+      rgba(218, 128, 52, 0.026) 11%,
+      rgba(0, 0, 0, 0) 24%);
+  opacity: calc(0.025 + var(--light-strength) * 0.06);
+}
+
+/* V21/V27 generic spotlight class overrides stay low, but no longer drive the main visible effect. */
+.hero-spotlight,
+.spotlight,
+.pointer-spotlight,
+.light-spot {
+  opacity: 1;
+  box-shadow: none;
+}
+
+.hero-spotlight-core,
+.spotlight-core {
+  opacity: 0.10;
+}
+
+@media (max-width: 900px) {
+  .hero-spotlight::before {
+    opacity: calc(0.04 + var(--light-strength) * 0.10);
+  }
+
+  .hero-spotlight::after {
+    opacity: calc(0.03 + var(--light-strength) * 0.06);
+  }
+}
+/* V28_MOUSE_SPOTLIGHT_REFINED_END */
+
+/* V29_SPOTLIGHT_DIAMETER_40_START */
+/*
+  V29:
+  Further reduce the mouse-following spotlight diameter by about 40%.
+  The perceived diameter is controlled by radial-gradient stop percentages.
+  Values below are roughly 60% of V28's radius stops.
+*/
+
+/* Do not let the spotlight layer extend beyond the hero; this especially helps at edges. */
+.hero-spotlight {
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Core spot: V28 stops 5/12/20/30 -> V29 stops 3/7/12/18. */
+.hero-spotlight::before {
+  background:
+    radial-gradient(circle at var(--light-x) var(--light-y),
+      rgba(255, 236, 204, 0.22) 0%,
+      rgba(242, 193, 130, 0.14) 3%,
+      rgba(225, 142, 72, 0.065) 7%,
+      rgba(165, 74, 28, 0.030) 12%,
+      rgba(0, 0, 0, 0) 18%);
+  opacity: calc(0.055 + var(--light-strength) * 0.13);
+  filter: blur(1.5px) saturate(1.03);
+}
+
+/* Outer halo: V28 stops 16/34 -> V29 stops 10/20. */
+.hero-spotlight::after {
+  background:
+    radial-gradient(ellipse at var(--light-x) var(--light-y),
+      rgba(255, 195, 116, 0.060) 0%,
+      rgba(198, 104, 46, 0.030) 10%,
+      rgba(0, 0, 0, 0) 20%);
+  opacity: calc(0.035 + var(--light-strength) * 0.055);
+  filter: blur(4px) saturate(1.01);
+}
+
+/* Layer wash also reduced by about 40%, preventing the edge from feeling like a large glow. */
+.hero-layer-mountain::after {
+  background:
+    radial-gradient(ellipse at var(--light-x) var(--light-y),
+      rgba(238, 174, 92, 0.042) 0%,
+      rgba(191, 104, 46, 0.020) 8%,
+      rgba(0, 0, 0, 0) 17%);
+  opacity: calc(0.018 + var(--light-strength) * 0.040);
+}
+
+.hero-layer-window::after {
+  background:
+    radial-gradient(ellipse at var(--light-x) var(--light-y),
+      rgba(255, 210, 132, 0.042) 0%,
+      rgba(218, 130, 56, 0.020) 7%,
+      rgba(0, 0, 0, 0) 16%);
+  opacity: calc(0.018 + var(--light-strength) * 0.040);
+}
+
+.hero-layer-lady::after {
+  background:
+    radial-gradient(circle at var(--light-x) var(--light-y),
+      rgba(255, 214, 143, 0.042) 0%,
+      rgba(218, 128, 52, 0.020) 7%,
+      rgba(0, 0, 0, 0) 14%);
+  opacity: calc(0.018 + var(--light-strength) * 0.045);
+}
+
+@media (max-width: 900px) {
+  .hero-spotlight::before {
+    opacity: calc(0.035 + var(--light-strength) * 0.08);
+  }
+
+  .hero-spotlight::after {
+    opacity: calc(0.025 + var(--light-strength) * 0.045);
+  }
+}
+/* V29_SPOTLIGHT_DIAMETER_40_END */
+
+/* V30_FIXED_RADIUS_SPOTLIGHT_START */
+/*
+  V30:
+  Fix edge enlargement of the mouse-following spotlight.
+  Percentage-based radial gradients use a dynamic farthest-corner radius, so
+  the spot becomes larger near screen edges. This block uses fixed px radii
+  and px color stops to keep the spotlight size stable everywhere.
+*/
+
+:root {
+  --mouse-spot-core-radius: 86px;
+  --mouse-spot-halo-x: 138px;
+  --mouse-spot-halo-y: 96px;
+  --mouse-layer-wash-x: 120px;
+  --mouse-layer-wash-y: 82px;
+}
+
+.hero-spotlight {
+  inset: 0;
+  overflow: hidden;
+  contain: paint;
+}
+
+/* Fixed-radius core spot: same size at center, sides, and corners. */
+.hero-spotlight::before {
+  background:
+    radial-gradient(circle var(--mouse-spot-core-radius) at var(--light-x) var(--light-y),
+      rgba(255, 236, 204, 0.21) 0px,
+      rgba(242, 193, 130, 0.13) 18px,
+      rgba(225, 142, 72, 0.060) 38px,
+      rgba(165, 74, 28, 0.028) 58px,
+      rgba(0, 0, 0, 0) 86px);
+  opacity: calc(0.052 + var(--light-strength) * 0.12);
+  filter: blur(1.4px) saturate(1.03);
+}
+
+/* Fixed-size halo, no longer expanding at edges. */
+.hero-spotlight::after {
+  background:
+    radial-gradient(ellipse var(--mouse-spot-halo-x) var(--mouse-spot-halo-y) at var(--light-x) var(--light-y),
+      rgba(255, 195, 116, 0.052) 0px,
+      rgba(198, 104, 46, 0.026) 46px,
+      rgba(0, 0, 0, 0) 128px);
+  opacity: calc(0.030 + var(--light-strength) * 0.050);
+  filter: blur(3.8px) saturate(1.01);
+}
+
+/* Fixed-size layer reflections; prevents large edge wash on the collage layers. */
+.hero-layer-mountain::after {
+  background:
+    radial-gradient(ellipse var(--mouse-layer-wash-x) var(--mouse-layer-wash-y) at var(--light-x) var(--light-y),
+      rgba(238, 174, 92, 0.038) 0px,
+      rgba(191, 104, 46, 0.018) 34px,
+      rgba(0, 0, 0, 0) 110px);
+  opacity: calc(0.016 + var(--light-strength) * 0.036);
+}
+
+.hero-layer-window::after {
+  background:
+    radial-gradient(ellipse var(--mouse-layer-wash-x) var(--mouse-layer-wash-y) at var(--light-x) var(--light-y),
+      rgba(255, 210, 132, 0.038) 0px,
+      rgba(218, 130, 56, 0.018) 32px,
+      rgba(0, 0, 0, 0) 106px);
+  opacity: calc(0.016 + var(--light-strength) * 0.036);
+}
+
+.hero-layer-lady::after {
+  background:
+    radial-gradient(circle 94px at var(--light-x) var(--light-y),
+      rgba(255, 214, 143, 0.038) 0px,
+      rgba(218, 128, 52, 0.018) 30px,
+      rgba(0, 0, 0, 0) 94px);
+  opacity: calc(0.016 + var(--light-strength) * 0.040);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --mouse-spot-core-radius: 72px;
+    --mouse-spot-halo-x: 110px;
+    --mouse-spot-halo-y: 78px;
+    --mouse-layer-wash-x: 96px;
+    --mouse-layer-wash-y: 68px;
+  }
+
+  .hero-spotlight::before {
+    opacity: calc(0.034 + var(--light-strength) * 0.075);
+  }
+
+  .hero-spotlight::after {
+    opacity: calc(0.022 + var(--light-strength) * 0.040);
+  }
+}
+/* V30_FIXED_RADIUS_SPOTLIGHT_END */
+
+/* V31_FIXED_PIXEL_SPOTLIGHT_START */
+/*
+  V31:
+  The previous radial-gradient was still painted on a full-size transformed layer.
+  Even with px stops, perspective / layer movement could make the perceived spot
+  change size. This version turns the mouse light into fixed-size pseudo-elements
+  positioned at the cursor. The element size is constant everywhere.
+*/
+
+:root {
+  --mouse-spot-core-size: 132px;
+  --mouse-spot-halo-size: 218px;
+}
+
+/* Keep spotlight layer flat and unscaled. */
+.hero-spotlight {
+  inset: 0 !important;
+  overflow: hidden !important;
+  transform: none !important;
+  perspective: none !important;
+  contain: paint;
+  mix-blend-mode: screen;
+  opacity: 1 !important;
+}
+
+/* Fixed pixel core: same diameter at center, side and corner. */
+.hero-spotlight::before {
+  inset: auto !important;
+  left: var(--light-x) !important;
+  top: var(--light-y) !important;
+  width: var(--mouse-spot-core-size) !important;
+  height: var(--mouse-spot-core-size) !important;
+  border-radius: 999px;
+  transform: translate3d(-50%, -50%, 0) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 238, 210, 0.20) 0%,
+      rgba(245, 198, 132, 0.12) 24%,
+      rgba(220, 138, 70, 0.052) 48%,
+      rgba(120, 48, 20, 0.018) 68%,
+      rgba(0, 0, 0, 0) 100%) !important;
+  opacity: 0.58 !important;
+  filter: blur(1.2px) saturate(1.02) !important;
+  will-change: left, top;
+}
+
+/* Fixed pixel halo: clipped at the edge instead of growing. */
+.hero-spotlight::after {
+  inset: auto !important;
+  left: var(--light-x) !important;
+  top: var(--light-y) !important;
+  width: var(--mouse-spot-halo-size) !important;
+  height: var(--mouse-spot-halo-size) !important;
+  border-radius: 999px;
+  transform: translate3d(-50%, -50%, 0) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 202, 128, 0.055) 0%,
+      rgba(205, 105, 46, 0.024) 38%,
+      rgba(0, 0, 0, 0) 100%) !important;
+  opacity: 0.50 !important;
+  filter: blur(3px) saturate(1.01) !important;
+  will-change: left, top;
+}
+
+/* Disable percentage-based layer washes that made the halo seem larger near edges. */
+.hero-layer-mountain::after,
+.hero-layer-window::after,
+.hero-layer-lady::after {
+  opacity: 0 !important;
+  background: none !important;
+}
+
+/* Do not let legacy spotlight classes reintroduce large shadows. */
+.spotlight,
+.pointer-spotlight,
+.light-spot,
+.hero-light-orb,
+.hero-spotlight-glow {
+  box-shadow: none !important;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --mouse-spot-core-size: 108px;
+    --mouse-spot-halo-size: 178px;
+  }
+
+  .hero-spotlight::before {
+    opacity: 0.48 !important;
+  }
+
+  .hero-spotlight::after {
+    opacity: 0.40 !important;
+  }
+}
+/* V31_FIXED_PIXEL_SPOTLIGHT_END */
+
+/* V32_CRISP_MOUSE_SPOTLIGHT_START */
+/*
+  V32:
+  Restore a visible mouse-following spotlight as a fixed-size circular patch.
+  Design target: medium size, readable edge, only slight edge blur.
+*/
+
+:root {
+  --mouse-spot-size: 178px;
+  --mouse-spot-edge-size: 202px;
+}
+
+/* Make sure the spotlight layer is visible, flat, and not affected by 3D scaling. */
+.hero-spotlight {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 18 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  transform: none !important;
+  perspective: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: screen !important;
+  contain: paint;
+}
+
+/* Main spot: fixed size, clear boundary, warm but not blown out. */
+.hero-spotlight::before {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: var(--light-x, 50%) !important;
+  top: var(--light-y, 50%) !important;
+  width: var(--mouse-spot-size) !important;
+  height: var(--mouse-spot-size) !important;
+  border-radius: 999px !important;
+  transform: translate3d(-50%, -50%, 0) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 239, 214, 0.30) 0%,
+      rgba(250, 216, 169, 0.24) 36%,
+      rgba(235, 176, 107, 0.16) 54%,
+      rgba(190, 96, 42, 0.055) 66%,
+      rgba(0, 0, 0, 0) 74%) !important;
+  opacity: calc(0.72 + var(--light-strength, 0.22) * 0.18) !important;
+  filter: blur(0.8px) saturate(1.04) !important;
+  will-change: left, top;
+}
+
+/* Thin soft edge only: gives the spot a slight blur without a big halo. */
+.hero-spotlight::after {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: var(--light-x, 50%) !important;
+  top: var(--light-y, 50%) !important;
+  width: var(--mouse-spot-edge-size) !important;
+  height: var(--mouse-spot-edge-size) !important;
+  border-radius: 999px !important;
+  transform: translate3d(-50%, -50%, 0) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 210, 140, 0.030) 0%,
+      rgba(255, 190, 112, 0.040) 58%,
+      rgba(219, 118, 50, 0.035) 70%,
+      rgba(0, 0, 0, 0) 78%) !important;
+  opacity: 0.62 !important;
+  filter: blur(1.8px) saturate(1.02) !important;
+  will-change: left, top;
+}
+
+/* Keep layer washes off; they caused the edge to feel huge near the sides. */
+.hero-layer-mountain::after,
+.hero-layer-window::after,
+.hero-layer-lady::after {
+  opacity: 0 !important;
+  background: none !important;
+}
+
+/* Prevent legacy classes from creating large halos. */
+.spotlight,
+.pointer-spotlight,
+.light-spot,
+.hero-light-orb,
+.hero-spotlight-glow {
+  box-shadow: none !important;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --mouse-spot-size: 132px;
+    --mouse-spot-edge-size: 154px;
+  }
+
+  .hero-spotlight::before {
+    opacity: 0.68 !important;
+  }
+
+  .hero-spotlight::after {
+    opacity: 0.50 !important;
+  }
+}
+/* V32_CRISP_MOUSE_SPOTLIGHT_END */
+
+/* V33_CINEMATIC_SPOTLIGHT_START */
+/*
+  V33:
+  Reference direction: cinematic moving light patch like the uploaded screenshots,
+  but smaller and more controlled. The light is fixed-size and follows the mouse.
+  It should feel like a selective reveal / stage light, not a small cursor dot.
+*/
+
+:root {
+  --cinema-spot-w: 360px;
+  --cinema-spot-h: 260px;
+  --cinema-spot-edge-w: 440px;
+  --cinema-spot-edge-h: 315px;
+  --cinema-spot-hot-w: 145px;
+  --cinema-spot-hot-h: 110px;
+}
+
+.hero-spotlight {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 16 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  transform: none !important;
+  perspective: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: screen !important;
+  contain: paint;
+}
+
+/* Main illuminated patch: medium-sized, warm, with a readable edge. */
+.hero-spotlight::before {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: var(--light-x, 50%) !important;
+  top: var(--light-y, 50%) !important;
+  width: var(--cinema-spot-w) !important;
+  height: var(--cinema-spot-h) !important;
+  border-radius: 50% !important;
+  transform: translate3d(-50%, -50%, 0) !important;
+  background:
+    radial-gradient(ellipse at center,
+      rgba(255, 242, 210, 0.42) 0%,
+      rgba(255, 221, 166, 0.34) 22%,
+      rgba(245, 178, 100, 0.22) 43%,
+      rgba(200, 100, 42, 0.095) 62%,
+      rgba(90, 36, 15, 0.028) 76%,
+      rgba(0, 0, 0, 0) 88%) !important;
+  opacity: calc(0.68 + var(--light-strength, 0.34) * 0.22) !important;
+  filter: blur(2.2px) saturate(1.06) !important;
+  will-change: left, top;
+}
+
+/* Slight soft edge around the patch, not a giant halo. */
+.hero-spotlight::after {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: var(--light-x, 50%) !important;
+  top: var(--light-y, 50%) !important;
+  width: var(--cinema-spot-edge-w) !important;
+  height: var(--cinema-spot-edge-h) !important;
+  border-radius: 50% !important;
+  transform: translate3d(-50%, -50%, 0) !important;
+  background:
+    radial-gradient(ellipse at center,
+      rgba(255, 218, 150, 0.11) 0%,
+      rgba(236, 150, 78, 0.070) 48%,
+      rgba(202, 100, 42, 0.034) 68%,
+      rgba(0, 0, 0, 0) 84%) !important;
+  opacity: calc(0.38 + var(--light-strength, 0.34) * 0.14) !important;
+  filter: blur(4px) saturate(1.03) !important;
+  will-change: left, top;
+}
+
+/*
+  Subtle reflection on the image layers. These are fixed-size too, so the light
+  does not become large at the frame edges. They bring back the screenshot-like
+  "lighting image content" feeling without huge wash.
+*/
+.hero-layer-mountain::after,
+.hero-layer-window::after,
+.hero-layer-lady::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background:
+    radial-gradient(ellipse var(--cinema-spot-w) var(--cinema-spot-h) at var(--light-x, 50%) var(--light-y, 50%),
+      rgba(255, 226, 165, 0.075) 0%,
+      rgba(235, 145, 74, 0.040) 42%,
+      rgba(0, 0, 0, 0) 78%) !important;
+  opacity: calc(0.08 + var(--light-strength, 0.34) * 0.08) !important;
+  mix-blend-mode: screen !important;
+  filter: blur(1px) saturate(1.04) !important;
+}
+
+/* Small inner hot spot, kept restrained. */
+.hero-layer-window::before {
+  box-shadow:
+    0 0 0 rgba(0, 0, 0, 0),
+    0 0 24px rgba(255, 206, 132, 0.055) !important;
+}
+
+/* Prevent legacy small-dot settings from fighting this cinematic spot. */
+.spotlight,
+.pointer-spotlight,
+.light-spot,
+.hero-light-orb,
+.hero-spotlight-glow {
+  box-shadow: none !important;
+}
+
+/* On mobile: smaller and less intense. */
+@media (max-width: 900px) {
+  :root {
+    --cinema-spot-w: 250px;
+    --cinema-spot-h: 185px;
+    --cinema-spot-edge-w: 310px;
+    --cinema-spot-edge-h: 230px;
+  }
+
+  .hero-spotlight::before {
+    opacity: 0.58 !important;
+    filter: blur(2px) saturate(1.04) !important;
+  }
+
+  .hero-spotlight::after {
+    opacity: 0.34 !important;
+  }
+
+  .hero-layer-mountain::after,
+  .hero-layer-window::after,
+  .hero-layer-lady::after {
+    opacity: 0.07 !important;
+  }
+}
+/* V33_CINEMATIC_SPOTLIGHT_END */
+
+/* V35_NO_CONE_TRUE_ROUND_START */
+/*
+  V35:
+  User is correct: any cone / wedge / beam must be fully removed.
+  This block force-disables all spotlight pseudo-elements on content layers
+  and keeps only one circular spot rendered by .hero-spotlight itself.
+*/
+
+:root{
+  --v35-spot-size: 248px;
+  --v35-spot-soft-size: 304px;
+  --v35-spot-core-opacity: 0.62;
+  --v35-spot-soft-opacity: 0.22;
+}
+
+/* Safety: anything spotlight-like outside the main container is killed. */
+[class*="spotlight"]:not(.hero-spotlight),
+[class*="light-orb"],
+[class*="light-beam"],
+[class*="light-cone"],
+[class*="light-wedge"],
+[class*="glow-beam"]{
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 0 !important;
+}
+
+/* Kill content-layer pseudo elements that can form triangular or cone shapes. */
+.hero-layer,
+.hero-layer::before,
+.hero-layer::after,
+.hero-layer-mountain,
+.hero-layer-mountain::before,
+.hero-layer-mountain::after,
+.hero-layer-window,
+.hero-layer-window::before,
+.hero-layer-window::after,
+.hero-layer-lady,
+.hero-layer-lady::before,
+.hero-layer-lady::after,
+.hero-window,
+.hero-window::before,
+.hero-window::after,
+.hero-background,
+.hero-background::before,
+.hero-background::after,
+.hero-art,
+.hero-art::before,
+.hero-art::after{
+  box-shadow: none !important;
+}
+
+.hero-layer::before,
+.hero-layer::after,
+.hero-layer-mountain::before,
+.hero-layer-mountain::after,
+.hero-layer-window::before,
+.hero-layer-window::after,
+.hero-layer-lady::before,
+.hero-layer-lady::after,
+.hero-window::before,
+.hero-window::after,
+.hero-background::before,
+.hero-background::after,
+.hero-art::before,
+.hero-art::after{
+  background-image: none !important;
+  clip-path: none !important;
+  mask-image: none !important;
+}
+
+/* The one and only spotlight */
+.hero-spotlight{
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 18 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  mix-blend-mode: screen !important;
+  background: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.hero-spotlight::before{
+  content: "" !important;
+  position: absolute !important;
+  left: var(--light-x, 50%) !important;
+  top: var(--light-y, 50%) !important;
+  width: var(--v35-spot-size) !important;
+  height: var(--v35-spot-size) !important;
+  border-radius: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 243, 214, var(--v35-spot-core-opacity)) 0%,
+      rgba(255, 224, 166, 0.54) 26%,
+      rgba(238, 168, 88, 0.34) 48%,
+      rgba(200, 112, 52, 0.15) 64%,
+      rgba(0, 0, 0, 0) 78%) !important;
+  filter: blur(1.1px) !important;
+  box-shadow: none !important;
+  clip-path: circle(50% at 50% 50%) !important;
+  will-change: left, top !important;
+  opacity: 1 !important;
+}
+
+.hero-spotlight::after{
+  content: "" !important;
+  position: absolute !important;
+  left: var(--light-x, 50%) !important;
+  top: var(--light-y, 50%) !important;
+  width: var(--v35-spot-soft-size) !important;
+  height: var(--v35-spot-soft-size) !important;
+  border-radius: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 220, 160, var(--v35-spot-soft-opacity)) 0%,
+      rgba(243, 176, 98, 0.14) 52%,
+      rgba(190, 104, 40, 0.07) 67%,
+      rgba(0, 0, 0, 0) 81%) !important;
+  filter: blur(3px) !important;
+  box-shadow: none !important;
+  clip-path: circle(50% at 50% 50%) !important;
+  will-change: left, top !important;
+  opacity: 1 !important;
+}
+
+/* Mobile tuning */
+@media (max-width: 900px){
+  :root{
+    --v35-spot-size: 220px;
+    --v35-spot-soft-size: 272px;
+    --v35-spot-core-opacity: 0.58;
+    --v35-spot-soft-opacity: 0.20;
+  }
+}
+/* V35_NO_CONE_TRUE_ROUND_END */
+
+/* V36_SOFT_REFERENCE_ROUND_SPOT_START */
+/*
+  V36:
+  User feedback: V35 is too bright and edge too hard.
+  Keep NO cone / NO beam. Make a dimmer, softer, reference-like circular light patch.
+*/
+
+:root{
+  --v36-spot-size: 282px;
+  --v36-spot-soft-size: 430px;
+  --v36-core-alpha: 0.30;
+  --v36-mid-alpha: 0.20;
+  --v36-warm-alpha: 0.105;
+  --v36-edge-alpha: 0.035;
+}
+
+/* Keep every non-round / beam-like source disabled. */
+[class*="spotlight"]:not(.hero-spotlight),
+[class*="light-orb"],
+[class*="light-beam"],
+[class*="light-cone"],
+[class*="light-wedge"],
+[class*="glow-beam"]{
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 0 !important;
+}
+
+.hero-layer::before,
+.hero-layer::after,
+.hero-layer-mountain::before,
+.hero-layer-mountain::after,
+.hero-layer-window::before,
+.hero-layer-window::after,
+.hero-layer-lady::before,
+.hero-layer-lady::after,
+.hero-window::before,
+.hero-window::after,
+.hero-background::before,
+.hero-background::after,
+.hero-art::before,
+.hero-art::after{
+  background-image: none !important;
+  clip-path: none !important;
+  mask-image: none !important;
+  opacity: 0 !important;
+  box-shadow: none !important;
+}
+
+/* One flat circular spotlight layer. */
+.hero-spotlight{
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 18 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  mix-blend-mode: screen !important;
+  background: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* Main soft round patch: dimmer and with a longer falloff than V35. */
+.hero-spotlight::before{
+  content: "" !important;
+  position: absolute !important;
+  left: var(--light-x, 50%) !important;
+  top: var(--light-y, 50%) !important;
+  width: var(--v36-spot-size) !important;
+  height: var(--v36-spot-size) !important;
+  border-radius: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 240, 213, var(--v36-core-alpha)) 0%,
+      rgba(255, 224, 172, 0.255) 20%,
+      rgba(238, 174, 98, var(--v36-mid-alpha)) 38%,
+      rgba(201, 112, 54, var(--v36-warm-alpha)) 58%,
+      rgba(130, 58, 24, var(--v36-edge-alpha)) 74%,
+      rgba(0, 0, 0, 0) 92%) !important;
+  filter: blur(5px) saturate(1.03) !important;
+  box-shadow: none !important;
+  clip-path: circle(50% at 50% 50%) !important;
+  will-change: left, top !important;
+  opacity: calc(0.70 + var(--light-strength, 0.32) * 0.08) !important;
+}
+
+/* Very soft outer transition, close to the reference image glow but smaller and controlled. */
+.hero-spotlight::after{
+  content: "" !important;
+  position: absolute !important;
+  left: var(--light-x, 50%) !important;
+  top: var(--light-y, 50%) !important;
+  width: var(--v36-spot-soft-size) !important;
+  height: var(--v36-spot-soft-size) !important;
+  border-radius: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 220, 160, 0.090) 0%,
+      rgba(240, 168, 92, 0.065) 35%,
+      rgba(190, 100, 44, 0.032) 58%,
+      rgba(0, 0, 0, 0) 86%) !important;
+  filter: blur(14px) saturate(1.02) !important;
+  box-shadow: none !important;
+  clip-path: circle(50% at 50% 50%) !important;
+  will-change: left, top !important;
+  opacity: calc(0.42 + var(--light-strength, 0.32) * 0.07) !important;
+}
+
+/* Mobile: smaller and dimmer. */
+@media (max-width: 900px){
+  :root{
+    --v36-spot-size: 220px;
+    --v36-spot-soft-size: 330px;
+    --v36-core-alpha: 0.26;
+    --v36-mid-alpha: 0.16;
+    --v36-warm-alpha: 0.080;
+    --v36-edge-alpha: 0.026;
+  }
+
+  .hero-spotlight::before{
+    filter: blur(4px) saturate(1.02) !important;
+    opacity: 0.62 !important;
+  }
+
+  .hero-spotlight::after{
+    filter: blur(11px) saturate(1.01) !important;
+    opacity: 0.36 !important;
+  }
+}
+/* V36_SOFT_REFERENCE_ROUND_SPOT_END */
+
+/* V37_REFERENCE_BRIGHTNESS_ROUND_SPOT_START */
+/*
+  V37:
+  V36 was too dim. Raise the round spot brightness toward the uploaded reference,
+  while keeping the no-cone rule and soft edge.
+*/
+
+:root{
+  --v36-spot-size: 292px;
+  --v36-spot-soft-size: 440px;
+  --v36-core-alpha: 0.44;
+  --v36-mid-alpha: 0.30;
+  --v36-warm-alpha: 0.165;
+  --v36-edge-alpha: 0.055;
+}
+
+/* Keep every cone / beam / triangular source disabled. */
+[class*="light-beam"],
+[class*="light-cone"],
+[class*="light-wedge"],
+[class*="glow-beam"]{
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 0 !important;
+}
+
+/* Main round patch: brighter than V36, still not hard-edged. */
+.hero-spotlight::before{
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 244, 218, var(--v36-core-alpha)) 0%,
+      rgba(255, 228, 178, 0.385) 20%,
+      rgba(244, 182, 104, var(--v36-mid-alpha)) 40%,
+      rgba(210, 116, 52, var(--v36-warm-alpha)) 60%,
+      rgba(138, 62, 26, var(--v36-edge-alpha)) 76%,
+      rgba(0, 0, 0, 0) 92%) !important;
+  filter: blur(6px) saturate(1.06) !important;
+  opacity: calc(0.86 + var(--light-strength, 0.32) * 0.10) !important;
+  mix-blend-mode: screen !important;
+}
+
+/* Reference-like warm bloom: visible, soft, not cone-shaped. */
+.hero-spotlight::after{
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 225, 164, 0.170) 0%,
+      rgba(246, 178, 96, 0.115) 34%,
+      rgba(203, 104, 44, 0.060) 58%,
+      rgba(0, 0, 0, 0) 86%) !important;
+  filter: blur(16px) saturate(1.04) !important;
+  opacity: calc(0.58 + var(--light-strength, 0.32) * 0.10) !important;
+  mix-blend-mode: screen !important;
+}
+
+/* Slightly lift the perceived illuminated material without reintroducing triangular beams. */
+.hero-spotlight{
+  mix-blend-mode: screen !important;
+  opacity: 1 !important;
+}
+
+/* Mobile remains softer and less intense. */
+@media (max-width: 900px){
+  :root{
+    --v36-spot-size: 230px;
+    --v36-spot-soft-size: 340px;
+    --v36-core-alpha: 0.36;
+    --v36-mid-alpha: 0.24;
+    --v36-warm-alpha: 0.12;
+    --v36-edge-alpha: 0.040;
+  }
+
+  .hero-spotlight::before{
+    filter: blur(5px) saturate(1.04) !important;
+    opacity: 0.76 !important;
+  }
+
+  .hero-spotlight::after{
+    filter: blur(13px) saturate(1.02) !important;
+    opacity: 0.46 !important;
+  }
+}
+/* V37_REFERENCE_BRIGHTNESS_ROUND_SPOT_END */
+
+/* V38_SOFTER_OUTER_SPOT_EDGE_START */
+/*
+  V38:
+  Keep V37 brightness, but soften the edge outward.
+  No cone / no beam. Only the circular falloff is adjusted.
+*/
+
+:root{
+  --v36-spot-size: 300px;
+  --v36-spot-soft-size: 530px;
+}
+
+/* Main patch: same general brightness, longer fade-out and softer edge. */
+.hero-spotlight::before{
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 244, 218, var(--v36-core-alpha)) 0%,
+      rgba(255, 228, 178, 0.370) 18%,
+      rgba(244, 182, 104, var(--v36-mid-alpha)) 36%,
+      rgba(210, 116, 52, 0.135) 56%,
+      rgba(138, 62, 26, 0.046) 73%,
+      rgba(80, 34, 14, 0.018) 86%,
+      rgba(0, 0, 0, 0) 98%) !important;
+  filter: blur(9px) saturate(1.05) !important;
+  opacity: calc(0.82 + var(--light-strength, 0.32) * 0.09) !important;
+}
+
+/* Outer bloom: wider, weaker, softer. This removes the hard edge feeling. */
+.hero-spotlight::after{
+  width: var(--v36-spot-soft-size) !important;
+  height: var(--v36-spot-soft-size) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 225, 164, 0.130) 0%,
+      rgba(246, 178, 96, 0.085) 30%,
+      rgba(203, 104, 44, 0.040) 56%,
+      rgba(120, 54, 22, 0.016) 76%,
+      rgba(0, 0, 0, 0) 96%) !important;
+  filter: blur(26px) saturate(1.03) !important;
+  opacity: calc(0.52 + var(--light-strength, 0.32) * 0.08) !important;
+}
+
+/* Continue to suppress cone / beam / triangular effects. */
+[class*="light-beam"],
+[class*="light-cone"],
+[class*="light-wedge"],
+[class*="glow-beam"]{
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 0 !important;
+}
+
+@media (max-width: 900px){
+  :root{
+    --v36-spot-size: 232px;
+    --v36-spot-soft-size: 390px;
+  }
+
+  .hero-spotlight::before{
+    filter: blur(7px) saturate(1.03) !important;
+    opacity: 0.72 !important;
+  }
+
+  .hero-spotlight::after{
+    filter: blur(20px) saturate(1.02) !important;
+    opacity: 0.42 !important;
+  }
+}
+/* V38_SOFTER_OUTER_SPOT_EDGE_END */
+
+/* V39_INTEGRATED_REFERENCE_LIGHT_START */
+/*
+  V39:
+  Correct implementation for the reference-like light:
+  It is not a hard circular overlay anymore.
+  Layer 1: soft circular backdrop-brightening area, so the image content itself is lifted.
+  Layer 2: subtle warm color bloom.
+  No cone, no triangle, no directional beam, no hard clip-path circle.
+*/
+
+:root{
+  --v39-light-size: 560px;
+  --v39-warm-size: 430px;
+  --v39-core-alpha: 0.18;
+  --v39-mid-alpha: 0.115;
+  --v39-edge-alpha: 0.030;
+}
+
+/* Hard kill all non-round beam/cone sources. */
+[class*="light-beam"],
+[class*="light-cone"],
+[class*="light-wedge"],
+[class*="glow-beam"]{
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 0 !important;
+}
+
+/* Hard kill content layer pseudo lighting that produced cone-like shapes. */
+.hero-layer::before,
+.hero-layer::after,
+.hero-layer-mountain::before,
+.hero-layer-mountain::after,
+.hero-layer-window::before,
+.hero-layer-window::after,
+.hero-layer-lady::before,
+.hero-layer-lady::after,
+.hero-window::before,
+.hero-window::after,
+.hero-background::before,
+.hero-background::after,
+.hero-art::before,
+.hero-art::after{
+  background-image: none !important;
+  background: none !important;
+  clip-path: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  opacity: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Flat container. It only hosts two circular soft masks. */
+.hero-spotlight{
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 18 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  transform: none !important;
+  perspective: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  contain: paint;
+}
+
+/*
+  Layer 1: content-brightening area.
+  This uses backdrop-filter, so the background material is actually lifted,
+  closer to the reference image. The radial mask fades very slowly, so no hard edge.
+*/
+.hero-spotlight::before{
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: var(--light-x, 50%) !important;
+  top: var(--light-y, 50%) !important;
+  width: var(--v39-light-size) !important;
+  height: var(--v39-light-size) !important;
+  border-radius: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 230, 180, 0.080) 0%,
+      rgba(255, 214, 148, 0.052) 34%,
+      rgba(255, 174, 90, 0.022) 58%,
+      rgba(255, 160, 70, 0.006) 78%,
+      rgba(0, 0, 0, 0) 100%) !important;
+  -webkit-backdrop-filter: brightness(1.42) contrast(1.035) saturate(1.08);
+  backdrop-filter: brightness(1.42) contrast(1.035) saturate(1.08);
+  -webkit-mask-image:
+    radial-gradient(circle at center,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,0.92) 36%,
+      rgba(0,0,0,0.48) 62%,
+      rgba(0,0,0,0.14) 80%,
+      rgba(0,0,0,0) 100%);
+  mask-image:
+    radial-gradient(circle at center,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,0.92) 36%,
+      rgba(0,0,0,0.48) 62%,
+      rgba(0,0,0,0.14) 80%,
+      rgba(0,0,0,0) 100%);
+  filter: blur(0.5px) !important;
+  clip-path: none !important;
+  opacity: calc(0.76 + var(--light-strength, 0.32) * 0.08) !important;
+  box-shadow: none !important;
+  will-change: left, top;
+}
+
+/*
+  Layer 2: warm visible bloom.
+  This is not clipped into a hard disk; it has a very long transparent falloff.
+*/
+.hero-spotlight::after{
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  left: var(--light-x, 50%) !important;
+  top: var(--light-y, 50%) !important;
+  width: var(--v39-warm-size) !important;
+  height: var(--v39-warm-size) !important;
+  border-radius: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 244, 218, var(--v39-core-alpha)) 0%,
+      rgba(255, 224, 165, 0.145) 22%,
+      rgba(241, 174, 94, var(--v39-mid-alpha)) 43%,
+      rgba(203, 105, 44, 0.056) 62%,
+      rgba(130, 58, 25, var(--v39-edge-alpha)) 78%,
+      rgba(0, 0, 0, 0) 100%) !important;
+  filter: blur(18px) saturate(1.05) !important;
+  -webkit-mask-image:
+    radial-gradient(circle at center,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,0.82) 42%,
+      rgba(0,0,0,0.35) 70%,
+      rgba(0,0,0,0) 100%);
+  mask-image:
+    radial-gradient(circle at center,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,0.82) 42%,
+      rgba(0,0,0,0.35) 70%,
+      rgba(0,0,0,0) 100%);
+  clip-path: none !important;
+  opacity: calc(0.62 + var(--light-strength, 0.32) * 0.07) !important;
+  mix-blend-mode: screen !important;
+  box-shadow: none !important;
+  will-change: left, top;
+}
+
+/* Fallback when backdrop-filter is not supported: keep a soft warm light without hard border. */
+@supports not ((backdrop-filter: brightness(1.2)) or (-webkit-backdrop-filter: brightness(1.2))){
+  .hero-spotlight::before{
+    background:
+      radial-gradient(circle at center,
+        rgba(255, 244, 218, 0.24) 0%,
+        rgba(255, 224, 165, 0.18) 26%,
+        rgba(241, 174, 94, 0.095) 52%,
+        rgba(203, 105, 44, 0.030) 76%,
+        rgba(0, 0, 0, 0) 100%) !important;
+    filter: blur(20px) saturate(1.04) !important;
+    mix-blend-mode: screen !important;
+  }
+}
+
+/* Mobile: smaller and lighter. */
+@media (max-width: 900px){
+  :root{
+    --v39-light-size: 410px;
+    --v39-warm-size: 320px;
+    --v39-core-alpha: 0.14;
+    --v39-mid-alpha: 0.080;
+    --v39-edge-alpha: 0.020;
+  }
+
+  .hero-spotlight::before{
+    -webkit-backdrop-filter: brightness(1.30) contrast(1.02) saturate(1.05);
+    backdrop-filter: brightness(1.30) contrast(1.02) saturate(1.05);
+    opacity: 0.68 !important;
+  }
+
+  .hero-spotlight::after{
+    filter: blur(15px) saturate(1.03) !important;
+    opacity: 0.48 !important;
+  }
+}
+/* V39_INTEGRATED_REFERENCE_LIGHT_END */
+
+/* V40_BRIGHT_SOFT_REFERENCE_LIGHT_START */
+/*
+  V40:
+  Reference image correction:
+  V39 solved the hard edge, but it was too dim. This version keeps the soft
+  integrated boundary while raising the illuminated area brightness much closer
+  to the reference: bright warm center, visible broad glow, no cone, no hard disk.
+*/
+
+:root{
+  --v39-light-size: 620px;
+  --v39-warm-size: 560px;
+  --v40-bright-core: 0.42;
+  --v40-bright-mid: 0.30;
+  --v40-bright-warm: 0.16;
+  --v40-bright-edge: 0.055;
+}
+
+/* Continue to forbid cone / triangle / beam shapes. */
+[class*="light-beam"],
+[class*="light-cone"],
+[class*="light-wedge"],
+[class*="glow-beam"]{
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 0 !important;
+}
+
+/*
+  Stronger content lifting.
+  This is the part V39 lacked: the reference is bright because the image content
+  inside the light patch is lifted, not merely tinted.
+*/
+.hero-spotlight::before{
+  width: var(--v39-light-size) !important;
+  height: var(--v39-light-size) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 246, 220, 0.165) 0%,
+      rgba(255, 231, 184, 0.130) 28%,
+      rgba(255, 198, 116, 0.070) 54%,
+      rgba(210, 106, 44, 0.020) 78%,
+      rgba(0, 0, 0, 0) 100%) !important;
+  -webkit-backdrop-filter: brightness(1.82) contrast(1.055) saturate(1.12);
+  backdrop-filter: brightness(1.82) contrast(1.055) saturate(1.12);
+  -webkit-mask-image:
+    radial-gradient(circle at center,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,0.96) 34%,
+      rgba(0,0,0,0.64) 58%,
+      rgba(0,0,0,0.22) 80%,
+      rgba(0,0,0,0) 100%);
+  mask-image:
+    radial-gradient(circle at center,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,0.96) 34%,
+      rgba(0,0,0,0.64) 58%,
+      rgba(0,0,0,0.22) 80%,
+      rgba(0,0,0,0) 100%);
+  filter: blur(1px) saturate(1.05) !important;
+  opacity: calc(0.94 + var(--light-strength, 0.34) * 0.06) !important;
+  mix-blend-mode: screen !important;
+}
+
+/*
+  Visible warm bloom. Brighter than V39, softer than V37/V38.
+  The falloff remains long so there is no hard border.
+*/
+.hero-spotlight::after{
+  width: var(--v39-warm-size) !important;
+  height: var(--v39-warm-size) !important;
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 246, 220, var(--v40-bright-core)) 0%,
+      rgba(255, 226, 170, 0.365) 18%,
+      rgba(244, 178, 98, var(--v40-bright-mid)) 38%,
+      rgba(212, 116, 52, var(--v40-bright-warm)) 61%,
+      rgba(132, 58, 24, var(--v40-bright-edge)) 80%,
+      rgba(0, 0, 0, 0) 100%) !important;
+  filter: blur(22px) saturate(1.06) !important;
+  opacity: calc(0.80 + var(--light-strength, 0.34) * 0.08) !important;
+  mix-blend-mode: screen !important;
+  -webkit-mask-image:
+    radial-gradient(circle at center,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,0.86) 36%,
+      rgba(0,0,0,0.45) 70%,
+      rgba(0,0,0,0) 100%);
+  mask-image:
+    radial-gradient(circle at center,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,0.86) 36%,
+      rgba(0,0,0,0.45) 70%,
+      rgba(0,0,0,0) 100%);
+}
+
+/* Fallback for browsers with weak backdrop-filter support: still bright and soft. */
+@supports not ((backdrop-filter: brightness(1.2)) or (-webkit-backdrop-filter: brightness(1.2))){
+  .hero-spotlight::before{
+    background:
+      radial-gradient(circle at center,
+        rgba(255, 246, 220, 0.40) 0%,
+        rgba(255, 226, 170, 0.31) 28%,
+        rgba(244, 178, 98, 0.18) 56%,
+        rgba(212, 116, 52, 0.055) 80%,
+        rgba(0, 0, 0, 0) 100%) !important;
+    filter: blur(22px) saturate(1.05) !important;
+    opacity: 0.82 !important;
+    mix-blend-mode: screen !important;
+  }
+}
+
+/* Mobile: bright enough but not washed out. */
+@media (max-width: 900px){
+  :root{
+    --v39-light-size: 460px;
+    --v39-warm-size: 410px;
+    --v40-bright-core: 0.32;
+    --v40-bright-mid: 0.22;
+    --v40-bright-warm: 0.10;
+    --v40-bright-edge: 0.035;
+  }
+
+  .hero-spotlight::before{
+    -webkit-backdrop-filter: brightness(1.55) contrast(1.035) saturate(1.08);
+    backdrop-filter: brightness(1.55) contrast(1.035) saturate(1.08);
+    opacity: 0.84 !important;
+  }
+
+  .hero-spotlight::after{
+    filter: blur(18px) saturate(1.04) !important;
+    opacity: 0.62 !important;
+  }
+}
+/* V40_BRIGHT_SOFT_REFERENCE_LIGHT_END */

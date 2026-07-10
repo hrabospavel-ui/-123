@@ -12,7 +12,7 @@
   <link rel="preload" as="image" href="assets/hero-depth/optimized/hero-lady-2560.webp" fetchpriority="high">
   <link rel="preload" as="image" href="assets/hero-depth/optimized/hero-vignette-2560.webp" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260710053927">
 </head>
 <body>
   <a class="skip-link" href="#works">跳至作品</a>
@@ -173,13 +173,27 @@
         <div>
           <p class="eyebrow">ARCHIVE CONSOLE / 案卷维护台</p>
           <h2 id="adminOverlayTitle">案卷维护台 / Archive Console</h2>
-          <p>保存后仅当前浏览器可见，用于本机预览。若要让所有设备看到，请导出 site-data.json，覆盖 assets/data/site-data.json，并提交到 GitHub。</p>
+          <p>后台保存仅用于本机预览；正式发布请导出完整站点数据 site-data.json，覆盖 assets/data/site-data.json，并提交到 GitHub。</p>
           <div class="admin-data-actions">
             <strong id="dataSourceStatus">当前使用：线上 JSON 数据；</strong>
-            <button class="button button-outline" type="button" id="exportFullDataTopButton"><span>导出 JSON</span><em>site-data.json</em></button>
+            <button class="button button-primary" type="button" id="exportFullDataTopButton"><span>导出完整站点数据</span><em>site-data.json</em></button>
             <label class="import-button"><input type="file" id="importFullDataTopInput" accept="application/json">导入 JSON</label>
             <button class="button button-outline" type="button" id="useOfficialDataButton"><span>恢复线上数据 / 清除本机草稿</span><em>Clear Draft</em></button>
             <button class="button button-outline" type="button" id="useLocalDraftButton"><span>使用本机草稿</span><em>Local Draft</em></button>
+          </div>
+          <div class="admin-publish-workflow" id="adminPublishWorkflow">
+            <strong>正式发布三步</strong>
+            <ol>
+              <li>点击“导出完整站点数据”，得到 <code>site-data.json</code>。</li>
+              <li>上传并覆盖 <code>assets/data/site-data.json</code>。</li>
+              <li>提交 GitHub 后，用 <code>?fresh=1</code> 检查线上正式数据。</li>
+            </ol>
+            <div class="admin-mini-actions">
+              <button class="button button-outline" type="button" id="copySiteDataPathButton"><span>复制数据路径</span><em>assets/data/site-data.json</em></button>
+              <button class="button button-outline" type="button" id="copyFreshUrlButton"><span>复制强刷链接</span><em>?fresh=1</em></button>
+              <button class="button button-primary" type="button" id="runPublishCheckButton"><span>发布检查</span><em>Check</em></button>
+            </div>
+            <div class="publish-check-report" id="publishCheckReport" aria-live="polite">点击“发布检查”后，这里会显示 site-data.json 与素材路径检查结果。</div>
           </div>
         </div>
         <button class="modal-close admin-close" type="button" data-admin-close aria-label="关闭案卷维护台">×</button>
@@ -255,11 +269,11 @@
               <label>首页参考图路径<input name="heroDepthReference" placeholder="assets/hero-depth/hero-reference.webp"></label>
               <label>瓦当 WebP 路径<input name="watangWebp" placeholder="assets/images/watang.webp"></label>
               <label>瓦当 PNG 备用路径<input name="watangPngFallback" placeholder="assets/watang/watang.png"></label>
-              <p class="admin-note full">保存后仅当前浏览器可见，用于本机预览。若要让所有设备看到，请导出 site-data.json，覆盖 assets/data/site-data.json，并提交到 GitHub。</p>
+              <p class="admin-note full">后台保存仅用于本机预览；正式发布请导出完整站点数据 site-data.json，覆盖 assets/data/site-data.json，并提交到 GitHub。</p>
               <div class="form-actions full">
                 <button class="button button-primary" type="submit"><span>更新首页文案</span><em>Update Settings</em></button>
                 <button class="button button-outline" type="button" id="exportSettingsButton"><span>导出设置</span><em>JSON</em></button>
-                <button class="button button-outline" type="button" id="exportFullDataButton"><span>导出 JSON</span><em>site-data.json</em></button>
+                <button class="button button-primary" type="button" id="exportFullDataButton"><span>导出完整站点数据</span><em>site-data.json</em></button>
                 <label class="import-button"><input type="file" id="importSettingsInput" accept="application/json">导入设置</label>
                 <label class="import-button"><input type="file" id="importFullDataInput" accept="application/json">导入 JSON</label>
               </div>
@@ -419,6 +433,6 @@
     </article>
   </div>
 
-  <script src="assets/js/app.js" defer></script>
+  <script src="assets/js/app.js?v=20260710053927" defer></script>
 </body>
 </html>
